@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASEURL } from "./BaseUrl";
+import { requestCheck } from "./requestCheck";
 
 const CustomAxios = axios.create({
   baseURL: BASEURL,
@@ -11,3 +12,5 @@ const CustomAxios = axios.create({
 });
 
 export default CustomAxios
+
+CustomAxios.interceptors.request.use(requestCheck);
