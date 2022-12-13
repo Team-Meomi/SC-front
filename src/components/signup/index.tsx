@@ -1,9 +1,9 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import Input from "../../common/input";
 import { useForm, SubmitHandler } from "react-hook-form"
+import { EnterForm } from "../../types";
 import { signup } from "../../Api/member";
-import { EnterForm } from "../../types/Forms";
+import { Input } from "../../common";
 
 export default function Signup() {
   const router = useRouter();
@@ -25,20 +25,18 @@ export default function Signup() {
         <S.LoginTitle onClick={() => redirect('/auth/signup')}>회원가입</S.LoginTitle>
       <S.InputsWapper>
         <S.InputStyle>
-          <p>Email</p>
           <Input
             register={register("email")}
-            name="email"
             type="text"
             placeholder="email 입력하세요"
             required={true}
+            maxLength={6}
           />
+          <label>@gsm.hs.kr</label>
         </S.InputStyle>
         <S.InputStyle onSubmit={handleSubmit(onValid)}>
-          <p>PassWord</p>
           <Input
             register={register("password")}
-            name="password"
             type="password"
             placeholder="password를 입력하세요"
             required={true}
