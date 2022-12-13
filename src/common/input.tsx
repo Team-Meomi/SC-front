@@ -1,14 +1,5 @@
 import React from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
-
-interface InputProps {
-    name: string;
-    type: string;
-    register: UseFormRegisterReturn;
-    required: boolean;
-    placeholder:string;
-    kind?: "text" | "phone" | "price";
-  }
+import { InputProps } from "../types/InputProps";
   
   export default function Input({
     name,
