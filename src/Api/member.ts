@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from "next";
 import { UseSetToken } from "../Hooks";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { MemberController } from "../Utils/lib/urls";
@@ -32,3 +33,19 @@ export const signin = async (
 		console.log(e);
 	}
 };
+
+export const tokenReissue = async (
+	RefreshToken: string,
+	ctx:GetServerSidePropsContext
+) => {
+	let newAuthorization:string
+	try{
+		const {data} = await CustomAxios.patch(`/auth/reissue`,{},{headers: {RefreshToken}});
+		newAuthorization = data.accessToken
+		RefreshToken = data.refreshToken
+		UseSetToken(newAuthorization,RefreshToken,ctx)
+		return {newAuthorization}
+	  } catch(e){
+		console.log(e);
+	  }
+}
