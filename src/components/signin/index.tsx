@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
+import { toast } from "react-toastify";
 
 export default function Signin() {
   const router = useRouter();
@@ -11,8 +12,8 @@ export default function Signin() {
   const { register, handleSubmit, reset } = useForm<SigninForm>();
 
   const onValid:SubmitHandler<SigninForm> = async (data) => {
-    if(!data.email) return console.log("Email를 입력하세요");
-    else if(!data.password) return console.log("비밀번호를 입력하세요");
+    if(!data.email) return toast('이메일을 입력하세요', {type: 'error' })
+    else if(!data.password) return toast('비밀번호를 입력하세요', {type: 'error' })
     console.log(data)
     reset()
     await signin(data.email + '@gsm.hs.kr', data.password);
