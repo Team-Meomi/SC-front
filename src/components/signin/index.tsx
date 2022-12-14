@@ -1,16 +1,16 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form"
-import { EnterForm } from "../../types";
+import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
 
 export default function Signin() {
   const router = useRouter();
   const redirect = (url: string) => router.push(url);
-  const { register, handleSubmit, reset } = useForm<EnterForm>();
+  const { register, handleSubmit, reset } = useForm<SigninForm>();
 
-  const onValid:SubmitHandler<EnterForm> = async (data) => {
+  const onValid:SubmitHandler<SigninForm> = async (data) => {
     if(!data.email) return console.log("Email를 입력하세요");
     else if(!data.password) return console.log("비밀번호를 입력하세요");
     console.log(data)

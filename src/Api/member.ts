@@ -6,15 +6,19 @@ import { MemberController } from "../Utils/lib/urls";
 export const signup = async (
 	email: string,
 	password: string,
+	name:string,
+	strNum:number,
 ) => {
 	try {
 		await CustomAxios.post(MemberController.signup(), {
-			email: email,
-			password: password,
+			email,
+			password,
+			name,
+			strNum
 		});
 	} catch (e: any) {
 		if (e.message === 'Request failed with status code 409') {
-			// toast.warning('이미 가입된 유저에요');
+			console.log("아이디가 이미 존재하는 유저입니다");
 		}
 	}
 };
@@ -30,7 +34,9 @@ export const signin = async (
 		});
 		UseSetToken(data.accessToken, data.refreshToken , null);
 	} catch (e: any) {
-		console.log(e);
+		if (e.message === 'Request failed with status code 404') {
+			console.log("가입된 이메일이 아닙니다");
+		}
 	}
 };
 
