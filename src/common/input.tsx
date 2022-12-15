@@ -33,8 +33,13 @@ const InputStyle = styled.div`
     background-color: white;
     border: none;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     resize: none;
     transition: all ease 0.3s 0s;
+    color: #A3A3A3;
+    
+    ::placeholder{
+      color: #A3A3A3;
+    }
   }
 `;
