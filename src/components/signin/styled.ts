@@ -2,20 +2,22 @@ import styled from "@emotion/styled";
 
 export const LoginWapper = styled.div`
   margin-top:  10vh;
-  width: 600px;
+  width: 580px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content:flex-start;
   height: 100vh;
-  gap: 4rem;
+  gap: 2rem;
+  padding-top: 10vh;
 `;
 
 export const DecsTitle = styled.div`
   width: 250px;
   text-align: center;
   font-size: 1.1rem;
+  padding: 3vh 0;
 `;
 
 export const LoginTitle = styled.span`
@@ -26,17 +28,18 @@ export const LoginTitle = styled.span`
 export const InputsWapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  height: 20vh;
+  height: 35vh;
   width: 100%;
-  margin: 5vh 0;
+  gap: 3vh;
+  margin-bottom: 5vh;
 `;
 
 export const InputStyle = styled.div`
 position: relative;
 width: 70%;
-height: 70px;
+height: 65px;
 border: 1px solid black;
 display: flex;
 align-items: center;
@@ -48,9 +51,9 @@ box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 label{
   opacity: 0.5;
 		position: absolute;
-		top: 2.2vh;
-		left: 285px;
-    font-size: 1.3rem;
+		top: 2vh;
+		left: 265px;
+    font-size: 1.1rem;
 }
 
 span{

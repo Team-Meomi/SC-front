@@ -15,7 +15,6 @@ export default function Signin() {
   const [isPasswordError , SetPasswordError] = useState(false);
 
   useEffect(() => {
-    console.log("레지스터 변경");
     if(watch().email){SetIsIdError(false)}
     if(watch().password){SetPasswordError(false)}
   },[watch().email , watch().password])
@@ -60,7 +59,7 @@ export default function Signin() {
       <S.LoginButton onClick={handleSubmit(onValid)}>login</S.LoginButton>
       <S.RedirectSignUp>
         <span>계정이 없으신가요?</span>
-        <p onClick={() => redirect('/auth/signin')}>회원가입</p>
+        <p onClick={() => redirect('/auth/signup')}>회원가입</p>
       </S.RedirectSignUp>
     </S.LoginWapper>
     </>

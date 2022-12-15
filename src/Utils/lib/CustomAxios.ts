@@ -13,4 +13,4 @@ const CustomAxios = axios.create({
 
 export default CustomAxios
 
-CustomAxios.interceptors.request.use(requestCheck);
+// CustomAxios.interceptors.request.use(requestCheck);

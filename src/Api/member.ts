@@ -5,22 +5,27 @@ import CustomAxios from "../Utils/lib/CustomAxios";
 import { MemberController } from "../Utils/lib/urls";
 
 export const signup = async (
-	email: string,
-	password: string,
-	name:string,
-	strNum:number,
+	email?: string,
+	password?: string,
+	name?:string,
+	strNum?:number,
 ) => {
 	try {
-		await CustomAxios.post(MemberController.signup(), {
+		const {data} = await CustomAxios.post(MemberController.signup(), {
 			email,
 			password,
 			name,
 			strNum
 		});
+		return { data };
 	} catch (e: any) {
 		if (e.message === 'Request failed with status code 409') {
 			toast('아이디가 이미 존재하는 유저입니다', {type: 'warning' })
 		}
+		console.log(e.message);
+		// if (e.message){
+			
+		// }
 	}
 };
 
