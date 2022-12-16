@@ -18,7 +18,7 @@ export default function Signin() {
   useEffect(() => {
     if(watch().email){SetIsIdError(false)}
     if(watch().password){SetIsPasswordError(false)}
-    if(watch().name){SetIsPasswordError(false)}
+    if(watch().name){SetIsNameError(false)}
     if(watch().strNum){SetstrNumError(false)}
   },[watch().email , watch().password , watch().name , watch().strNum])
 
@@ -66,6 +66,7 @@ export default function Signin() {
             type="text"
             placeholder="실명"
             required={true}
+            maxLength={4}
           />
           <span style={{display: isNameError ? "block" : "none"}}>실명을 입력해주세요</span>
         </S.InputStyle>
@@ -75,6 +76,7 @@ export default function Signin() {
             type="text"
             placeholder="학번"
             required={true}
+            maxLength={4}
           />
           <span style={{display: isStrNumError ? "block" : "none"}}>중복된 학번입니다</span>
         </S.InputStyle>

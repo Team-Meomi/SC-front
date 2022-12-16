@@ -28,12 +28,12 @@ export const LoginTitle = styled.span`
 export const InputsWapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  height: 35vh;
+  height: 37vh;
   width: 100%;
   gap: 3vh;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
 `;
 
 export const InputStyle = styled.div`
@@ -66,7 +66,6 @@ span{
 }  
 `;
 
-
 export const LoginButton = styled.button`
   width: 70%;
   height: 7vh;
@@ -81,7 +80,7 @@ export const LoginButton = styled.button`
   border-radius: 5px;
 
   &:hover {
-    background-color: black;
+    background-color: #71BDAC;
   }
 `;
 

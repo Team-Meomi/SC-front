@@ -29,10 +29,10 @@ export const InputsWapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 35vh;
+  height: 37vh;
   width: 100%;
   gap: 3vh;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
 `;
 
 export const InputStyle = styled.div`
@@ -80,7 +80,7 @@ export const LoginButton = styled.button`
   border-radius: 5px;
 
   &:hover {
-    background-color: black;
+    background-color: #71BDAC;
   }
 `;
 
