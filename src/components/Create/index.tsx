@@ -12,6 +12,8 @@ const Create = () => {
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
     const [peopleNum , setPeopleNum] = useState(0);
+    const [date , setDate] = useState("");
+
 
     return (
       <S.Wapper>
@@ -35,7 +37,7 @@ const Create = () => {
               </S.TopicBtns>
               <S.BottomWapper>
                 <S.BottomInput placeholder="인원 수 입력" type="number" onChange={(e:any) => setPeopleNum(e.target.value) }/>
-                <S.BottomInput placeholder="날짜 선택" data-place type="date"/>
+                <S.BottomInput placeholder="날짜 선택" type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
               </S.BottomWapper>
             </S.ConterWapper>
             <S.SubmitBtn>생성하기</S.SubmitBtn>

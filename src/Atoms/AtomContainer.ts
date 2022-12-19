@@ -7,5 +7,5 @@ export const AtomName = atom<string>({
 
 export const AtomCurrentPage = atom<string>({
 	key: 'AtomCurrentPage',
-	default: "Home",
+	default: "home",
 });

@@ -56,6 +56,7 @@ export const CreateBtn = styled.div`
 border-radius: 10px;  border-radius: 10px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 `;
 
 // export const InputBox = styled.div`

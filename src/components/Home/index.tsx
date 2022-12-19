@@ -14,7 +14,7 @@ const Home = () => {
           <S.IntroductionWapper>
             <S.IntroTitle>당신의 전공실력을<br/>늘려보세요!</S.IntroTitle>
             <span>컨퍼런스 , 스터디를 통해<br/>학생들과 자신의 지식을<br/>공유해보세요!</span>
-            <S.CreateBtn>생성하기</S.CreateBtn>
+            <S.CreateBtn onClick={() => router.push("/create")}>생성하기</S.CreateBtn>
           </S.IntroductionWapper>
           <MemoIntro/>
         </S.IntroWapper>

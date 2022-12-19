@@ -52,11 +52,12 @@ export const RadioBtns = styled.div`
 
     color: rgba(121, 121, 121, 0.8);
     background-color: #F2F2F2;
+    cursor: pointer;
     }
     input[type=radio]:checked+label{
    
     color: white;
-    background-color: #77D6B3;;
+    background-color: rgba(119, 214, 179, 0.7);
     }
 `;
 
@@ -123,10 +124,13 @@ export const TopicBtns = styled.div`
         border-radius: 10px;
         background: #F2F2F2;
         box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        color: rgba(121, 121, 121, 0.8);
+        cursor: pointer;
+
     }
     input[type=radio]:checked+label{
         background: #FFCD9F;
-        color: black;
+        color: white;
     }
 `;
 
@@ -169,10 +173,11 @@ export const SubmitBtn = styled.button`
     width: 100%;
     height: 60px;
     border: none;
-    background-color: #77D6B3;
+    background-color: rgba(119, 214, 179, 0.7);
     outline: none;
     border-radius: 10px;
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
+    cursor: pointer;
 `;

@@ -1,35 +1,22 @@
 //멤버
 export const MemberController = {
     signin: () => {
-		return `user/auth/signin`;
+		return `/user/auth/signin`;
 	},
 	signup: () => {
-		return `user/auth/signup`;
+		return `/user/auth/signup`;
 	},
 }
 
-//스터디
-export const StudyController = {
-	study: () => {
-		return `/study`
+// 스터디,컴퍼런스
+export const ContantController = {
+	Contant: (contant:string) => {
+		return `/user/${contant}`
 	},
-	studyDetail: (id: number) => {
-		return `/study/${id}`
+	ContantDetail: (id: number , contant:string) => {
+		return `/user/${contant}/${id}`
 	},
-	studyCheck: () => {
-		return `/study/check`
-	}
-}
-
-//컨퍼런스
-export const ConfereceController = {
-	conferece: () => {
-		return `/conferece`
-	},
-	confereceDetail: (id: number) => {
-		return `/conferece/${id}`
-	},
-	confereceCheck: () => {
-		return `/study/check`
+	ContantCheck: (contant:string) => {
+		return `/user/${contant}/check`
 	}
 }
