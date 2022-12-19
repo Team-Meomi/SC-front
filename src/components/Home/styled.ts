@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
+import { exitCode } from "process";
 
 
 export const HomeWapper = styled.div`
-  margin-top:  10vh;
+  margin-top:  100px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -10,33 +11,57 @@ export const HomeWapper = styled.div`
   align-items: center;
   justify-content:flex-start;
   height: 100vh;
-  gap: 2rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
-export const Header = styled.div`
+export const IntroWapper = styled.div`
   width: 100%;
-  height: 10vh;
-  /* border: 1px solid black; */
-`;
-
-export const CreateBtnsWapper = styled.div`
-  width: 85%;
-  height: 240px;
+  height: 45vh;
+  padding:  0 2%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 10%;
+  border: 1px solid black;
+
+  svg {
+    border: 1px solid black;
+	}
 `;
 
-export const CreateBtn = styled.div`
-  width: 210px;
-  height: 210px;
-  border: none;
-  font-size: 2.4rem;
-  padding: 20px;
-  background: #C3E9DB;
-  border-radius: 10px;
+export const IntroductionWapper = styled.div`
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+border: 1px solid black;
+
+  span{
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+`;
+
+export const IntroTitle = styled.div`
+  font-size: 3rem;
   font-weight: bold;
+`;
+
+
+export const CreateBtn = styled.div`
+  width: 165px;
+  height: 43px;
+  border: none;
+  font-size: 1rem;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #77D6B3;
+   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+border-radius: 10px;  border-radius: 10px;
+  font-weight: bold;
+  color: white;
 `;
 
 export const InputBox = styled.div`
