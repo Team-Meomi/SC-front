@@ -6,7 +6,7 @@ export const create = async (
     kind:string,
 	title: string,
 	content: string,
-	category:string,
+	topic:string,
 	date:string,
     maxCount:number
 ) => {
@@ -14,11 +14,12 @@ export const create = async (
 		const {data} = await CustomAxios.post(KindController.kind(kind), {
 			title,
 			content,
-			category,
+			category:topic,
 			date,
             maxCount,
 		});
 		console.log(data);
+		
 		return { data };
 	} catch (e: any) {
 		console.log(e)

@@ -87,7 +87,7 @@ export default function Signin() {
         </S.InputStyle>
       </S.InputsWapper>
       
-      <S.LoginButton onClick={handleSubmit(onValid)}>sign up</S.LoginButton>
+      <S.LoginButton onClick={handleSubmit(onValid)}>sign in</S.LoginButton>
       <S.RedirectSignUp>
         <span>이미 계정이 있으신가요?</span>
         <p onClick={() => redirect('/auth/signin')}>로그인</p>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AtomCurrentPage } from "../../Atoms";
 import { useRecoilState } from "recoil";
+import { Memosearchicon } from "../../../public/svg";
 
 const Header = () => {
     const router = useRouter();
@@ -20,6 +21,10 @@ const Header = () => {
           <div style={{backgroundSize: currentPage == "home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
           <div style={{backgroundSize: currentPage == "create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
         </S.LeftWapper>
+        <S.CenterWapper>
+          <label><Memosearchicon /></label>
+          <input type="text" placeholder="검색어를 입력해주세요"/>
+        </S.CenterWapper>
         <S.RightWapper>
           <div>O</div>
         </S.RightWapper>

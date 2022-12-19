@@ -33,4 +33,32 @@ export const LeftWapper = styled.div`
 
 export const RightWapper = styled.div`
     font-size: 1.5rem;
+    width: 300px;
+    /* border: 1px solid black; */
+`;
+
+export const CenterWapper = styled.div`
+    position: relative;
+    width: 400px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 2px solid #77D6B3;
+    border-radius: 8px;
+    padding-left: 40px;
+
+    input {
+        border: none;
+        width: 60%;
+        height: 100%;
+        outline: none;
+    }
+
+    label{
+        position: absolute;
+        top: 2px;
+        left: 5px;
+    }
+
 `;

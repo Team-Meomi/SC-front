@@ -10,14 +10,14 @@ export const signup = async (
 	email: string,
 	password: string,
 	name:string,
-	strNum?:number,
+	stuNum?:number,
 ) => {
 	try {
 		const {data} = await CustomAxios.post(MemberController.signup(), {
 			email,
 			password,
 			name,
-			strNum
+			stuNum
 		});
 		console.log(data);
 		return { data };
