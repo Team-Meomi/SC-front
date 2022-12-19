@@ -30,10 +30,10 @@ export default function Signin() {
     reset()
     const res = await signup(data.email + '@gsm.hs.kr', data.password, data.name, data.strNum);
 		if(res.errorMsg === "중복된 이메일 입니다."){
-			SetIsIdError({isError:true , msg: "중복된 이메일 입니다."})
+			return SetIsIdError({isError:true , msg: "중복된 이메일 입니다."})
 		}
 		else if(res.errorMsg === "중복된 학번 입니다."){
-			SetstrNumError({isError:true , msg:"중복된 학번 입니다."})
+			return SetstrNumError({isError:true , msg:"중복된 학번 입니다."})
 		}
     redirect("/auth/signin");
   }
@@ -87,7 +87,7 @@ export default function Signin() {
         </S.InputStyle>
       </S.InputsWapper>
       
-      <S.LoginButton onClick={handleSubmit(onValid)}>sign in</S.LoginButton>
+      <S.LoginButton onClick={handleSubmit(onValid)}>sign up</S.LoginButton>
       <S.RedirectSignUp>
         <span>이미 계정이 있으신가요?</span>
         <p onClick={() => redirect('/auth/signin')}>로그인</p>

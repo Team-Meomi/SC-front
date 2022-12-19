@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const HomeWapper = styled.div`
   margin-top:  10vh;
-  width: 580px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

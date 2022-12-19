@@ -2,15 +2,14 @@ import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { ConferencesProps } from "../../types";
+import { Header } from "../../common";
 
 const Home = () => {
     const router = useRouter();
     // const { data } = useSWR<ConferencesProps>("/conference");
     return (
       <S.HomeWapper>
-        <S.Header>
-            
-        </S.Header>
+        <Header/>
         <S.CreateBtnsWapper>
           <S.CreateBtn>
               컨퍼런스<br/>만들기

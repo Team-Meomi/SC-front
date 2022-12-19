@@ -1,5 +1,7 @@
+import { log } from "console";
 import { GetServerSidePropsContext } from "next";
 import { toast } from "react-toastify";
+import { LoginTitle } from "../components/signup/styled";
 import { UseSetToken } from "../Hooks";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { MemberController } from "../Utils/lib/urls";
@@ -20,10 +22,7 @@ export const signup = async (
 		console.log(data);
 		return { data };
 	} catch (e: any) {
-		// if (e.message === 'Request failed with status code 409') {
-		// 	toast('아이디가 이미 존재하는 유저입니다', {type: 'warning' })
-		// }
-		console.log(e.response.data.message);
+		console.log(e)
 		return { errorMsg:e.response.data.message }
 	}
 };

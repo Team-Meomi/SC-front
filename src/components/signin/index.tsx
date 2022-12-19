@@ -25,7 +25,7 @@ export default function Signin() {
     console.log(data)
     reset()
     await signin(data.email + '@gsm.hs.kr', data.password);
-    redirect("/post");
+    redirect("/home");
   }
 
   return (
