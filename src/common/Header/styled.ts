@@ -8,8 +8,8 @@ export const HeaderWapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
     padding: 0 2%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const LeftWapper = styled.div`

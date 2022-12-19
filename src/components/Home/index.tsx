@@ -1,8 +1,7 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
-import { ConferencesProps } from "../../types";
-import { Header } from "../../common";
+import { Contant, Header } from "../../common";
 import { Intro } from "../../../public/svg";
 
 const Home = () => {
@@ -19,24 +18,22 @@ const Home = () => {
           </S.IntroductionWapper>
           <Intro/>
         </S.IntroWapper>
-        {/* <S.InputBox>
-          <input type="text" />
-          <label>o</label>
-        </S.InputBox> */}
-        <S.Contans>
 
-          {/* <S.Contant>
-            <S.ContantTop>
-              <p>동아리 잡탕 컨퍼런스 입니다</p>
-              <S.ConferenceText>컨퍼런스</S.ConferenceText>
-            </S.ContantTop>
-            <S.ContantBottom>
-              <S.Topic>🟢Android</S.Topic>
-              <S.Date>2022-12-16</S.Date>
-            </S.ContantBottom>
-          </S.Contant> */}
+        <S.ContansWapper>
+        <S.ContansMainTitle>12 월 최신글</S.ContansMainTitle>
 
-        </S.Contans>
+        <S.Contants>
+
+        <Contant/>
+        <Contant/>
+        <Contant/>
+        <Contant/>
+        <Contant/>
+        <Contant/>
+          
+        </S.Contants>
+
+        </S.ContansWapper>
       </S.HomeWapper>
     )
 }

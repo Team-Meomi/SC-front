@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { exitCode } from "process";
-
 
 export const HomeWapper = styled.div`
   margin-top:  100px;
@@ -16,15 +14,12 @@ export const HomeWapper = styled.div`
 export const IntroWapper = styled.div`
   width: 100%;
   height: 45vh;
-  padding:  0 2%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10%;
-  border: 1px solid black;
+  padding: 0 7%;
 
   svg {
-    border: 1px solid black;
 	}
 `;
 
@@ -34,7 +29,6 @@ export const IntroductionWapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-border: 1px solid black;
 
   span{
     font-size: 1.2rem;
@@ -64,89 +58,58 @@ border-radius: 10px;  border-radius: 10px;
   color: white;
 `;
 
-export const InputBox = styled.div`
-  width: 85%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: #FFFFFF;
-  border: 2px solid #77D6B3;
-  border-radius: 10px;
-  position: relative;
+// export const InputBox = styled.div`
+//   width: 85%;
+//   height: 60px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   background: #FFFFFF;
+//   border: 2px solid #77D6B3;
+//   border-radius: 10px;
+//   position: relative;
 
-  input{
-    height: 80%;
-    width: 85%;
-    margin-left: 10px;
-    outline: none;
-    font-size: 1.5rem;
-    border: none;
-    color: #77D6B3;
-  }
+//   input{
+//     height: 80%;
+//     width: 85%;
+//     margin-left: 10px;
+//     outline: none;
+//     font-size: 1.5rem;
+//     border: none;
+//     color: #77D6B3;
+//   }
 
-  label{
-    opacity: 0.5;
-    position: absolute;
-    top: -1.4vh;
-    right: 10px;
+//   label{
+//     opacity: 0.5;
+//     position: absolute;
+//     top: -1.4vh;
+//     right: 10px;
 
-    font-size: 3.1rem;
-    color: #77D6B3;
-  }
-`;
+//     font-size: 3.1rem;
+//     color: #77D6B3;
+//   }
+// `;
 
-export const Contans = styled.div`
-  width: 105%;
-  padding: 0 7.5%;
-  height: 47vh;
+export const ContansWapper = styled.div`
+  width: 100%;
+  padding: 3vh 7%;
+  height: 50vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
 `;
 
-
-
-//임시
-export const Contant = styled.div`
-  width: 100%;
-  height: 100px;
-  background: #FFFFFF;
-  border: 2px solid #77D6B3;
-  border-radius: 8px;
-  padding: 10px 15px;
-`;
-
-export const ContantTop = styled.div`
-  width: 100%;
-  height: 60%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  p{
-    font-size: 1.3rem;
+export const ContansMainTitle = styled.div`
+    font-size: 2rem;
     font-weight: bold;
-  }
 `;
 
-export const ConferenceText = styled.span`
-  color: #7092BA;
-  font-weight: bold;
-`;
-
-export const ContantBottom = styled.div`
-  width: 100%;
-  height: 40%;
+export const Contants = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const Topic = styled.div`
-  font-size: 1.1rem;
-`;
-
-export const Date = styled.div`
-  font-size: 1.1rem;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 4.8%;
 `;
