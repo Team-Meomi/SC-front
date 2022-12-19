@@ -1,3 +1,4 @@
 export * from "./Forms"
 export * from "./InputProps"
-export * from "./conterence"
+export * from "./Conterence"
+export * from "./kind"

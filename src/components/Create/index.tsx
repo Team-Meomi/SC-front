@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { Header } from "../../common";
 import { MemoCreate } from "../../../public/svg";
 import { useState } from "react";
+import { create } from "../../Api/contant";
 
 const Create = () => {
     const router = useRouter();
@@ -11,9 +12,14 @@ const Create = () => {
     const [title , setTitle] = useState("");
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
-    const [peopleNum , setPeopleNum] = useState(0);
+    const [maxCount , setmaxCount] = useState<number>();
     const [date , setDate] = useState("");
-
+    
+    const handleClick = async () => {
+    if(!maxCount) return console.log("널이면 안되지");
+    if(!date) return 
+      await create(kind, title, content, topic, date, maxCount);
+    }
 
     return (
       <S.Wapper>
@@ -36,11 +42,11 @@ const Create = () => {
                 <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>
               <S.BottomWapper>
-                <S.BottomInput placeholder="인원 수 입력" type="number" onChange={(e:any) => setPeopleNum(e.target.value) }/>
+                <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount} onChange={(e:any) => setmaxCount(e.target.value) }/>
                 <S.BottomInput placeholder="날짜 선택" type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
               </S.BottomWapper>
             </S.ConterWapper>
-            <S.SubmitBtn>생성하기</S.SubmitBtn>
+            <S.SubmitBtn onClick={handleClick}>생성하기</S.SubmitBtn>
           </S.InputsWapper>
         </S.CreateWapper>
       </S.Wapper>

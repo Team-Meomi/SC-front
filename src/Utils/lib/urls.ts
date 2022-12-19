@@ -9,14 +9,14 @@ export const MemberController = {
 }
 
 // 스터디,컴퍼런스
-export const ContantController = {
-	Contant: (contant:string) => {
-		return `/user/${contant}`
+export const KindController = {
+	kind: (kind:string) => {
+		return `/user/${kind}`
 	},
-	ContantDetail: (id: number , contant:string) => {
-		return `/user/${contant}/${id}`
+	kindDetail: (id: number , kind:string) => {
+		return `/user/${kind}/${id}`
 	},
-	ContantCheck: (contant:string) => {
-		return `/user/${contant}/check`
+	kindCheck: (kind:string) => {
+		return `/user/${kind}/check`
 	}
 }
