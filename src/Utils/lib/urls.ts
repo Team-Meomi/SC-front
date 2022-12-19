@@ -20,3 +20,10 @@ export const KindController = {
 		return `/user/${kind}/check`
 	}
 }
+
+// 전체 게시글
+export const MainPageController = {
+	MainPage: () => {
+		return `user/mainpage`
+	}
+}

@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { Contant, Header } from "../../common";
 import { MemoIntro } from "../../../public/svg";
+import { MainPageProps } from "../../types/mainpage";
+import { MainPageController } from "../../Utils/lib/urls";
 
 const Home = () => {
     const router = useRouter();
-    // const { data } = useSWR<ConferencesProps>("/conference");
+    const { data } = useSWR<MainPageProps[]>(MainPageController.MainPage());
     return (
       <S.HomeWapper>
         <Header/>

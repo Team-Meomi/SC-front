@@ -1,7 +1,6 @@
 import { log } from "console";
 import { GetServerSidePropsContext } from "next";
 import { toast } from "react-toastify";
-import { LoginTitle } from "../components/signup/styled";
 import { UseSetToken } from "../Hooks";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { MemberController } from "../Utils/lib/urls";
