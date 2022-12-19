@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 
 export const HeaderWapper = styled.div`
-    height: 50px;
+    height: 5vh;
     width: 100%;
 
     display: flex;

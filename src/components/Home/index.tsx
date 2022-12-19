@@ -2,7 +2,7 @@ import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { Contant, Header } from "../../common";
-import { Intro } from "../../../public/svg";
+import { MemoIntro } from "../../../public/svg";
 
 const Home = () => {
     const router = useRouter();
@@ -16,7 +16,7 @@ const Home = () => {
             <span>컨퍼런스 , 스터디를 통해<br/>학생들과 자신의 지식을<br/>공유해보세요!</span>
             <S.CreateBtn>생성하기</S.CreateBtn>
           </S.IntroductionWapper>
-          <Intro/>
+          <MemoIntro/>
         </S.IntroWapper>
 
         <S.ContansWapper>
