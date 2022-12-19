@@ -1,10 +1,10 @@
 //멤버
 export const MemberController = {
     signin: () => {
-		return `/auth/signin`;
+		return `user/auth/signin`;
 	},
 	signup: () => {
-		return `/auth/signup`;
+		return `user/auth/signup`;
 	},
 }
 

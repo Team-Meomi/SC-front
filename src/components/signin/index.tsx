@@ -19,7 +19,6 @@ export default function Signin() {
     if(watch().password){SetPasswordError(false)}
   },[watch().email , watch().password])
 
-
   const onValid:SubmitHandler<SigninForm> = async (data) => {
     if(!data.email) return SetIsIdError(true)
     else if(!data.password) return SetPasswordError(true)
@@ -44,7 +43,7 @@ export default function Signin() {
             maxLength={6}
           />
           <label>@gsm.hs.kr</label>
-          <span style={{display: isIdError ? "block" : "none"}}>학교이메일을 입력해주세요</span>
+          <span style={{display: isIdError ? "block" : "none"}}>학교이메일을 입력해주세요.</span>
         </S.InputStyle>
         <S.InputStyle onSubmit={handleSubmit(onValid)} style={{border: isPasswordError ? "1px solid red" : "none" }}>
           <Input
@@ -53,7 +52,7 @@ export default function Signin() {
             placeholder="PASSWORD"
             required={true}
           />
-          <span style={{display: isPasswordError ? "block" : "none"}}>8~20자 이내로 입력해주세요</span>
+          <span style={{display: isPasswordError ? "block" : "none"}}>8~20자 이내로 입력해주세요.</span>
         </S.InputStyle>
       </S.InputsWapper>
       <S.LoginButton onClick={handleSubmit(onValid)}>login</S.LoginButton>

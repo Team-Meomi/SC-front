@@ -59,8 +59,8 @@ label{
 span{
   opacity: 0.5;
 		position: absolute;
-		top: 8.2vh;
-		left: 250px;
+		top: 7.2vh;
+		left: 239px;
     font-size: 0.8rem;
     color: red;
 }  
