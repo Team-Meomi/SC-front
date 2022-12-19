@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { Header } from "../../common";
 import { MemoCreate } from "../../../public/svg";
 import { useState } from "react";
-import { create } from "../../Api/contant";
+import { create } from "../../Api/find";
 
 const Create = () => {
     const router = useRouter();
