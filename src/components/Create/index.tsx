@@ -1,6 +1,5 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import useSWR from 'swr';
 import { Header } from "../../common";
 import { MemoCreate } from "../../../public/svg";
 import { useState } from "react";
@@ -9,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Create = () => {
     const router = useRouter();
-    const [kind , setKind] = useState("conference")
+    const [studyType , setstudyType] = useState("conference")
     const [title , setTitle] = useState("");
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
@@ -22,7 +21,7 @@ const Create = () => {
     else if(!maxCount) return toast('인원수를 입력하세요', {type: 'warning' })
     else if(!date) return toast('날짜를 선택하세요', {type: 'warning' })
     console.log(title,content,topic,date,maxCount);
-      await create(kind, title, content, topic, date, maxCount);
+      await create(title, content, topic, date, maxCount, studyType);
     }
 
     return (
@@ -32,8 +31,8 @@ const Create = () => {
           <MemoCreate />
           <S.InputsWapper>
             <S.RadioBtns>
-                <input defaultChecked type="radio" value={kind} id="conference" name="kind" onClick={() => setKind("conference")}/><label htmlFor="conference">컴퍼런스</label>
-                <input type="radio" value={kind} id="study" name="kind" onClick={() => setKind("study")} /><label htmlFor="study">스터디</label>
+                <input defaultChecked type="radio" value={studyType} id="conference" name="kind" onClick={() => setstudyType("conference")}/><label htmlFor="conference">컴퍼런스</label>
+                <input type="radio" value={studyType} id="study" name="studyType" onClick={() => setstudyType("study")} /><label htmlFor="study">스터디</label>
             </S.RadioBtns>
             <S.ConterWapper>
               <S.TitleInput placeholder="제목을 입력하세요" value={title} onChange={(e) => setTitle(e.target.value) }/>

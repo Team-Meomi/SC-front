@@ -1,22 +1,23 @@
 import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
-import { KindController } from "../Utils/lib/urls";
+import { StudyController } from "../Utils/lib/urls";
 
 export const create = async (
-    kind:string,
 	title: string,
 	content: string,
 	topic:string,
 	date:string,
-    maxCount:number
+    maxCount:number,
+	studyType:string,
 ) => {
 	try {
-		const {data} = await CustomAxios.post(KindController.kind(kind), {
+		const {data} = await CustomAxios.post(StudyController.Study(), {
 			title,
 			content,
 			category:topic,
 			date,
             maxCount,
+			studyType,
 		});
 		console.log(data);
 		

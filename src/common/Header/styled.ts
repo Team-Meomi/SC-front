@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
-
 export const HeaderWapper = styled.div`
-    height: 5vh;
+    height: 6vh;
     width: 100%;
 
     display: flex;
@@ -18,7 +17,7 @@ export const LeftWapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    div{
+    div {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -34,13 +33,20 @@ export const LeftWapper = styled.div`
 export const RightWapper = styled.div`
     font-size: 1.5rem;
     width: 300px;
-    /* border: 1px solid black; */
+    height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+
+    svg{
+        width: 50px;
+        height: 100%;
+    }
 `;
 
 export const CenterWapper = styled.div`
     position: relative;
     width: 400px;
-    height: 35px;
+    height: 4.5vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -53,12 +59,14 @@ export const CenterWapper = styled.div`
         width: 60%;
         height: 100%;
         outline: none;
+        font-size: 1rem;
     }
 
     label{
         position: absolute;
-        top: 2px;
-        left: 5px;
+        top: 6px;
+        left: 8px;
+        width: 100px;
     }
 
 `;

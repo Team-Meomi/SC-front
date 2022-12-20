@@ -9,6 +9,8 @@ const Header = ({id,title,category,date,type}:MainPageProps) => {
     router.push(`/${category}/${id}`)
   }
   const categoryFullName = categoryArray.filter((i) => i.value === category)[0].fullname
+  console.log(categoryFullName);
+  
 
     return (
     <S.Contant onClick={handleClick}>
@@ -17,7 +19,7 @@ const Header = ({id,title,category,date,type}:MainPageProps) => {
         <S.ConferenceText>{type}</S.ConferenceText>
       </S.ContantTop>
       <S.ContantBottom>
-        <S.Topic>{categoryFullName}</S.Topic>
+        <S.Topic>{category}</S.Topic>
         <S.Date>{date}</S.Date>
       </S.ContantBottom>
     </S.Contant>

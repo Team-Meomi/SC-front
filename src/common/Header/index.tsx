@@ -1,17 +1,23 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AtomCurrentPage } from "../../Atoms";
 import { useRecoilState } from "recoil";
-import { Memosearchicon } from "../../../public/svg";
+import { Memosearchicon, ProfileIcon } from "../../../public/svg";
+import { Userprops } from "../../types";
+import useSWR from "swr";
 
 const Header = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
+    const { data , error } = useSWR<Userprops>(`/${router.query.postid}`);    
+    if(error){
+      router.push('/');
+    }
 
   useEffect(() => {
     console.log(router.pathname);
-    router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")  
+    router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
   },[router])
 
     return (
@@ -26,7 +32,7 @@ const Header = () => {
           <input type="text" placeholder="검색어를 입력해주세요"/>
         </S.CenterWapper>
         <S.RightWapper>
-          <div>O</div>
+          <ProfileIcon onClick={() => router.push(`/user/${data?.stuNum}`)} />
         </S.RightWapper>
       </S.HeaderWapper>
     )
