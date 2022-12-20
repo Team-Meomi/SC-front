@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const HomeDetailWapper = styled.div`
     width: 100%;
-    height: 95vh;
+    height: 100vh;
     display: flex;
     justify-content: space-between;
 `;
@@ -51,7 +51,7 @@ export const DecsContent = styled.div`
 
 export const SubmitBtn = styled.button`
     width: 100%;
-    height: 50px;
+    height: 60px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -60,7 +60,7 @@ export const SubmitBtn = styled.button`
     border-radius: 4px;
     cursor: pointer;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
 `;
 
@@ -71,7 +71,7 @@ export const RightWapper = styled.div`
     flex-wrap:wrap;
     justify-content:flex-start;
     align-content:flex-start;
-    padding: 6vh 4% 0 4.3%;
+    padding: 10vh 4% 0 4.3%;
     gap: 5%;
     background: #EFEFEF;
     overflow-y: scroll;
