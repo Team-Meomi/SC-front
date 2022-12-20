@@ -48,7 +48,7 @@ export const tokenReissue = async (
 ) => {
 	let newAuthorization:string
 	try{
-		const {data} = await CustomAxios.patch(`/auth/reissue`,{},{headers: {RefreshToken}});
+		const {data} = await CustomAxios.patch(MemberController.tokenReissue(),{},{headers: {"Refresh-Token":RefreshToken}});
 		newAuthorization = data.accessToken
 		RefreshToken = data.refreshToken
 		UseSetToken(newAuthorization,RefreshToken,ctx)

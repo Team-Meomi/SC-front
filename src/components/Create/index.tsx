@@ -5,6 +5,7 @@ import { Header } from "../../common";
 import { MemoCreate } from "../../../public/svg";
 import { useState } from "react";
 import { create } from "../../Api/find";
+import { toast } from "react-toastify";
 
 const Create = () => {
     const router = useRouter();
@@ -16,9 +17,11 @@ const Create = () => {
     const [date , setDate] = useState("");
     
     const handleClick = async () => {
-    if(!maxCount) return console.log("널이면 안되지");
-    if(!date) return console.log("또널이네?");
-      console.log(title,content,topic,date,maxCount);
+    if(!title) return toast('제목을 입력하세요', {type: 'warning' })
+    else if(!content) return toast('내용을 입력하세요', {type: 'warning' })
+    else if(!maxCount) return toast('인원수를 입력하세요', {type: 'warning' })
+    else if(!date) return toast('날짜를 선택하세요', {type: 'warning' })
+    console.log(title,content,topic,date,maxCount);
       await create(kind, title, content, topic, date, maxCount);
     }
 
@@ -43,7 +46,7 @@ const Create = () => {
                 <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>
               <S.BottomWapper>
-                <S.BottomInput placeholder="인원 수 입력" type="text" value={maxCount} onChange={(e:any) => setmaxCount(e.target.value) }/>
+                <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount || ''} onChange={(e:any) => setmaxCount(e.target.value) }/>
                 <S.BottomInput placeholder="날짜 선택" type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
               </S.BottomWapper>
             </S.ConterWapper>

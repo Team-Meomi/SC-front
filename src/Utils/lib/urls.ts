@@ -6,15 +6,18 @@ export const MemberController = {
 	signup: () => {
 		return `/auth/signup`;
 	},
+	tokenReissue: () => {
+		return `/auth/`
+	}
 }
 
 // 스터디,컴퍼런스
 export const KindController = {
 	kind: (kind:string) => {
-		return `/${kind}`
+		return `/${kind}/`
 	},
 	kindDetail: (id: number , kind:string) => {
-		return `/${kind}/${id}`
+		return `/${kind}/${id}/`
 	},
 	kindCheck: (kind:string) => {
 		return `/${kind}/check`
