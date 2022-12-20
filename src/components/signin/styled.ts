@@ -69,7 +69,6 @@ span{
 export const LoginButton = styled.button`
   width: 70%;
   height: 7vh;
-  border-radius: 10px;
   border: none;
   font-size: 1.2rem;
   background-color: grey;

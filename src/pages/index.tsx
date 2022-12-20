@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router';
+import { Promotion } from '../components';
 
-const Home: NextPage = () => {
-  const router = useRouter();
+const PromotionPage: NextPage = () => {
   return (
       <>
-        <button onClick={() => router.push("/auth/signup")}>회원가입하는길</button>
+       <Promotion />
       </>
   )
 }
 
-export default Home
+export default PromotionPage
