@@ -1,5 +1,5 @@
 export * from "./Forms"
 export * from "./InputProps"
-export * from "./Conterence"
+export * from "./MainDetailProps"
 export * from "./kind"
 export * from "./mainpage"

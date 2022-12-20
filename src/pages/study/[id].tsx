@@ -5,7 +5,7 @@ import { UseGetToken } from "../../Hooks";
 import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 
-const ConferenceDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
+const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
       <SWRConfig value={fallback}>
         <HomeDetail />
@@ -18,11 +18,11 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
     const { Authorization } = await UseGetToken(ctx)
 
     try {
-      const {data:conferenceDetailData} = await CustomAxios.get(`/conference${postid}`,{headers: {Authorization}});
+      const {data:conferenceDetailData} = await CustomAxios.get(`/study${postid}`,{headers: {Authorization}});
       return {
         props: {
           fallback: {
-            '/conference/1' : conferenceDetailData,
+            '/study/1' : conferenceDetailData,
           },
         },
       };
@@ -32,4 +32,4 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  export default ConferenceDetailPage
+  export default StudyDetailPage

@@ -1,4 +1,4 @@
-export interface ConferencesProps {
+export interface MainDetailProps {
     title: string,
     content: string,
     date: string,
