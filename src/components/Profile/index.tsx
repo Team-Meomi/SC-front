@@ -1,18 +1,21 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import useSWR from 'swr';
 import { ProfileIcon } from "../../../public/svg";
 import { useState } from "react";
+import useSWR from "swr";
+import { MainPageProps, Userprops } from "../../types";
 
 const Profile = () => {
     const router = useRouter();
     const [ isOutline,setIsOutline] = useState(false);
+    const { data:myData ,} = useSWR<Userprops>(`/${router.query.postid}`);
+    const { data } = useSWR<MainPageProps>(`/`);
 
     return (
       <S.Wrapper>
         <S.LeftWrapper>
             <ProfileIcon />
-            <S.ProfileName>2406 박서준</S.ProfileName>
+            <S.ProfileName>{myData?.stuNum}{myData?.name}</S.ProfileName>
         </S.LeftWrapper>
         <S.RightWrapper>
         <S.KindBar>
@@ -24,99 +27,6 @@ const Profile = () => {
       <S.ContantWrapper>
 
     <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>
-    <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>
-    <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>
-    <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
-      <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
-      </S.ContantTop>
-      <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
-      </S.ContantBottom>
-    </S.Contant>   <S.Contant>
       <S.ContantTop>
         <p>동아리 잡탕 컨퍼런스입니다</p>
         <S.ConferenceText>컨퍼런스</S.ConferenceText>

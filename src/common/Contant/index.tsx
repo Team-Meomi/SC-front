@@ -3,14 +3,13 @@ import { useRouter } from "next/router";
 import { MainPageProps } from "../../types";
 import { categoryArray } from "../../Utils/categoryArray";
 
-const Header = ({id,title,category,date,type}:MainPageProps) => {
+const Contant = ({id,title,category,date,type}:MainPageProps) => {
   const router = useRouter();
   const handleClick = () => {
     router.push(`/${category}/${id}`)
   }
-  const categoryFullName = categoryArray.filter((i) => i.value === category)[0].fullname
-  console.log(categoryFullName);
-  
+  const categoryFullName = categoryArray.filter((i) => i.value === category)[0] || ""
+  console.log(categoryFullName.fullname);
 
     return (
     <S.Contant onClick={handleClick}>
@@ -26,4 +25,4 @@ const Header = ({id,title,category,date,type}:MainPageProps) => {
     )
 }
 
-  export default Header
+  export default Contant

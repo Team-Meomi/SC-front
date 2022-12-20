@@ -2,13 +2,15 @@ import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { MainDetailProps } from "../../types";
-import { Header } from "../../common";
-import { ProfileIcon } from "../../../public/svg";
+import { Participant } from "../../common";
 
 const HomeDetail = () => {
     const router = useRouter();
     console.log(router.asPath);
-    // const { data } = useSWR<MainDetailProps>(`${router.query}/${router.query.id}`);
+    const { data } = useSWR<MainDetailProps>(`${router.query}/${router.query.id}`);
+    const month = data?.date.slice(5,7);
+    const day = data?.date.slice(9,11);
+
     return (
       <S.HomeDetailWapper>
         <S.LeftWapper>
@@ -18,41 +20,25 @@ const HomeDetail = () => {
           </svg>
         </S.BackBtn>
         <S.DecsWapper>
-          <S.DecsTitle>동아리 잡탕 컨퍼런스입니다</S.DecsTitle>
-          <S.DecsContent>전공동아리 시간에 동아리 잡탕에서 
-            컨퍼런스를 할 계획입니다.</S.DecsContent>
-          <span>전공 : AOS</span>
-          <span>날짜 : 11월 23일</span>
+          <S.DecsTitle>{data?.title}</S.DecsTitle>
+          <S.DecsContent>{data?.content}</S.DecsContent>
+          <span>{`전공 : ${data?.category}`}</span>
+          <span>날짜 : {month}월 {day}일</span>
           <span>장소 : 시청각실</span>
-          <span>현재인원 : 4/18 명</span>
-          <span>개설자 : 2406 박서준</span>
+          <span>{`현재인원 : ${data?.count.count}/${data?.count.maxCount} 명`}</span>
+          <span>{`개설자 : ${data?.writer.name} ${data?.writer.name}`}</span>
         </S.DecsWapper>
         <S.SubmitBtn>신청하기</S.SubmitBtn>
         </S.LeftWapper>
       
         <S.RightWapper>
-    
-          <S.Participant>
-            <ProfileIcon/>
-            <span>2209김영희</span>
-          </S.Participant>
-          <S.Participant>
-            <ProfileIcon/>
-            <span>2209김영희</span>
-          </S.Participant>
-          <S.Participant>
-            <ProfileIcon/>
-            <span>2209김영희</span>
-          </S.Participant>
-          <S.Participant>
-            <ProfileIcon/>
-            <span>2209김영희</span>
-          </S.Participant>
-          <S.Participant>
-            <ProfileIcon/>
-            <span>2209김영희</span>
-          </S.Participant>
-          
+          {
+            data? (data.list.map((item,index) => (
+              <Participant  key={index} stuNum={item.stuNum} id={item.id} name={item.name}/>
+            ))
+            ) : (
+            <p>로딩중</p>
+            ) }
         </S.RightWapper>
       
       </S.HomeDetailWapper>

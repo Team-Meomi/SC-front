@@ -10,10 +10,8 @@ import useSWR from "swr";
 const Header = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-    const { data , error } = useSWR<Userprops>(`/${router.query.postid}`);    
-    if(error){
-      router.push('/');
-    }
+    // const { data , error } = useSWR<Userprops>(`/${router.query.postid}`);    
+    // console.log(error);
 
   useEffect(() => {
     console.log(router.pathname);
@@ -32,7 +30,7 @@ const Header = () => {
           <input type="text" placeholder="검색어를 입력해주세요"/>
         </S.CenterWapper>
         <S.RightWapper>
-          <ProfileIcon onClick={() => router.push(`/user/${data?.stuNum}`)} />
+          {/* <ProfileIcon onClick={() => router.push(`/user/${data?.stuNum}`)} /> */}
         </S.RightWapper>
       </S.HeaderWapper>
     )

@@ -31,7 +31,7 @@ const Create = () => {
           <MemoCreate />
           <S.InputsWapper>
             <S.RadioBtns>
-                <input defaultChecked type="radio" value={studyType} id="conference" name="kind" onClick={() => setstudyType("conference")}/><label htmlFor="conference">컴퍼런스</label>
+                <input defaultChecked type="radio" value={studyType} id="conference" name="studyType" onClick={() => setstudyType("conference")}/><label htmlFor="conference">컴퍼런스</label>
                 <input type="radio" value={studyType} id="study" name="studyType" onClick={() => setstudyType("study")} /><label htmlFor="study">스터디</label>
             </S.RadioBtns>
             <S.ConterWapper>

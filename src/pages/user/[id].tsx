@@ -13,23 +13,23 @@ const ProfilePage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallb
     )
 }
 
-// export const  getServerSideProps: GetServerSideProps = async (ctx) => {
-//     const { postid } = ctx.query;  
-//     const { Authorization } = await UseGetToken(ctx)
+export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { postid } = ctx.query;  
+    const { Authorization } = await UseGetToken(ctx)
 
-//     try {
-//       const {data:profileData} = await CustomAxios.get(`/${postid}`,{headers: {Authorization}});
-//       return {
-//         props: {
-//           fallback: {
-//             '/1' : profileData,
-//           },
-//         },
-//       };
-//     } catch (e) {
-//       console.log(e);
-//       return { props: {} };
-//     }
-//   }
+    try {
+      const {data:profileData} = await CustomAxios.get(`/${postid}`,{headers: {Authorization}});
+      return {
+        props: {
+          fallback: {
+            '/1' : profileData,
+          },
+        },
+      };
+    } catch (e) {
+      console.log(e);
+      return { props: {} };
+    }
+  }
 
   export default ProfilePage

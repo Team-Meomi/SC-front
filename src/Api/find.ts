@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { StudyController } from "../Utils/lib/urls";
 
@@ -20,7 +19,6 @@ export const create = async (
 			studyType,
 		});
 		console.log(data);
-		
 		return { data };
 	} catch (e: any) {
 		console.log(e)

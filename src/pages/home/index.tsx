@@ -19,7 +19,6 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
 
   try {
     const {data} = await CustomAxios.get(StudyController.Study(),{headers: {Authorization}});
-    // const mainaPageData = data.list
     return {
       props: {
         fallback: {
