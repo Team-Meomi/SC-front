@@ -25,13 +25,20 @@ const Home = () => {
         <S.ContansMainTitle>12 월 최신글</S.ContansMainTitle>
 
         <S.Contants>
-
-        <Contant/>
-        <Contant/>
-        <Contant/>
-        <Contant/>
-        <Contant/>
-        <Contant/>
+        {data ? (
+            data.map((item,index) => (
+            <Contant
+              key={index}
+              id={item.id}
+              title={item.title}
+              category={item.category}
+              date={item.date}
+              type={item.type}
+            />
+            ))
+          ) : (
+          <p>로딩중</p>
+        )}
           
         </S.Contants>
 

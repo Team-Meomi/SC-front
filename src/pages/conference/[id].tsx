@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import { SWRConfig } from "swr";
-import { Conference } from "../../components";
+import { HomeDetail } from "../../components";
 import { UseGetToken } from "../../Hooks";
 import { ConferencesProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
@@ -8,7 +8,7 @@ import CustomAxios from "../../Utils/lib/CustomAxios";
 const ConferenceDetailPage:NextPage<{fallback: Record<string,ConferencesProps>}> = ({fallback}) => {
     return (
       <SWRConfig value={fallback}>
-        <Conference />
+        <HomeDetail />
       </SWRConfig>
     )
 }

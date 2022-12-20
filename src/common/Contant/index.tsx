@@ -1,18 +1,24 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { MainPageProps } from "../../types";
+import { categoryArray } from "../../Utils/categoryArray";
 
-const Header = () => {
-    const router = useRouter();
+const Header = ({id,title,category,date,type}:MainPageProps) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/${category}/${id}`)
+  }
+  const categoryFullName = categoryArray.filter((i) => i.value === category)[0].fullname
+
     return (
-      <S.Contant>
+    <S.Contant onClick={handleClick}>
       <S.ContantTop>
-        <p>동아리 잡탕 컨퍼런스 입니다</p>
-        <S.ConferenceText>컨퍼런스</S.ConferenceText>
+        <p>{title}</p>
+        <S.ConferenceText>{type}</S.ConferenceText>
       </S.ContantTop>
       <S.ContantBottom>
-        <S.Topic>Android</S.Topic>
-        <S.Date>2022-12-16</S.Date>
+        <S.Topic>{categoryFullName}</S.Topic>
+        <S.Date>{date}</S.Date>
       </S.ContantBottom>
     </S.Contant>
     )

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { ConferencesProps } from "../../types";
 
-const Conference = () => {
+const HomeDetail = () => {
     const router = useRouter();
     const { data } = useSWR<ConferencesProps>("/conference");
 
@@ -14,4 +14,4 @@ const Conference = () => {
     )
 }
 
-  export default Conference
+  export default HomeDetail
