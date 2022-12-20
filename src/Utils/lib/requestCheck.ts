@@ -9,7 +9,8 @@ export const requestCheck = async (config: AxiosRequestConfig) => {
   if (config.headers && Authorization){
     config.headers["Authorization"] = Authorization
   }
-  else if (!Authorization && config.url !== "auth/signup" && config.url !== "auth/signin"){
+
+  else if (!Authorization && config.url !== "/auth/signin" && config.url !== "/auth/signup"){
     try{
         const {data} = await axios.patch(`${BASEURL}/auth/reissue`,{},{headers: {RefreshToken}});
         if (config.headers) config.headers["Authorization"] = data.accessToken

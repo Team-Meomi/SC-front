@@ -7,29 +7,29 @@ import CustomAxios from "../../Utils/lib/CustomAxios";
 
 const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
-      <SWRConfig value={fallback}>
+      // <SWRConfig value={fallback}>
         <HomeDetail />
-      </SWRConfig>
+      // </SWRConfig>
     )
 }
 
-export const  getServerSideProps: GetServerSideProps = async (ctx) => {
-    const { postid } = ctx.query;  
-    const { Authorization } = await UseGetToken(ctx)
+// export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+//     const { postid } = ctx.query;  
+//     const { Authorization } = await UseGetToken(ctx)
 
-    try {
-      const {data:conferenceDetailData} = await CustomAxios.get(`/study${postid}`,{headers: {Authorization}});
-      return {
-        props: {
-          fallback: {
-            '/study/1' : conferenceDetailData,
-          },
-        },
-      };
-    } catch (e) {
-      console.log(e);
-      return { props: {} };
-    }
-  }
+//     try {
+//       const {data:conferenceDetailData} = await CustomAxios.get(`/study${postid}`,{headers: {Authorization}});
+//       return {
+//         props: {
+//           fallback: {
+//             '/study/1' : conferenceDetailData,
+//           },
+//         },
+//       };
+//     } catch (e) {
+//       console.log(e);
+//       return { props: {} };
+//     }
+//   }
 
   export default StudyDetailPage

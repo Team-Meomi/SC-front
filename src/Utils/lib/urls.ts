@@ -1,29 +1,29 @@
 //멤버
 export const MemberController = {
     signin: () => {
-		return `/user/auth/signin`;
+		return `/auth/signin`;
 	},
 	signup: () => {
-		return `/user/auth/signup`;
+		return `/auth/signup`;
 	},
 }
 
 // 스터디,컴퍼런스
 export const KindController = {
 	kind: (kind:string) => {
-		return `/user/${kind}`
+		return `/${kind}`
 	},
 	kindDetail: (id: number , kind:string) => {
-		return `/user/${kind}/${id}`
+		return `/${kind}/${id}`
 	},
 	kindCheck: (kind:string) => {
-		return `/user/${kind}/check`
+		return `/${kind}/check`
 	}
 }
 
 // 전체 게시글
 export const MainPageController = {
 	MainPage: () => {
-		return `user/mainpage`
+		return `/mainpage`
 	}
 }

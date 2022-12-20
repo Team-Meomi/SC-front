@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const HomeWapper = styled.div`
-  margin-top: 100px;
+  margin-top: 5vh;
   width: 100%;
   margin: 0 auto;
   display: flex;

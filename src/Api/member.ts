@@ -37,9 +37,8 @@ export const signin = async (
 		});
 		UseSetToken(data.accessToken, data.refreshToken , null);
 	} catch (e: any) {
-		if (e.message === 'Request failed with status code 404') {
-			toast('가입된 이메일이 아닙니다', {type: 'warning' })
-		}
+		console.log(e);
+		return {errorMsg:e.message}
 	}
 };
 

@@ -27,7 +27,6 @@ export default function Signin() {
     else if(!data.password) return SetIsPasswordError(true)
     else if(!data.name) return SetIsNameError(true)
     else if(!data.strNum) return SetstrNumError({isError:true , msg:"학번을 입력해주세요."})
-    reset()
     const res = await signup(data.email + '@gsm.hs.kr', data.password, data.name, data.strNum);
 		if(res.errorMsg === "중복된 이메일 입니다."){
 			return SetIsIdError({isError:true , msg: "중복된 이메일 입니다."})
@@ -35,6 +34,7 @@ export default function Signin() {
 		else if(res.errorMsg === "중복된 학번 입니다."){
 			return SetstrNumError({isError:true , msg:"중복된 학번 입니다."})
 		}
+    reset()
     redirect("/auth/signin");
   }
 
