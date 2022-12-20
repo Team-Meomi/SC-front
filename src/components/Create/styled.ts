@@ -14,7 +14,7 @@ export const CreateWapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 7%;
+    padding: 0 4%;
 
 `;
 
@@ -179,4 +179,6 @@ export const SubmitBtn = styled.button`
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
 `;

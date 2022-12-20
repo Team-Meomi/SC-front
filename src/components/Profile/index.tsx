@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { ProfileIcon } from "../../../public/svg";
+import { MemoProfileIcon } from "../../../public/svg";
 import { useState } from "react";
 import useSWR from "swr";
 import { MainPageProps, Userprops } from "../../types";
@@ -9,12 +9,12 @@ const Profile = () => {
     const router = useRouter();
     const [ isOutline,setIsOutline] = useState(false);
     const { data:myData ,} = useSWR<Userprops>(`/${router.query.postid}`);
-    const { data } = useSWR<MainPageProps>(`/`);
+    const { data } = useSWR<MainPageProps[]>(`/`);
 
     return (
       <S.Wrapper>
         <S.LeftWrapper>
-            <ProfileIcon />
+            <MemoProfileIcon />
             <S.ProfileName>{myData?.stuNum}{myData?.name}</S.ProfileName>
         </S.LeftWrapper>
         <S.RightWrapper>
@@ -25,6 +25,23 @@ const Profile = () => {
         </S.KindBar>
 
       <S.ContantWrapper>
+
+      {data ? (
+            data.map((item,index) => (
+            <S.Contant>
+            <S.ContantTop>
+              <p>{item.title}</p>
+              <S.ConferenceText>{item.type}</S.ConferenceText>
+            </S.ContantTop>
+            <S.ContantBottom>
+              <S.Topic>{item.category}</S.Topic>
+              <S.Date>{item.date}</S.Date>
+            </S.ContantBottom>
+          </S.Contant>
+            ))
+          ) : (
+          <p>로딩중</p>
+        )}
 
     <S.Contant>
       <S.ContantTop>

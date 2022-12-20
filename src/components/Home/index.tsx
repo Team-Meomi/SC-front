@@ -9,6 +9,8 @@ import { StudyController } from "../../Utils/lib/urls";
 const Home = () => {
     const router = useRouter();
     const { data } = useSWR<MainPageProps[]>(StudyController.Study());
+    console.log(data);
+    
     return (
       <S.HomeWapper>
         <Header/>

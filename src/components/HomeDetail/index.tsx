@@ -7,7 +7,7 @@ import { Participant } from "../../common";
 const HomeDetail = () => {
     const router = useRouter();
     console.log(router.asPath);
-    const { data } = useSWR<MainDetailProps>(`${router.query}/${router.query.id}`);
+    const { data } = useSWR<MainDetailProps>(`${router.asPath}`);
     const month = data?.date.slice(5,7);
     const day = data?.date.slice(9,11);
 

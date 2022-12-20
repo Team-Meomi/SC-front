@@ -40,6 +40,7 @@ export const RightWapper = styled.div`
     svg{
         width: 50px;
         height: 100%;
+        cursor: pointer;
     }
 `;
 
