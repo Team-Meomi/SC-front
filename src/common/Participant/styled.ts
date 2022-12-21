@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Participant = styled.div`
-    width: 30%;
+    width: 31%;
     height: 90px;
     display: flex;
     justify-content: space-between;

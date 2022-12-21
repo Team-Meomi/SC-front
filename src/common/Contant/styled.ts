@@ -9,6 +9,7 @@ export const Contant = styled.div`
   border-radius: 10px;
   padding: 10px 15px;
   margin: 7px 0;
+  cursor: pointer;
 `;
 
 export const ContantTop = styled.div`

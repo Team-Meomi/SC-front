@@ -4,7 +4,7 @@ export interface MainDetailProps {
     content: string,
     category:string,
     date: string,
-    type:string,
+    studyType:string,
     isMine:boolean,
     isStatus: boolean,
     writer: {"id": number, "name": string, "gender": string},

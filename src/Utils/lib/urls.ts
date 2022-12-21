@@ -16,12 +16,9 @@ export const StudyController = {
 	Study: () => {
 		return `/study/`
 	},
-	StudyDelete:(id:number) => {
+	StudyId:(id:number) => {
 		return `/study/${id}`
 	},
-	StudyDetail:(id:number) => {
-		return `/study/${id}`
-	}
 
 	
 }

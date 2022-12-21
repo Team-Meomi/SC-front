@@ -25,3 +25,24 @@ export const create = async (
 	}
 };
 
+export const StudyApply = async (
+	id:number
+) => {
+	try {
+		const {data} = await CustomAxios.post(StudyController.StudyId(id))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
+export const StudyDelete = async (
+	id:number
+) => {
+	try {
+		const {data} = await CustomAxios.delete(StudyController.StudyId(id))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}

@@ -42,8 +42,6 @@ export const RightWapper = styled.div`
 export const ProfileBox = styled.div`
    width :50px;
    height: 100%;
-           z-index: 100;
-        border: 1px solid black;
     svg{
         width: 50px;
         height: 100%;

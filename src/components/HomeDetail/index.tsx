@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { MainDetailProps } from "../../types";
 import { Participant } from "../../common";
+import { StudyApply, StudyDelete } from "../../Api/find";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 const HomeDetail = () => {
     const router = useRouter();
@@ -10,6 +13,20 @@ const HomeDetail = () => {
     const { data } = useSWR<MainDetailProps>(`${router.asPath}`);
     const month = data?.date.slice(5,7);
     const day = data?.date.slice(9,11);
+    const [isStatus , SetIsStatus] = useState(data?.isStatus);
+    console.log(data);
+    
+    const handleApplyClick = async () => {
+      if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
+      if(!data.isStatus && !data.isMine){
+        await StudyApply(data?.id)
+        SetIsStatus(true);
+        return toast('신청되었습니다', {type:"success" })
+      }else if(data.isStatus && data.isMine) {
+        await StudyDelete(data?.id)
+        router.push("/home");
+      }
+    }
 
     return (
       <S.HomeDetailWapper>
@@ -22,15 +39,16 @@ const HomeDetail = () => {
         <S.DecsWapper>
           <S.DecsTitle>{data?.title}</S.DecsTitle>
           <S.DecsContent>{data?.content}</S.DecsContent>
-          <span>{`전공 : ${data?.category}`}</span>
+          <span>{`전공 : ${data?.studyType === "컨퍼런스" ? "conference" : data?.studyType === "스터디" ?  "study" : data?.studyType}`}</span>
           <span>날짜 : {month}월 {day}일</span>
-          <span>장소 : 시청각실</span>
+          <span>장소 : {data?.category}</span>
           <span>{`현재인원 : ${data?.count.count}/${data?.count.maxCount} 명`}</span>
           <span>{`개설자 : ${data?.writer.name} ${data?.writer.name}`}</span>
         </S.DecsWapper>
-        <S.SubmitBtn>신청하기</S.SubmitBtn>
+        <S.SubmitBtn onClick={handleApplyClick} style={{backgroundColor: data?.isMine ? "#EFEFEF" : "#77D6B3" , color: data?.isMine ? "gray" : "white"}}>
+          {data?.isMine ? "개설자" : isStatus ? "신청취소" : "신청하기"}</S.SubmitBtn>
         </S.LeftWapper>
-      
+
         <S.RightWapper>
           {
             data? (data.list.map((item,index) => (

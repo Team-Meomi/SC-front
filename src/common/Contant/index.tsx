@@ -12,7 +12,7 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
     <S.Contant onClick={() => router.push(`study/${id}`)}>
       <S.ContantTop>
         <p>{title}</p>
-        <S.ConferenceText>{type}</S.ConferenceText>
+        <S.ConferenceText>{type === "컴퍼런스" ? "conference" : type === "스터디" ? "study" : type}</S.ConferenceText>
       </S.ContantTop>
       <S.ContantBottom>
         <S.Topic>{category}</S.Topic>

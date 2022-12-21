@@ -4,6 +4,7 @@ import { MemoCreate } from "../../../public/svg";
 import { useEffect, useState } from "react";
 import { create } from "../../Api/find";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const Create = () => {
     const [studyType , setstudyType] = useState("conference")
@@ -12,6 +13,7 @@ const Create = () => {
     const [topic, setTopic] = useState("BE");
     const [maxCount , setmaxCount] = useState<number>();
     const [date , setDate] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
       if(studyType === "study"){
@@ -28,6 +30,7 @@ const Create = () => {
     else if(!date) return toast('날짜를 선택하세요', {type: 'warning' })
     console.log(title,content,topic,date,maxCount);
       await create(title, content, topic, date, maxCount, studyType);
+      router.push('/home')
     }
 
     return (
