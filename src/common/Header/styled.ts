@@ -37,12 +37,21 @@ export const RightWapper = styled.div`
     display: flex;
     justify-content: flex-end;
 
+`;
+
+export const ProfileBox = styled.div`
+   width :50px;
+   height: 100%;
+           z-index: 100;
+        border: 1px solid black;
     svg{
         width: 50px;
         height: 100%;
         cursor: pointer;
+
     }
 `;
+
 
 export const CenterWapper = styled.div`
     position: relative;
@@ -71,3 +80,4 @@ export const CenterWapper = styled.div`
     }
 
 `;
+

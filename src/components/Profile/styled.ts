@@ -111,5 +111,5 @@ export const Topic = styled.div`
 `;
 
 export const Date = styled.div`
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 `;

@@ -1,20 +1,26 @@
 import * as S from "./styled";
-import { useRouter } from "next/router";
 import { Header } from "../../common";
 import { MemoCreate } from "../../../public/svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { create } from "../../Api/find";
 import { toast } from "react-toastify";
 
 const Create = () => {
-    const router = useRouter();
     const [studyType , setstudyType] = useState("conference")
     const [title , setTitle] = useState("");
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
     const [maxCount , setmaxCount] = useState<number>();
     const [date , setDate] = useState("");
-    
+
+    useEffect(() => {
+      if(studyType === "study"){
+        setmaxCount(5);
+      }else{
+        setmaxCount(0);
+      }
+    },[studyType])
+
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요', {type: 'warning' })
     else if(!content) return toast('내용을 입력하세요', {type: 'warning' })

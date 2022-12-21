@@ -5,8 +5,8 @@ import { categoryArray } from "../../Utils/categoryArray";
 
 const Contant = ({id,title,category,date,type}:MainPageProps) => {
   const router = useRouter();
-  // const categoryFullName = categoryArray.filter((i) => i.value === category)[0] || ""
-  // console.log(categoryFullName.fullname);
+  const categoryFullName = categoryArray.filter((i) => i.value === category)[0] || ""
+  console.log(categoryFullName.fullname);
 
     return (
     <S.Contant onClick={() => router.push(`study/${id}`)}>
