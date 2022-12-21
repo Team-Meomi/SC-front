@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const Contant = styled.div`
   width: 30.1%;
@@ -10,6 +11,8 @@ export const Contant = styled.div`
   padding: 10px 15px;
   margin: 7px 0;
   cursor: pointer;
+
+  background-color: ${themedPalette.boxBackground};
 `;
 
 export const ContantTop = styled.div`

@@ -69,6 +69,7 @@ export const CenterWapper = styled.div`
         height: 100%;
         outline: none;
         font-size: 1rem;
+        background-color: transparent;
     }
 
     label{

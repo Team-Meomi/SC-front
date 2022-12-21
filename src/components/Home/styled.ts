@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const HomeWapper = styled.div`
   width: 100%;
@@ -8,8 +9,7 @@ export const HomeWapper = styled.div`
   align-items: center;
   justify-content:flex-start;
   height: 100vh;
-
-
+  background-color: ${themedPalette.background};
 `;
 
 export const IntroWapper = styled.div`

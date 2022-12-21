@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import { themedPalette } from "../../styles/global";
 
 export const LoginWapper = styled.div`
-  margin-top:  10vh;
-  width: 580px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -12,8 +11,8 @@ export const LoginWapper = styled.div`
   height: 100vh;
   gap: 2rem;
   padding-top: 10vh;
-  /* background: ${themedPalette.background};
-  color: ${themedPalette.text} */
+  background: ${themedPalette.background};
+  color: ${themedPalette.text}
 `;
 
 export const DecsTitle = styled.div`
@@ -34,14 +33,14 @@ export const InputsWapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 37vh;
-  width: 100%;
+  width: 50%;
   gap: 3vh;
   margin-bottom: 3vh;
 `;
 
 export const InputStyle = styled.div`
 position: relative;
-width: 70%;
+width: 45%;
 height: 65px;
 border: 1px solid black;
 display: flex;
@@ -50,6 +49,7 @@ padding-left: 20px;
 border-radius: 14px;
 border: none;
 box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+background-color: white;
 
 label{
   opacity: 0.5;
@@ -57,6 +57,7 @@ label{
 		top: 2vh;
 		left: 265px;
     font-size: 1.1rem;
+    color: ${themedPalette.background};
 }
 
 span{
@@ -70,7 +71,7 @@ span{
 `;
 
 export const LoginButton = styled.button`
-  width: 70%;
+  width: 23%;
   height: 7vh;
   border: none;
   font-size: 1.2rem;

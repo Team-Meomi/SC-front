@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 
 export const Wapper = styled.div`
@@ -6,6 +7,7 @@ export const Wapper = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: ${themedPalette.background};
 `;
 
 export const CreateWapper = styled.div`
@@ -70,6 +72,7 @@ export const TitleInput = styled.input`
     text-align: center;
     color: #A4A4A5;
     font-size: 1.3rem;
+    background-color: white;
 
     ::placeholder{
       color: #A4A4A5;
@@ -87,6 +90,8 @@ export const ContentText = styled.textarea`
     color: #A4A4A5;
     resize: none;
     font-size: 1.3rem;
+    background-color: white;
+
 
     ::placeholder{
     color: #A4A4A5;
@@ -166,13 +171,15 @@ export const BottomInput = styled.input`
     font-size: 1.3rem;
     border: none;
     outline: none;
+    background-color: white;
+    color: #A4A4A5;
 `;
 
 export const SubmitBtn = styled.button`
     width: 100%;
     height: 60px;
     border: none;
-    background-color: rgba(119, 214, 179, 0.7);
+    background-color: #77D6B3;
     outline: none;
     border-radius: 10px;
     color: white;

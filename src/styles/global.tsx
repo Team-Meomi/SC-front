@@ -5,10 +5,12 @@ import { Global, css } from '@emotion/react';
 const lightTheme = `
   --text: black;
   --background: white;
+  --boxBackground:white;
 `;
 const darkTheme = `
-  --color-text: white;
-  --color-background: black;
+  --text: white;
+  --background: #1F1F1F;
+  --boxBackground: #383737;
 `;
 
 const cssVar = (name: string) => `var(--${name})`;
@@ -16,6 +18,7 @@ const cssVar = (name: string) => `var(--${name})`;
 export const themedPalette = {
   text: cssVar('text'),
   background: cssVar('background'),
+  boxBackground: cssVar('boxBackground'),
 };
 
 const style = css`
@@ -24,6 +27,9 @@ body {
   }
   
   @media (prefers-color-scheme: dark) {
+    html {
+    color-scheme: dark;
+    }
     body {
       ${darkTheme}
     }

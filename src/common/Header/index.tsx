@@ -19,7 +19,7 @@ const Header = () => {
 
   const handleClick = () => {
     SetSearchValue({...searchValue , isClick:true})
-    
+      
   }
 
     return (

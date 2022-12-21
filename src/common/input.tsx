@@ -30,13 +30,13 @@ const InputStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
     border: none;
     outline: none;
     font-size: 1rem;
     resize: none;
     transition: all ease 0.3s 0s;
     color: #A3A3A3;
+    background: transparent;
     
     ::placeholder{
       color: #A3A3A3;
