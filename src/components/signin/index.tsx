@@ -13,6 +13,7 @@ export default function Signin() {
   const [isIdError , SetIsIdError] = useState({isError:false , msg:"학교이메일을 입력해주세요."});
   const [isPasswordError , SetPasswordError] = useState({isError:false , msg:"8~20자 이내로 입력해주세요."});
 
+
   useEffect(() => {
     if(watch().email){SetIsIdError({...isIdError , isError:false})}
     if(watch().password){SetPasswordError({...isIdError , isError:false})}
@@ -34,7 +35,7 @@ export default function Signin() {
 
   return (
     <>
-    <S.LoginWapper>
+    <S.LoginWapper >
         <S.LoginTitle onClick={() => redirect('/auth/signup')}>Login</S.LoginTitle>
         <S.DecsTitle>컨퍼런스와 스터디의 재미를<br/> 느껴보세요!</S.DecsTitle>
       <S.InputsWapper>

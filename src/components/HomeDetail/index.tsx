@@ -7,7 +7,6 @@ import { StudyApply, StudyCancel, StudyDelete } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { MemoAloneicon } from "../../../public/svg";
-import { UseRemoveToken } from "../../Hooks";
 
 const HomeDetail = () => {
     const router = useRouter();

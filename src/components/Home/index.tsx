@@ -12,15 +12,17 @@ import { useEffect } from "react";
 const Home = () => {
     const router = useRouter();
     const { data } = useSWR<MainPageProps[]>(StudyController.Study());
-    const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch());
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
+    const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
     
+    console.log(SearchData);  
     useEffect(() => {
       if(searchValue.isClick){
-        SetSearchValue({...searchValue , value:""})
+        SetSearchValue({value: "" , isClick: false})
         mutate()
       }
-    },[searchValue])
+    },[searchValue.value])
+
 
     return (
       <S.HomeWapper>
@@ -46,10 +48,10 @@ const Home = () => {
               category={item.category}
               date={item.date}
               type={item.type}
-            />
+            />  
             ))
           ) : (
-            SearchData?.map((item,index) => (
+            SearchData? ( SearchData.map((item,index) => (
               <Contant
                 key={index}
                 id={item.id}
@@ -58,7 +60,8 @@ const Home = () => {
                 date={item.date}
                 type={item.type}
               />
-              ))
+            ))
+            ):(<p>로딩중</p>)
         )}
           
         </S.Contants>

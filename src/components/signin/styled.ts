@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const LoginWapper = styled.div`
   margin-top:  10vh;
@@ -11,6 +12,8 @@ export const LoginWapper = styled.div`
   height: 100vh;
   gap: 2rem;
   padding-top: 10vh;
+  /* background: ${themedPalette.background};
+  color: ${themedPalette.text} */
 `;
 
 export const DecsTitle = styled.div`

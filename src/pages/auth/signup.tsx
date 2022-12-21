@@ -1,9 +1,11 @@
+import { NextPage } from "next";
 import { Signup } from "../../components";
 
-export default function SignupPage() {
+const SignupPage:NextPage = () => {
   return (
     <>
       <Signup />
     </>
   );
 }
+export default SignupPage

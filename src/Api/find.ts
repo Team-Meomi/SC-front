@@ -57,3 +57,14 @@ export const StudyDelete = async (
 		console.log(e);
 	}
 }
+
+export const SearchData = async (
+	value:string
+) => {
+	try {
+		const {data} = await CustomAxios.get(StudyController.StudySearch(value))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}

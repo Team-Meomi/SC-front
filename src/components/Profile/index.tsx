@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { MemoProfileIcon } from "../../../public/svg";
+import { MemoAloneicon, MemoProfileIcon } from "../../../public/svg";
 import { useState } from "react";
 import useSWR from "swr";
 import { MainPageProps, Userprops } from "../../types";
@@ -43,7 +43,7 @@ const Profile = () => {
       
       <S.ContantWrapper>
       {isOutline ? (
-          WrittenData?.map((item,index) => (
+           WrittenData && WrittenData.length !== 0 ? (WrittenData.map((item,index) => (
           <S.Contant key={index} onClick={() => router.push(`/study/${item.id}`)}>
             <S.ContantTop>
               <p>{item.title}</p>
@@ -55,7 +55,10 @@ const Profile = () => {
             </S.ContantBottom>
           </S.Contant>
           ))
-      ) : (
+        ): (
+          <MemoAloneicon />
+        )
+      ) : ( 
           JoinedData?.map((item,index) => (
             <S.Contant key={index} onClick={() => router.push(`/study/${item.id}`)}>
               <S.ContantTop>

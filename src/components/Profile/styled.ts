@@ -82,6 +82,11 @@ export const ContantWrapper = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     padding-left: 15%;
+
+    svg{
+      width: 80%;
+      height: 80%;
+    }
 `;
 
 export const Contant = styled.div`
