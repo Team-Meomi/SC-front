@@ -11,7 +11,7 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
     <S.Contant onClick={() => router.push(`study/${id}`)}>
       <S.ContantTop>
         <p>{title}</p>
-        <S.ConferenceText>{type}</S.ConferenceText>
+        <S.ConferenceText style={{color: type === "컨퍼런스" ? "#7B95F3" : "#D89DF4"}}>{type}</S.ConferenceText>
       </S.ContantTop>
       <S.ContantBottom>
         <S.Topic>{categoryFullName.fullname || category}</S.Topic>

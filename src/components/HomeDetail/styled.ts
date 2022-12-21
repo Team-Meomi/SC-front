@@ -29,6 +29,18 @@ export const BackBtn = styled.div`
     cursor: pointer;
 `;
 
+export const DeleteBtn = styled.div`
+    position: absolute;
+    top: 50px;
+    left: 87%;
+    width: 80px;
+    height: 30px;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: red;
+`;
+
 export const DecsWapper = styled.div`
     height:650px;
     display:flex;

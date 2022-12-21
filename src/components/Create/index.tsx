@@ -7,21 +7,13 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 const Create = () => {
+    const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
     const [title , setTitle] = useState("");
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
     const [maxCount , setmaxCount] = useState<number>();
     const [date , setDate] = useState("");
-    const router = useRouter();
-
-    useEffect(() => {
-      if(studyType === "스터디"){
-        setmaxCount(5);
-      }else{
-        setmaxCount(0);
-      }
-    },[studyType])
 
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요', {type: 'warning' })
@@ -32,6 +24,14 @@ const Create = () => {
       await create(title, content, topic, date, maxCount, studyType);
       router.push('/home')
     }
+
+    useEffect(() => {
+      if(studyType === "스터디"){
+        setmaxCount(5);
+      }else{
+        setmaxCount(0);
+      }
+    },[studyType])
 
     return (
       <S.Wapper>
@@ -54,7 +54,13 @@ const Create = () => {
                 <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>
               <S.BottomWapper>
-                <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount || ''} onChange={(e:any) => setmaxCount(e.target.value) }/>
+                {
+                  studyType === "스터디" ? (
+                    <S.BottomInput readOnly type="number" value={5}/>
+                  ) : (
+                    <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount || ''} onChange={(e:any) => setmaxCount(e.target.value) }/>
+                  )
+                }
                 <S.BottomInput placeholder="날짜 선택" type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
               </S.BottomWapper>
             </S.ConterWapper>

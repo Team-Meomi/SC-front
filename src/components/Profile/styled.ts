@@ -14,11 +14,26 @@ export const LeftWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 30px;
+`;
 
-    svg{
-        width: 300px;
-        height: 300px;
-    }
+export const BackBtn = styled.div`
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+`;
+
+export const LogoutBtn = styled.div`
+    position: absolute;
+    top: 40px;
+    left: 25%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
 `;
 
 export const ProfileName = styled.div`
@@ -62,7 +77,7 @@ export const ContantWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-content: flex-start;
     gap: 28px;
     overflow-y: scroll;
     overflow-x: hidden;

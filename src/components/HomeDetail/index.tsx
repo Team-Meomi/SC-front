@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { MainDetailProps } from "../../types";
 import { Participant } from "../../common";
-import { StudyApply, StudyCancel } from "../../Api/find";
+import { StudyApply, StudyCancel, StudyDelete } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { MemoAloneicon } from "../../../public/svg";
+import { UseRemoveToken } from "../../Hooks";
 
 const HomeDetail = () => {
     const router = useRouter();
@@ -33,6 +34,13 @@ const HomeDetail = () => {
       }
     }
 
+    const handleDeleteClick = async () => {
+      if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
+      await StudyDelete(data?.id)
+      toast('삭제되었습니다', {type:"success"})
+      router.push('/home');
+    }
+
     return (
       <S.HomeDetailWapper>
         <S.LeftWapper>
@@ -41,6 +49,9 @@ const HomeDetail = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
         </S.BackBtn>
+        {
+          data?.isMine && <S.DeleteBtn onClick={handleDeleteClick}>삭제하기</S.DeleteBtn>
+        }
         <S.DecsWapper>
           <S.DecsTitle>{data?.title}</S.DecsTitle>
           <S.DecsContent>{data?.content}</S.DecsContent>
