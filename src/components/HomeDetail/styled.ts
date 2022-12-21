@@ -57,7 +57,7 @@ export const SubmitBtn = styled.button`
     justify-content:center;
     color: white;
     background: #77D6B3;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     border: none;
     font-size: 1.3rem;

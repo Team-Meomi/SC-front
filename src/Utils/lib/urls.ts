@@ -22,6 +22,9 @@ export const StudyController = {
 	StudyCancel:(id:number) => {
 		return `/study/cancel/${id}`
 	},
+	StudySearch:() => {
+		return `/study/search`
+	},
 
 	
 }

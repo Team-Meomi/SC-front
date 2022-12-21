@@ -5,12 +5,23 @@ import { Contant, Header } from "../../common";
 import { MemoIntro } from "../../../public/svg";
 import { MainPageProps } from "../../types";
 import { StudyController } from "../../Utils/lib/urls";
+import { AtomSearchValue } from "../../Atoms";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 
 const Home = () => {
     const router = useRouter();
     const { data } = useSWR<MainPageProps[]>(StudyController.Study());
-    console.log(data);
+    const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch());
+    const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
     
+    useEffect(() => {
+      if(searchValue.isClick){
+        SetSearchValue({...searchValue , value:""})
+        mutate()
+      }
+    },[searchValue])
+
     return (
       <S.HomeWapper>
         <Header/>
@@ -25,10 +36,9 @@ const Home = () => {
 
         <S.ContansWapper>
         <S.ContansMainTitle>12 월 최신글</S.ContansMainTitle>
-
         <S.Contants>
-        {data ? (
-            data.map((item,index) => (
+        {searchValue.isClick === false ? (
+            data?.map((item,index) => (
             <Contant
               key={index}
               id={item.id}
@@ -39,7 +49,16 @@ const Home = () => {
             />
             ))
           ) : (
-          <p>로딩중</p>
+            SearchData?.map((item,index) => (
+              <Contant
+                key={index}
+                id={item.id}
+                title={item.title}
+                category={item.category}
+                date={item.date}
+                type={item.type}
+              />
+              ))
         )}
           
         </S.Contants>

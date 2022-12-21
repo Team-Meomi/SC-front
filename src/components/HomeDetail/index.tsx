@@ -6,6 +6,7 @@ import { Participant } from "../../common";
 import { StudyApply, StudyCancel } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { MemoAloneicon } from "../../../public/svg";
 
 const HomeDetail = () => {
     const router = useRouter();
@@ -14,7 +15,7 @@ const HomeDetail = () => {
     const month = data?.date.slice(5,7);
     const day = data?.date.slice(9,11);
     const [isStatus , SetIsStatus] = useState(data?.isStatus);
-    console.log(data);
+    console.log(data?.list);
     
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
@@ -46,7 +47,7 @@ const HomeDetail = () => {
           <span>{`전공 : ${data?.studyType === "컨퍼런스" ? "conference" : data?.studyType === "스터디" ?  "study" : data?.studyType}`}</span>
           <span>날짜 : {month}월 {day}일</span>
           <span>장소 : {data?.category}</span>
-          <span>{`현재인원 : ${data?.count.count}/${data?.count.maxCount} 명`}</span> 
+          <span>{`현재인원 : ${data?.count.count}/${data?.count.maxCount} 명`}</span>
           <span>{`개설자 : ${data?.writer.name} ${data?.writer.name}`}</span>
         </S.DecsWapper>
         <S.SubmitBtn onClick={handleApplyClick} style={{backgroundColor: data?.isMine ? "#EFEFEF" : data?.isStatus ? "red" : "#77D6B3" , color: data?.isMine ? "gray" : "white"}}>
@@ -55,14 +56,14 @@ const HomeDetail = () => {
 
         <S.RightWapper>
           {
-            data? (data.list.map((item,index) => (
+            data?.list && data.list.length !== 0 ? (data.list.map((item,index) => (
               <Participant  key={index} stuNum={item.stuNum} id={item.id} name={item.name}/>
             ))
             ) : (
-            <p>로딩중</p>
-            ) }
-        </S.RightWapper>
-      
+              <MemoAloneicon/>
+            )}
+          </S.RightWapper>
+
       </S.HomeDetailWapper>
     )
 }

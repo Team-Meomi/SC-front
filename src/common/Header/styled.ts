@@ -60,9 +60,10 @@ export const CenterWapper = styled.div`
     justify-content: flex-start;
     border: 2px solid #77D6B3;
     border-radius: 8px;
-    padding-left: 40px;
+    padding-left: 20px;
 
     input {
+        color: gray;
         border: none;
         width: 60%;
         height: 100%;
@@ -73,8 +74,9 @@ export const CenterWapper = styled.div`
     label{
         position: absolute;
         top: 6px;
-        left: 8px;
+        left: 350px;
         width: 30px;
+        cursor: pointer;
     }
 
 `;

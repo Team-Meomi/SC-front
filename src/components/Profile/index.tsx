@@ -11,8 +11,6 @@ const Profile = () => {
     const { data:myData} = useSWR<Userprops>(`/${router.query.id}`);
     const { data:JoinedData } = useSWR<MainPageProps[]>(`/joined/${router.query.id}`);
     const { data:WrittenData } = useSWR<MainPageProps[]>(`/written/${router.query.id}`);
-    console.log(JoinedData);
-    console.log(WrittenData);
 
     return (
       <S.Wrapper>
@@ -28,22 +26,8 @@ const Profile = () => {
         </S.KindBar>
       
       <S.ContantWrapper>
-
-      {!setIsOutline ? (
-          JoinedData?.map((item,index) => (
-          <S.Contant key={index} onClick={() => router.push(`study${item.id}`)}>
-            <S.ContantTop>
-              <p>{item.title}</p>
-              <S.ConferenceText>{item.type}</S.ConferenceText>
-            </S.ContantTop>
-            <S.ContantBottom>
-              <S.Topic>{item.category}</S.Topic>
-              <S.Date>{item.date}</S.Date>
-            </S.ContantBottom>
-          </S.Contant>
-            ))
-      ) : (
-        WrittenData?.map((item,index) => (
+      {isOutline ? (
+          WrittenData?.map((item,index) => (
           <S.Contant key={index} onClick={() => router.push(`study${item.id}`)}>
             <S.ContantTop>
               <p>{item.title}</p>
@@ -55,8 +39,20 @@ const Profile = () => {
             </S.ContantBottom>
           </S.Contant>
           ))
+      ) : (
+          JoinedData?.map((item,index) => (
+            <S.Contant key={index} onClick={() => router.push(`study${item.id}`)}>
+              <S.ContantTop>
+                <p>{item.title}</p>
+                <S.ConferenceText>{item.type}</S.ConferenceText>
+              </S.ContantTop>
+              <S.ContantBottom>
+                <S.Topic>{item.category}</S.Topic>
+                <S.Date>{item.date}</S.Date>
+              </S.ContantBottom>
+            </S.Contant>
+          ))
       )}
-    
     </S.ContantWrapper>
 
         </S.RightWrapper>
