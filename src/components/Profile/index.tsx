@@ -11,6 +11,8 @@ const Profile = () => {
     const { data:myData} = useSWR<Userprops>(`/${router.query.id}`);
     const { data:JoinedData } = useSWR<MainPageProps[]>(`/joined/${router.query.id}`);
     const { data:WrittenData } = useSWR<MainPageProps[]>(`/written/${router.query.id}`);
+    console.log(JoinedData);
+    console.log(WrittenData);
 
     return (
       <S.Wrapper>
@@ -29,7 +31,7 @@ const Profile = () => {
 
       {!setIsOutline ? (
           JoinedData?.map((item,index) => (
-          <S.Contant key={index}>
+          <S.Contant key={index} onClick={() => router.push(`study${item.id}`)}>
             <S.ContantTop>
               <p>{item.title}</p>
               <S.ConferenceText>{item.type}</S.ConferenceText>
@@ -42,7 +44,7 @@ const Profile = () => {
             ))
       ) : (
         WrittenData?.map((item,index) => (
-          <S.Contant key={index}>
+          <S.Contant key={index} onClick={() => router.push(`study${item.id}`)}>
             <S.ContantTop>
               <p>{item.title}</p>
               <S.ConferenceText>{item.type}</S.ConferenceText>

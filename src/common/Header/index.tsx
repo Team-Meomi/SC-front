@@ -1,7 +1,7 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { AtomCurrentPage } from "../../Atoms";
+import { AtomCurrentPage, AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
 import { Memosearchicon, MemoProfileIcon } from "../../../public/svg";
 import useSWR from "swr";
@@ -10,7 +10,8 @@ import { Userprops } from "../../types";
 const Header = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-    const { data , error } = useSWR<Userprops>(`/`);  
+    const { data, error } = useSWR<Userprops>(`/`);
+    const [searchValue, SetSearchValue] = useRecoilState(AtomSearchValue);
       
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
@@ -25,7 +26,7 @@ const Header = () => {
         </S.LeftWapper>
         <S.CenterWapper>
           <label><Memosearchicon /></label>
-          <input type="text" placeholder="검색어를 입력해주세요"/>
+          <input type="text" value={searchValue.value} onChange={(e) => SetSearchValue({...searchValue,value:e.target.value})}  placeholder="검색어를 입력해주세요"/>
         </S.CenterWapper>
         <S.RightWapper>
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>

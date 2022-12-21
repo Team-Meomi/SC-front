@@ -36,6 +36,17 @@ export const StudyApply = async (
 	}
 }
 
+export const StudyCancel = async (
+	id:number
+) => {
+	try {
+		const {data} = await CustomAxios.delete(StudyController.StudyCancel(id))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
 export const StudyDelete = async (
 	id:number
 ) => {

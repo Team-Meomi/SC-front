@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 const Create = () => {
-    const [studyType , setstudyType] = useState("conference")
+    const [studyType , setstudyType] = useState("컨퍼런스")
     const [title , setTitle] = useState("");
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
@@ -16,7 +16,7 @@ const Create = () => {
     const router = useRouter();
 
     useEffect(() => {
-      if(studyType === "study"){
+      if(studyType === "스터디"){
         setmaxCount(5);
       }else{
         setmaxCount(0);
@@ -40,8 +40,8 @@ const Create = () => {
           <MemoCreate />
           <S.InputsWapper>
             <S.RadioBtns>
-                <input defaultChecked type="radio" value={studyType} id="conference" name="studyType" onClick={() => setstudyType("conference")}/><label htmlFor="conference">컴퍼런스</label>
-                <input type="radio" value={studyType} id="study" name="studyType" onClick={() => setstudyType("study")} /><label htmlFor="study">스터디</label>
+                <input defaultChecked type="radio" value={studyType} id="컨퍼런스" name="studyType" onClick={() => setstudyType("컨퍼런스")}/><label htmlFor="컨퍼런스">컴퍼런스</label>
+                <input type="radio" value={studyType} id="스터디" name="studyType" onClick={() => setstudyType("스터디")} /><label htmlFor="스터디">스터디</label>
             </S.RadioBtns>
             <S.ConterWapper>
               <S.TitleInput placeholder="제목을 입력하세요" value={title} onChange={(e) => setTitle(e.target.value) }/>

@@ -74,7 +74,7 @@ export const CenterWapper = styled.div`
         position: absolute;
         top: 6px;
         left: 8px;
-        width: 100px;
+        width: 30px;
     }
 
 `;
