@@ -6,8 +6,6 @@ import { useRecoilState } from "recoil";
 import { Memosearchicon, MemoProfileIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
-import { UseToggleTheme } from "../../Hooks";
-import { useTheme } from "../../Hooks/useTheme";
 
 const Header = () => {
     const router = useRouter();
@@ -16,7 +14,7 @@ const Header = () => {
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
       console.log(data);
       
-    const [theme , toggle] = UseToggleTheme();
+    // const [theme , toggle] = UseToggleTheme();
 
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
@@ -41,6 +39,7 @@ const Header = () => {
 //     document.body.classList.toggle("dark-theme");
 //       //   document.body.dataset.theme = 'light-mode'
 //   }
+
     return (
       <S.HeaderWapper>
         <S.LeftWapper>
