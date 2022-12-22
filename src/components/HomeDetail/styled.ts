@@ -194,13 +194,13 @@ export const RightWapper = styled.div`
     flex-wrap:wrap;
     justify-content:flex-start;
     align-content:flex-start;
-    padding: 10vh 4% 0 4.3%;
-    gap: 5%;
+    padding: 5vh 4% 0 4.3%;
+    gap: 3vh;
     background: #EFEFEF;
     overflow-y: scroll;
 `;
 
-export const CommontBox = styled.div`
+export const CommentInputBox = styled.div`
     width: 100%;
     height: 150px;
     display: flex;
@@ -229,7 +229,7 @@ export const CommontBox = styled.div`
     }
 `;
 
-export const CommonBtn = styled.div`
+export const CommentBtn = styled.div`
     width: 100px;
     height: 30px;
     color: white;
@@ -239,19 +239,19 @@ export const CommonBtn = styled.div`
     align-items: center;
     border-radius: 4px;
     cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
-export const CommonListBox = styled.div`
+export const CommentListBox = styled.div`
     width: 100%;
-    height: 42.2vh;
-    overflow-y: scroll;
+    height: 48vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
 `;
 
-export const CommonBox = styled.div`
+export const CommentBox = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -260,9 +260,10 @@ export const CommonBox = styled.div`
     background-color: white;
     padding: 5px 10px;
     border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
-export const CommonTop = styled.div`
+export const CommentTop = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -274,7 +275,7 @@ export const CommonTop = styled.div`
     }
 `;
 
-export const CommonBottom = styled.div`
+export const CommentBottom = styled.div`
     width: 100%;
-    padding: 15px 15px 30px 15px;
+    padding: 0 0 15px 15px;
 `;

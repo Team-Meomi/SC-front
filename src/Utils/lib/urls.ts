@@ -25,6 +25,10 @@ export const StudyController = {
 	StudySearch:(value:string) => {
 		return `study/search?title=${value}&category=`
 	},
+}
 
-	
+export const CommentController = {
+	Comment: (id:number) => {
+		return `/common/${id}`
+	},
 }

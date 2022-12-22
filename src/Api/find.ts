@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
-import { StudyController } from "../Utils/lib/urls";
+import { CommentController, StudyController } from "../Utils/lib/urls";
 
 export const create = async (
 	title: string,
@@ -86,6 +86,20 @@ export const SearchData = async (
 ) => {
 	try {
 		const {data} = await CustomAxios.get(StudyController.StudySearch(value))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
+export const CommentCreate = async (
+	postId:number,
+	content:string
+) => {
+	try {
+		const {data} = await CustomAxios.post(CommentController.Comment(postId),{
+			content,
+		})
 		return {data}
 	} catch(e:any){
 		console.log(e);

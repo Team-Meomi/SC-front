@@ -1,18 +1,21 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
-import { MainDetailProps } from "../../types";
-import { Participant } from "../../common";
+import { CommentProps, MainDetailProps } from "../../types";
+import { Comment, Participant } from "../../common";
 import { StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { MemoAloneicon, MemoProfileIcon } from "../../../public/svg";
+import { MemoAloneicon } from "../../../public/svg";
 
 const HomeDetail = () => {
     const router = useRouter();
-    const { data, mutate } = useSWR<MainDetailProps>(`${router.asPath}`);
+    const { data, mutate } = useSWR<MainDetailProps>(`/${router.asPath}`);
+    const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(`/comment/${router.asPath}`);
     const month = data?.date.slice(5,7);
-    const day = data?.date.slice(8,10);        
+    const day = data?.date.slice(8,10);
+    console.log(router.pathname);
+    
     
     const [isStatus, SetIsStatus] = useState(data?.isStatus);
     const [isModify, setIsModify] = useState(false);
@@ -22,6 +25,8 @@ const HomeDetail = () => {
     const [topic, setTopic] = useState(data?.category);
     const [date, setDate] = useState(data?.date);
     const [maxCount, setMaxCount] = useState(data?.count.maxCount);
+
+    const [commonValue,setCommonValue] = useState("");
     
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
@@ -60,6 +65,12 @@ const HomeDetail = () => {
       await StudyDelete(data?.id)
       toast('삭제되었습니다', {type:"success"})
       router.push('/home');
+    }
+
+    const handleCommentBtnClick = async () => {
+      if(!setCommonValue) return toast('내용을 입력하세요', {type:"warning" })
+      if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
+      await StudyDelete(data?.id)
     }
 
     return (
@@ -166,79 +177,24 @@ const HomeDetail = () => {
           )}
           {
             data?.studyType === "스터디" && 
-            <S.CommontBox>
-              <textarea placeholder="자료를 공유하세요" />
-              <S.CommonBtn>올리기</S.CommonBtn>
-            </S.CommontBox>
+            <S.CommentInputBox>
+              <textarea placeholder="자료를 공유하세요" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} />
+              <S.CommentBtn onClick={handleCommentBtnClick}>올리기</S.CommentBtn>
+            </S.CommentInputBox>
           }
+            <S.CommentListBox>
           {
-            data?.studyType === "스터디" && 
-          <S.CommonListBox>
-
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-            <S.CommonBox>
-              <S.CommonTop>
-                <MemoProfileIcon/>
-                <span>박서준</span>
-              </S.CommonTop>
-              <S.CommonBottom>
-                현실 세계 프런트엔드에서 사용되는 자바스크립트 자료구조: 리액트 코드 예시와 함께<br/>
-                https://velog.io/@eunbinn/javascript-data-structures
-              </S.CommonBottom>
-            </S.CommonBox>
-
-          </S.CommonListBox>
+            data?.studyType === "스터디" &&
+            CommentData?.map((i)=> (
+            <Comment
+              id={i.id}
+              comment={i.comment}
+              isMine={i.isMine}
+              writer={i.writer}
+            />
+            ))
           }
-
+          </S.CommentListBox>
           </S.RightWapper>
 
       </S.HomeDetailWapper>
