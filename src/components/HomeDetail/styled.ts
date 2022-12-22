@@ -68,9 +68,10 @@ export const DecsWapper = styled.div`
 export const DecsTitle = styled.div`
     font-size: 2.5rem;
     font-weight: bold;
+    width: 100%;
 
     input {
-        width: 400px;
+        width: 100%;
         height: 50px;
         font-size: 1.5rem;
         padding-left: 30px;
@@ -85,6 +86,7 @@ export const DecsTitle = styled.div`
 export const DecsContent = styled.div`
     font-size: 1.5rem;
     color: rgba(114, 111, 111, 1);
+    width: 100%;
 
     textarea{
         border: none;
@@ -92,6 +94,7 @@ export const DecsContent = styled.div`
         border-radius: 8px;
         outline: none;
 
+        width: 100%;
         height: 10vh;
         padding: 15px 13px;
         color: black;
@@ -116,7 +119,6 @@ export const SpanWrapper = styled.div`
         border-radius: 8px;
         outline: none;
         border: none;
-        margin-left: 10px;
     }
     input[type="date"]::before {
     display:none;

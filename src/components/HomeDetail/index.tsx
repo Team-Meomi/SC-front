@@ -141,10 +141,10 @@ const HomeDetail = () => {
         </S.DecsWapper>
 
         <S.SubmitBtn onClick={handleApplyClick} style={{
-          backgroundColor: data?.isMine ? (isModify? "orange" : "#EFEFEF" ) : (data?.isStatus ? "red" : "#77D6B3") , 
+          backgroundColor: data?.isMine ? (isModify? "orange" : "#EFEFEF" ) : (data?.isStatus ? (data?.count.maxCount === data?.count.count ? "#EFEFEF" : "red") : "#77D6B3") , 
           color: data?.isMine ? (isModify? "white" : "gray" ) : ("white")
         }}>
-          {data?.isMine ? (isModify ? "수정하기" : "개설자")  : (isStatus ? "신청취소" : "신청하기") }</S.SubmitBtn>
+          {data?.isMine ? (isModify ? "수정하기" : "개설자")  : (isStatus ? (data?.count.maxCount === data?.count.count ? "신청불가" : "신청취소") : ("신청하기")) }</S.SubmitBtn>
         </S.LeftWapper>
 
         <S.RightWapper>
