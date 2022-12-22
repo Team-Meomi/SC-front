@@ -7,6 +7,7 @@ import CustomAxios from '../Utils/lib/CustomAxios';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyle from '../styles/global';
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   return(
     <>

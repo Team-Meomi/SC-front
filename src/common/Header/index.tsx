@@ -6,6 +6,8 @@ import { useRecoilState } from "recoil";
 import { Memosearchicon, MemoProfileIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
+import { UseToggleTheme } from "../../Hooks";
+import { useTheme } from "../../Hooks/useTheme";
 
 const Header = () => {
     const router = useRouter();
@@ -13,6 +15,10 @@ const Header = () => {
     const { data, error } = useSWR<Userprops>(`/`);
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
       
+    const [theme , toggle] = UseToggleTheme();
+    console.log(theme);
+    console.log(useTheme());
+
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
   },[router])
@@ -26,14 +32,9 @@ const Header = () => {
   },[])
 
   const handleDarkBtnClick = (e:any) => {    
-    // if (document.body.dataset.theme === 'light-mode') {
-    //   document.body.dataset.theme = 'dark-mode'
-    // } else {
-    //   document.body.dataset.theme = 'light-mode'
-    // }
-    // console.log(document.body.dataset.theme);
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
   console.log(systemPrefersDark);
+  toggle();
   if(systemPrefersDark){
     document.body.classList.toggle("light-theme");
       //   document.body.dataset.theme = 'light-mode'

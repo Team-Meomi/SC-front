@@ -58,7 +58,7 @@ const HomeDetail = () => {
           <span>날짜 : {month}월 {day}일</span>
           <span>장소 : {data?.category}</span>
           <span>{`현재인원 : ${data?.count.count}/${data?.count.maxCount} 명`}</span>
-          <span>{`개설자 : ${data?.writer.name} ${data?.writer.name}`}</span>
+          <span>{`개설자 : ${data?.writer.id} ${data?.writer.name}`}</span>
         </S.DecsWapper>
         <S.SubmitBtn onClick={handleApplyClick} style={{backgroundColor: data?.isMine ? "#EFEFEF" : data?.isStatus ? "red" : "#77D6B3" , color: data?.isMine ? "gray" : "white"}}>
           {data?.isMine ? "개설자" : isStatus ? "신청취소" : "신청하기"}</S.SubmitBtn>
