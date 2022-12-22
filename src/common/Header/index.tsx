@@ -12,12 +12,11 @@ import { useTheme } from "../../Hooks/useTheme";
 const Header = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-    const { data, error } = useSWR<Userprops>(`/`);
+    const { data, error } = useSWR<Userprops>(`user/`);
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
+      console.log(data);
       
     const [theme , toggle] = UseToggleTheme();
-    console.log(theme);
-    console.log(useTheme());
 
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
@@ -27,23 +26,21 @@ const Header = () => {
     SetSearchValue({...searchValue , isClick:true})   
   }
   
-  useEffect(()=> {
-    document.body.dataset.theme = 'light-mode'
-  },[])
+  // useEffect(()=> {
+  //   document.body.dataset.theme = 'light-mode'
+  // },[])
 
-  const handleDarkBtnClick = (e:any) => {    
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
-  console.log(systemPrefersDark);
-  toggle();
-  if(systemPrefersDark){
-    document.body.classList.toggle("light-theme");
-      //   document.body.dataset.theme = 'light-mode'
-  }else{
-    document.body.classList.toggle("dark-theme");
-      //   document.body.dataset.theme = 'light-mode'
-  }
-}
-
+//   const handleDarkBtnClick = (e:any) => {    
+//   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
+//   console.log(systemPrefersDark);
+//   toggle();
+//   if(systemPrefersDark){
+//     document.body.classList.toggle("light-theme");
+//       //   document.body.dataset.theme = 'light-mode'
+//   }else{
+//     document.body.classList.toggle("dark-theme");
+//       //   document.body.dataset.theme = 'light-mode'
+//   }
     return (
       <S.HeaderWapper>
         <S.LeftWapper>
@@ -59,7 +56,7 @@ const Header = () => {
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
             <MemoProfileIcon/>
           </S.ProfileBox>
-            <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button>
+            {/* <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button> */}
         </S.RightWapper>
       </S.HeaderWapper>
     )

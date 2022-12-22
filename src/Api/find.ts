@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { StudyController } from "../Utils/lib/urls";
 
@@ -18,7 +19,7 @@ export const create = async (
             maxCount,
 			studyType,
 		});
-		console.log(data);
+		toast('게시글이 작성되었습니다', {type: 'success' })
 		return { data };
 	} catch (e: any) {
 		console.log(e)
@@ -59,10 +60,21 @@ export const StudyDelete = async (
 }
 
 export const StudyModify = async (
-	id:number
+	id:number,
+	title:string,
+	content:string,
+	topic:string,
+	date:string,
+	maxCount:number,
 ) => {
 	try {
-		const {data} = await CustomAxios.patch(StudyController.StudyId(id))
+		const {data} = await CustomAxios.patch(StudyController.StudyId(id),{
+			title,
+			content,
+			category:topic,
+			date,
+			maxCount
+		})
 		return {data}
 	} catch(e:any){
 		console.log(e);

@@ -5,24 +5,23 @@ import { MainDetailProps } from "../../types";
 import { Participant } from "../../common";
 import { StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { MemoAloneicon } from "../../../public/svg";
 
 const HomeDetail = () => {
     const router = useRouter();
-    console.log(router.asPath);
-    const { data,mutate} = useSWR<MainDetailProps>(`${router.asPath}`);
+    const { data, mutate } = useSWR<MainDetailProps>(`${router.asPath}`);
     const month = data?.date.slice(5,7);
-    const day = data?.date.slice(9,11);
-    const [isStatus , SetIsStatus] = useState(data?.isStatus);
-    const [isModify , setIsModify] = useState(false);
-    console.log(isModify);
+    const day = data?.date.slice(8,10);
+    
+    const [isStatus, SetIsStatus] = useState(data?.isStatus);
+    const [isModify, setIsModify] = useState(false);
 
-    const [title,setMIitle] = useState(data?.title); 
-    const [content,setContent] = useState(data?.content); 
-    const [topic,setTopic] = useState(data?.category);
-    const [date,setDate] = useState(data?.date);
-    const [maxCount , setMaxCount] = useState(data?.count.maxCount);
+    const [title, setMIitle] = useState(data?.title);
+    const [content, setContent] = useState(data?.content);
+    const [topic, setTopic] = useState(data?.category);
+    const [date, setDate] = useState(data?.date);
+    const [maxCount, setMaxCount] = useState(data?.count.maxCount);
     
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
@@ -38,13 +37,24 @@ const HomeDetail = () => {
         SetIsStatus(false)
         mutate()
       }else if(isModify && data.isMine){
-        await StudyModify(data?.id)
+        if(!title || !content || !topic || !date || !maxCount) return toast('다 입력해주세요', {type:"error" })
+        else if( data?.studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"error" })
+        await StudyModify(data?.id, title, content, topic, date , maxCount)
         toast('수정되었습니다', {type:"success" })
         setIsModify(false)
         mutate()
       }
     }
 
+    const handleModifyClick = () => {
+      setMIitle(data?.title)
+      setContent(data?.content)
+      setTopic(data?.category)
+      setDate(data?.date)
+      setMaxCount(data?.count.maxCount)
+      setIsModify(true)
+    }
+    
     const handleDeleteClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
       await StudyDelete(data?.id)
@@ -61,7 +71,7 @@ const HomeDetail = () => {
           </svg>
         </S.BackBtn>
         {
-          data?.isMine && <S.ModifyBtn onClick={() => setIsModify(pre => !pre)}>수정하기</S.ModifyBtn>
+          data?.isMine && <S.ModifyBtn onClick={handleModifyClick}>수정하기</S.ModifyBtn>
         }
         {
           data?.isMine && <S.DeleteBtn onClick={handleDeleteClick}>삭제하기</S.DeleteBtn>
@@ -71,35 +81,36 @@ const HomeDetail = () => {
             {isModify ? (
               <input type="text" value={title} onChange={(e)=> {setMIitle(e.target.value)}}/> 
             ) : (
-              title
+              data?.title
             )}
           </S.DecsTitle>
           <S.DecsContent>
             {isModify ? (
               <textarea value={content} onChange={(e)=> {setContent(e.target.value)}}/> 
             ) : (
-              content
+              data?.content
             )}
           
         </S.DecsContent>
         <S.SpanWrapper>
           <span>
-            전공 :
+            {"전공 : "} 
             {
               isModify ? (
                 <S.TopicBtns>
-                  <input defaultChecked type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
+                  <input type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
                   <input type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
                   <input type="radio" value={topic} id="IOS" name="topic" onClick={() => setTopic("IOS")}/><label htmlFor="IOS">IOS</label>
                   <input type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
                   <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
                 </S.TopicBtns>
                 ) : (
-                  topic
+                  data?.category
                 )
             }
           </span>
-          <span>날짜 :
+          <span>
+            {"날짜 : "}
               {
                 isModify ? (
                   <input type="date" value={date} onChange={(e)=> {setDate(e.target.value)}}/>
@@ -111,11 +122,15 @@ const HomeDetail = () => {
           <span>장소 : {data?.studyType === "컨퍼런스" ? "시청각실" : data?.studyType === "스터디" ?  "홈베" : data?.studyType}</span>
           <span>
             {
-              isModify ? "최대인원 :" : "현재인원"
+              isModify ? "최대인원 : " : "현재인원 : "
             }
             {
               isModify ? (
-                <input type="number" value={maxCount} onChange={(e:any)=> {setMaxCount(e.target.value)}}/>
+                data?.studyType === "컨퍼런스" ? (
+                  <input type="number" value={maxCount} onChange={(e:any)=> {setMaxCount(e.target.value)}}/>
+                ) : (
+                  <input type="number" readOnly value={5}/>
+                )
               ) : (
                 `${data?.count.count}/${data?.count.maxCount} 명`
               )

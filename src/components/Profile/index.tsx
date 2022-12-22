@@ -9,9 +9,9 @@ import { UseRemoveToken } from "../../Hooks";
 const Profile = () => {
     const router = useRouter();
     const [isOutline,setIsOutline] = useState(true);
-    const { data:myData} = useSWR<Userprops>(`/${router.query.id}`);
-    const { data:JoinedData } = useSWR<MainPageProps[]>(`/joined/${router.query.id}`);
-    const { data:WrittenData } = useSWR<MainPageProps[]>(`/written/${router.query.id}`);
+    const { data:myData} = useSWR<Userprops>(`/user/${router.query.id}`);
+    const { data:JoinedData } = useSWR<MainPageProps[]>(`/user/joined/${router.query.id}`);
+    const { data:WrittenData } = useSWR<MainPageProps[]>(`/user/written/${router.query.id}`);
 
     const handleLogoutClick = () => {
       UseRemoveToken()
@@ -55,11 +55,11 @@ const Profile = () => {
             </S.ContantBottom>
           </S.Contant>
           ))
-        ): (
+        ):(
           <MemoAloneicon />
         )
       ) : ( 
-          JoinedData?.map((item,index) => (
+          JoinedData ? ( JoinedData.map((item,index) => (
             <S.Contant key={index} onClick={() => router.push(`/study/${item.id}`)}>
               <S.ContantTop>
                 <p>{item.title}</p>
@@ -71,6 +71,9 @@ const Profile = () => {
               </S.ContantBottom>
             </S.Contant>
           ))
+          ) : (
+            <MemoAloneicon />
+          )
       )}
     </S.ContantWrapper>
 

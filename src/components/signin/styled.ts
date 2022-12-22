@@ -55,9 +55,9 @@ label{
   opacity: 0.5;
 		position: absolute;
 		top: 2vh;
-		left: 265px;
+      left: 15.7vw;
     font-size: 1.1rem;
-    color: ${themedPalette.background};
+    color: gray;
 }
 
 span{

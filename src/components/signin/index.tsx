@@ -13,7 +13,6 @@ export default function Signin() {
   const [isIdError , SetIsIdError] = useState({isError:false , msg:"학교이메일을 입력해주세요."});
   const [isPasswordError , SetPasswordError] = useState({isError:false , msg:"8~20자 이내로 입력해주세요."});
 
-
   useEffect(() => {
     if(watch().email){SetIsIdError({...isIdError , isError:false})}
     if(watch().password){SetPasswordError({...isIdError , isError:false})}

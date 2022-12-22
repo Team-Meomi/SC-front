@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilRoot>
           <GlobalStyle/>
           <Component {...pageProps} />
-          <ToastContainer autoClose={500} pauseOnHover={true} hideProgressBar={true}/>
+          <ToastContainer autoClose={1000} pauseOnHover={true} hideProgressBar={true}/>
         </RecoilRoot>
       </SWRConfig>
     </>
