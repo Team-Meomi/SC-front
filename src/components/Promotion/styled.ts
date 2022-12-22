@@ -37,7 +37,7 @@ export const LoginBtn = styled.div`
     width: 450px;
     height: 70px;
     background: #FFFFFF;
-    border: 2px solid #77D6B3;
+    border: none;
     border-radius: 10px;
     color:rgba(119, 214, 179, 1);
     display: flex;
@@ -58,4 +58,5 @@ export const SignUpBtn = styled.div`
     font-size: 1.8rem;
     cursor: pointer;
     border-radius: 5px;
+    border: none;
 `;

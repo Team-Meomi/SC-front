@@ -18,9 +18,30 @@ const Header = () => {
   },[router])
 
   const handleClick = () => {
-    SetSearchValue({...searchValue , isClick:true})
-      
+    SetSearchValue({...searchValue , isClick:true})   
   }
+  
+  useEffect(()=> {
+    document.body.dataset.theme = 'light-mode'
+  },[])
+
+  const handleDarkBtnClick = (e:any) => {    
+    // if (document.body.dataset.theme === 'light-mode') {
+    //   document.body.dataset.theme = 'dark-mode'
+    // } else {
+    //   document.body.dataset.theme = 'light-mode'
+    // }
+    // console.log(document.body.dataset.theme);
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
+  console.log(systemPrefersDark);
+  if(systemPrefersDark){
+    document.body.classList.toggle("light-theme");
+      //   document.body.dataset.theme = 'light-mode'
+  }else{
+    document.body.classList.toggle("dark-theme");
+      //   document.body.dataset.theme = 'light-mode'
+  }
+}
 
     return (
       <S.HeaderWapper>
@@ -37,6 +58,7 @@ const Header = () => {
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
             <MemoProfileIcon/>
           </S.ProfileBox>
+            <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button>
         </S.RightWapper>
       </S.HeaderWapper>
     )
