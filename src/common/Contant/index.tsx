@@ -21,4 +21,4 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
     )
 }
 
-  export default Contant
+export default Contant

@@ -33,9 +33,8 @@ export const DeleteBtn = styled.div`
     position: absolute;
     top: 50px;
     left: 87%;
-    width: 80px;
+    width: 30px;
     height: 30px;
-    font-size: 1.1rem;
     border-radius: 50%;
     cursor: pointer;
     color: red;
@@ -44,13 +43,13 @@ export const DeleteBtn = styled.div`
 export const ModifyBtn = styled.div`
     position: absolute;
     top: 50px;
-    left: 79%;
-    width: 80px;
+    left: 81%;
+    width: 30px;
     height: 30px;
-    font-size: 1.1rem;
     border-radius: 50%;
     cursor: pointer;
-    color: orange
+    /* color: orange */
+    color: orange;
 `;
 
 
@@ -199,4 +198,83 @@ export const RightWapper = styled.div`
     gap: 5%;
     background: #EFEFEF;
     overflow-y: scroll;
+`;
+
+export const CommontBox = styled.div`
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    textarea {
+        border: none;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        outline: none;
+
+        height: 100px;
+        width: 100%;
+        padding: 20px 13px;
+        color: #A4A4A5;
+        resize: none;
+        font-size: 1.1rem;
+        background-color: white;
+
+
+        ::placeholder{
+        color: #A4A4A5;
+        }
+    }
+`;
+
+export const CommonBtn = styled.div`
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: #77CB9E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+`;
+
+export const CommonListBox = styled.div`
+    width: 100%;
+    height: 42.2vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+`;
+
+export const CommonBox = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+`;
+
+export const CommonTop = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
+
+    svg{
+        width: 80px;
+        height: 80px;
+    }
+`;
+
+export const CommonBottom = styled.div`
+    width: 100%;
+    padding: 15px 15px 30px 15px;
 `;

@@ -14,11 +14,10 @@ const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({f
 }
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
-    const { postid } = ctx.query;  
     const { Authorization } = await UseGetToken(ctx)
 
     try {
-      const {data:studyData} = await CustomAxios.get(`/study/${postid}` ,{headers: {Authorization}});
+      const {data:studyData} = await CustomAxios.get(ctx.resolvedUrl ,{headers: {Authorization}});
       return {
         props: {
           fallback: {

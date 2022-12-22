@@ -15,7 +15,6 @@ const Home = () => {
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
     const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
     
-    console.log(SearchData);  
     useEffect(() => {
       if(searchValue.isClick){
         SetSearchValue({value: "" , isClick: false})
