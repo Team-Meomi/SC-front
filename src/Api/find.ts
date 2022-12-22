@@ -58,6 +58,17 @@ export const StudyDelete = async (
 	}
 }
 
+export const StudyModify = async (
+	id:number
+) => {
+	try {
+		const {data} = await CustomAxios.patch(StudyController.StudyId(id))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
 export const SearchData = async (
 	value:string
 ) => {

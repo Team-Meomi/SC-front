@@ -7,7 +7,7 @@ export interface MainDetailProps {
     studyType:string,
     isMine:boolean,
     isStatus: boolean,
-    writer: {"id": number, "name": string, "gender": string},
+    writer: {"id": number, "name": string, "stuNum": number},
     count:{"count":number , "maxCount":number},
     list : DetailListType[]
 }
