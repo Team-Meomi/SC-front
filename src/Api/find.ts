@@ -82,7 +82,7 @@ export const StudyModify = async (
 }
 
 export const SearchData = async (
-	value:string
+	value:string,
 ) => {
 	try {
 		const {data} = await CustomAxios.get(StudyController.StudySearch(value))
@@ -94,7 +94,7 @@ export const SearchData = async (
 
 export const CommentCreate = async (
 	postId:number,
-	content:string
+	content:string,
 ) => {
 	try {
 		const {data} = await CustomAxios.post(CommentController.Comment(postId),{

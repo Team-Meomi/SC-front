@@ -3,23 +3,21 @@ import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { CommentProps, MainDetailProps } from "../../types";
 import { Comment, Participant } from "../../common";
-import { StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
+import { CommentCreate, StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { MemoAloneicon } from "../../../public/svg";
 
 const HomeDetail = () => {
     const router = useRouter();
-    const { data, mutate } = useSWR<MainDetailProps>(`/${router.asPath}`);
-    const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(`/comment/${router.asPath}`);
+    const { data, mutate } = useSWR<MainDetailProps>(`${router.asPath}`);
+    const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(`/comment/${router.query.id}`);
     const month = data?.date.slice(5,7);
     const day = data?.date.slice(8,10);
-    console.log(router.pathname);
-    
     
     const [isStatus, SetIsStatus] = useState(data?.isStatus);
     const [isModify, setIsModify] = useState(false);
-
+    
     const [title, setMIitle] = useState(data?.title);
     const [content, setContent] = useState(data?.content);
     const [topic, setTopic] = useState(data?.category);
@@ -27,6 +25,9 @@ const HomeDetail = () => {
     const [maxCount, setMaxCount] = useState(data?.count.maxCount);
 
     const [commonValue,setCommonValue] = useState("");
+    console.log(CommentData);
+    
+    
     
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
@@ -68,9 +69,11 @@ const HomeDetail = () => {
     }
 
     const handleCommentBtnClick = async () => {
-      if(!setCommonValue) return toast('내용을 입력하세요', {type:"warning" })
+      if(!commonValue) return toast('내용을 입력하세요', {type:"warning" })
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
-      await StudyDelete(data?.id)
+      await CommentCreate(data?.id , commonValue)
+      toast('댓글이 생성되었습니다', {type:"success"})
+      mutateComment();
     }
 
     return (
@@ -176,15 +179,15 @@ const HomeDetail = () => {
               <MemoAloneicon/>
           )}
           {
-            data?.studyType === "스터디" && 
+            data?.studyType === "스터디"  && data?.count.count > 0 &&
             <S.CommentInputBox>
               <textarea placeholder="자료를 공유하세요" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} />
               <S.CommentBtn onClick={handleCommentBtnClick}>올리기</S.CommentBtn>
             </S.CommentInputBox>
           }
-            <S.CommentListBox>
+          <S.CommentListBox>
           {
-            data?.studyType === "스터디" &&
+            data?.studyType === "스터디" && data?.count.count > 0  &&
             CommentData?.map((i)=> (
             <Comment
               id={i.id}

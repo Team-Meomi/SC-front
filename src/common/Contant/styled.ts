@@ -22,8 +22,12 @@ export const ContantTop = styled.div`
   justify-content: space-between;
   align-items: center;
   p{
+    width: 80%;
     font-size: 1.3rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 

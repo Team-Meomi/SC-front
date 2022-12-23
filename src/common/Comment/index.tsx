@@ -5,6 +5,7 @@ import { MemoProfileIcon } from "../../../public/svg";
 const Contant = ({id,comment,isMine,writer}:CommentProps) => {
     return (
       <S.CommentBox>
+      {/* <S.CommentBox style={{flexDirection:"rowReverse"}}> */}
         <S.CommentTop>
           <MemoProfileIcon/>
           <span>{`${writer.stuNum} ${writer.name}`}</span>
