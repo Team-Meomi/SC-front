@@ -29,6 +29,6 @@ export const StudyController = {
 
 export const CommentController = {
 	Comment: (id:number) => {
-		return `/common/${id}`
+		return `/comment/${id}`
 	},
 }

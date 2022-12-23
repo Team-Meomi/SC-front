@@ -94,11 +94,36 @@ export const SearchData = async (
 
 export const CommentCreate = async (
 	postId:number,
-	content:string,
+	comment:string,
 ) => {
 	try {
 		const {data} = await CustomAxios.post(CommentController.Comment(postId),{
-			content,
+			comment,
+		})
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
+export const CommentDelete = async (
+	commentId:number,
+) => {
+	try {
+		const {data} = await CustomAxios.post(CommentController.Comment(commentId))
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
+
+export const CommentModify = async (
+	commentId:number,
+	comment:string,
+) => {
+	try {
+		const {data} = await CustomAxios.patch(CommentController.Comment(commentId),{
+			comment,
 		})
 		return {data}
 	} catch(e:any){

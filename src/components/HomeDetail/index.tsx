@@ -24,9 +24,7 @@ const HomeDetail = () => {
     const [date, setDate] = useState(data?.date);
     const [maxCount, setMaxCount] = useState(data?.count.maxCount);
 
-    const [commonValue,setCommonValue] = useState("");
-    console.log(CommentData);
-    
+    const [commonValue,setCommonValue] = useState("");    
     
     
     const handleApplyClick = async () => {
@@ -73,6 +71,7 @@ const HomeDetail = () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
       await CommentCreate(data?.id , commonValue)
       toast('댓글이 생성되었습니다', {type:"success"})
+      setCommonValue("");
       mutateComment();
     }
 
@@ -179,17 +178,18 @@ const HomeDetail = () => {
               <MemoAloneicon/>
           )}
           {
-            data?.studyType === "스터디"  && data?.count.count > 0 &&
+            data?.studyType === "스터디"  && data?.count.count > 0  && data.isStatus &&
             <S.CommentInputBox>
-              <textarea placeholder="자료를 공유하세요" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} />
+              <textarea placeholder="자료를 공유해보세요!" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} />
               <S.CommentBtn onClick={handleCommentBtnClick}>올리기</S.CommentBtn>
             </S.CommentInputBox>
           }
           <S.CommentListBox>
           {
-            data?.studyType === "스터디" && data?.count.count > 0  &&
+            data?.studyType === "스터디" && data?.count.count > 0 && data.isStatus &&
             CommentData?.map((i)=> (
             <Comment
+              key={i.id}
               id={i.id}
               comment={i.comment}
               isMine={i.isMine}
