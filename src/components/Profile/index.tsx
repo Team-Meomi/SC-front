@@ -59,7 +59,7 @@ const Profile = () => {
           <MemoAloneicon />
         )
       ) : ( 
-          JoinedData ? ( JoinedData.map((item,index) => (
+          JoinedData && JoinedData.length !== 0 ? ( JoinedData.map((item,index) => (
             <S.Contant key={index} onClick={() => router.push(`/study/${item.id}`)}>
               <S.ContantTop>
                 <p>{item.title}</p>

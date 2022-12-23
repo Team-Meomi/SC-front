@@ -18,6 +18,10 @@ export const CreateWapper = styled.div`
     align-items: center;
     padding: 0 4%;
 
+    svg {
+        width: 49%;
+    }
+
 `;
 
 export const InputsWapper = styled.div`
@@ -41,7 +45,7 @@ export const RadioBtns = styled.div`
     }
     input[type=radio]+label{
     height: 90%;
-    width: 350px;
+    width: 45%;
     border: 1px solid black;
     display: flex;
     align-items: center;

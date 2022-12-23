@@ -55,10 +55,9 @@ background-color: white;
 label{
   opacity: 0.5;
 		position: absolute;
-		top: 2vh;
+		top: 2.1vh;
 		left: 15.7vw;
     font-size: 1.1rem;
-    color: ${themedPalette.background};
     color: gray;
 }
 
@@ -66,7 +65,7 @@ span{
   opacity: 0.5;
 		position: absolute;
 		top: 7.2vh;
-		left: 239px;
+		left: 11vw;
     font-size: 0.8rem;
     color: red;
 }  

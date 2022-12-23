@@ -46,7 +46,9 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
         </S.CommentTop>
         {
           isModify ? (
-              <textarea value={modifyValue} onChange={(e) => {setModifyValue(e.target.value)}}/>
+              <textarea value={modifyValue} onChange={(e) => {setModifyValue(e.target.value)}}
+              onKeyPress={(e:any) => {if (e.key === 'Enter'){handleModifySubmitBtnClick()}}}
+              />
           ) : (
             <S.CommentBottom style={{flexDirection : isMine ? "row" : "row-reverse"}}>{comment}</S.CommentBottom>
           )

@@ -8,4 +8,5 @@ export interface InputProps {
     id?: string;
     kind?: "text" | "phone" | "price";
     maxLength?:number;
+    onKeyDown? :any
 }

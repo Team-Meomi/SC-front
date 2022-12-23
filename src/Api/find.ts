@@ -110,7 +110,7 @@ export const CommentDelete = async (
 	commentId:number,
 ) => {
 	try {
-		const {data} = await CustomAxios.post(CommentController.Comment(commentId))
+		const {data} = await CustomAxios.delete(CommentController.Comment(commentId))
 		return {data}
 	} catch(e:any){
 		console.log(e);

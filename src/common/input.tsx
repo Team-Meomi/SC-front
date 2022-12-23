@@ -9,16 +9,18 @@ export default function Input({
     required,
     placeholder,
     maxLength,
+    onKeyDown
   }: InputProps) {
     return (
       <InputStyle>
         <input
-              placeholder={placeholder}
-              id={id}
-              required={required}
-              {...register}
-              type={type}
-              maxLength={maxLength}
+            onKeyDown={() => onkeydown}
+            placeholder={placeholder}
+            id={id}
+            required={required}
+            {...register}
+            type={type}
+            maxLength={maxLength}
         />
       </InputStyle>
     );
