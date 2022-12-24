@@ -157,6 +157,7 @@ export const BottomWapper = styled.div`
 
 input[type="date"] {
   width:35%;
+  padding-right: 20px;
 }
 input[type="date"]::before {
   display:none;

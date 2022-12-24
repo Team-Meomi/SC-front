@@ -10,12 +10,9 @@ import { Userprops } from "../../types";
 const Header = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-    const { data, error } = useSWR<Userprops>(`user/`);
-    const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
-      console.log(data);
-      
+    const { data } = useSWR<Userprops>(`/user/`);
+    const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);  
     // const [theme , toggle] = UseToggleTheme();
-
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
   },[router])
@@ -47,12 +44,18 @@ const Header = () => {
           <div style={{backgroundSize: currentPage == "home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
           <div style={{backgroundSize: currentPage == "create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
         </S.LeftWapper>
-        <S.CenterWapper>
-          <input type="text" value={searchValue.value} onChange={(e) => SetSearchValue({...searchValue,value:e.target.value})}  placeholder="검색어를 입력해주세요" 
+        {
+          currentPage === "home" ? (
+          <S.CenterWapper>
+            <input type="text" value={searchValue.value} onChange={(e) => SetSearchValue({...searchValue,value:e.target.value})}  placeholder="검색어를 입력해주세요" 
             onKeyDown={(e:any) => {if (e.key === 'Enter'){handleClick()}}}
-          />
-          <label onClick={handleClick}><Memosearchicon /></label>
-        </S.CenterWapper>
+            />
+            <label onClick={handleClick}><Memosearchicon /></label>
+          </S.CenterWapper>
+          ) : (
+            <div/>
+          )
+        }
         <S.RightWapper>
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
             <MemoProfileIcon/>

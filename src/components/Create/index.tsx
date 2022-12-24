@@ -16,13 +16,16 @@ const Create = () => {
     const [date , setDate] = useState("");
 
     const handleClick = async () => {
-    if(!title) return toast('제목을 입력하세요', {type: 'warning' })
-    else if(!content) return toast('내용을 입력하세요', {type: 'warning' })
-    else if(!maxCount) return toast('인원수를 입력하세요', {type: 'warning' })
-    else if(!date) return toast('날짜를 선택하세요', {type: 'warning' })
-    console.log(title,content,topic,date,maxCount);
-      await create(title, content, topic, date, maxCount, studyType);
-      router.push('/home')
+    if(!title) return toast('제목을 입력하세요.', {type: 'warning' })
+    else if(!content) return toast('내용을 입력하세요.', {type: 'warning' })
+    else if(!maxCount) return toast('인원수를 입력하세요.', {type: 'warning' })
+    else if(!date) return toast('날짜를 선택하세요.', {type: 'warning' })
+    else if(studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
+    const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);
+    if (errorMsg === 'Request failed with status code 400') {
+      return toast('해당날짜에 신청할 수 없습니다.', {type: 'warning' })
+    }
+    router.push('/home')
     }
 
     useEffect(() => {
@@ -49,7 +52,7 @@ const Create = () => {
               <S.TopicBtns>
                 <input defaultChecked type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
                 <input type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
-                <input type="radio" value={topic} id="IOS" name="topic" onClick={() => setTopic("IOS")}/><label htmlFor="IOS">IOS</label>
+                <input type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">IOS</label>
                 <input type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
                 <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>

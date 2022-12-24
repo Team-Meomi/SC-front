@@ -96,7 +96,6 @@ export const ContansWapper = styled.div`
   width: 100%;
   padding: 3vh 7%;
   height: 50vh;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -114,4 +113,6 @@ export const Contants = styled.div`
   width: 100%;
   flex-wrap: wrap;
   gap: 4.8%;
+  overflow-y: scroll;
+
 `;

@@ -16,8 +16,6 @@ const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({f
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx)
-  console.log(ctx.query.id);
-  const { postid } = ctx.query;
   
     try {
       const {data:studyData} = await CustomAxios.get(StudyController.StudyId(ctx.query.id as string) ,{headers: {Authorization}});

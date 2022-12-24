@@ -22,7 +22,7 @@ export const create = async (
 		toast('게시글이 작성되었습니다', {type: 'success' })
 		return { data };
 	} catch (e: any) {
-		console.log(e)
+		return { errorMsg:e.response.data.message }
 	}
 };
 

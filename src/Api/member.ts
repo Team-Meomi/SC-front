@@ -18,7 +18,6 @@ export const signup = async (
 			name,
 			stuNum
 		});
-		console.log(data);
 		toast('회원가입이 되었습니다', {type:"success" })
 		return { data };
 	} catch (e: any) {
@@ -36,9 +35,7 @@ export const signin = async (
 			email: email,
 			password: password,
 		});
-		toast('로그인이 되었습니다', {type: 'success' })
-		console.log(data);
-		
+		toast('로그인이 되었습니다', {type: 'success' })		
 		UseSetToken(data.accessToken, data.refreshToken , null);
 	} catch (e: any) {
 		console.log(e);

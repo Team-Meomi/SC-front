@@ -48,10 +48,8 @@ export const ModifyBtn = styled.div`
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    /* color: orange */
     color: orange;
 `;
-
 
 
 export const DecsWapper = styled.div`
@@ -62,6 +60,7 @@ export const DecsWapper = styled.div`
     justify-content: center;
     gap: 35px;
     font-size: 1.3rem;
+    width: 100%;
 `;
 
 export const DecsTitle = styled.div`
@@ -79,6 +78,7 @@ export const DecsTitle = styled.div`
         border-radius: 8px;
         outline: none;
         border: none;
+        text-align: center;
     }
 `;
 
@@ -107,6 +107,7 @@ export const SpanWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 25px;
+    width: 100%;
 
     input {
         width: 200px;

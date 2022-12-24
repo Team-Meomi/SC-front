@@ -34,6 +34,7 @@ export const LogoutBtn = styled.div`
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
+    color: red;
 `;
 
 export const ProfileName = styled.div`
