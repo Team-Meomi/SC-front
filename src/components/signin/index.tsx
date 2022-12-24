@@ -5,6 +5,7 @@ import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
 import { useEffect, useState } from "react";
+import UseToggleTheme from "../../Hooks/UseToggleTheme";
 
 export default function Signin() {
   const router = useRouter();
@@ -30,6 +31,27 @@ export default function Signin() {
     reset()
     redirect("/home");
   }
+
+  const [theme , toggle] = UseToggleTheme();
+    
+  // useEffect(()=> {
+  //   document.body.dataset.theme = 'dark-mode'
+  // },[])
+
+  const handleDarkBtnClick = (e:any) => {    
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
+  console.log(systemPrefersDark);
+  toggle();
+  if(systemPrefersDark){
+    document.body.classList.toggle("light-theme");
+    
+  }else{
+    document.body.classList.toggle("dark-theme");
+    document.body.dataset.theme = 'dark'
+  }
+  document.body.dataset.theme = 'dark'
+}
+
 
   return (
     <>
@@ -62,6 +84,7 @@ export default function Signin() {
       <S.RedirectSignUp>
         <span>계정이 없으신가요?</span>
         <p onClick={() => redirect('/auth/signup')}>회원가입</p>
+                    <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button>
       </S.RedirectSignUp>
     </S.LoginWapper>
     </>

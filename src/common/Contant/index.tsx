@@ -6,11 +6,9 @@ import { SquareIcon } from "../../../public/svg";
 
 const Contant = ({id,title,category,date,type}:MainPageProps) => {
   const router = useRouter();
-  const Mycategory = categoryArray.filter((i) => i.value === category)[0] || ""
-  console.log(Mycategory);
-  
+  const Mycategory = categoryArray.filter((i) => i.value === category)[0] || ""  
 
-    return (
+  return (
     <S.Contant onClick={() => router.push(`study/${id}`)}>
       <S.ContantTop>
         <p>{title}</p>
@@ -24,7 +22,7 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
         <S.Date>{date}</S.Date>
       </S.ContantBottom>
     </S.Contant>
-    )
+  )
 }
 
 export default Contant

@@ -11,7 +11,7 @@ export const Contant = styled.div`
   padding: 10px 15px;
   margin: 7px 0;
   cursor: pointer;
-
+  color : ${themedPalette.text};
   background-color: ${themedPalette.boxBackground};
 `;
 

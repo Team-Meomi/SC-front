@@ -22,7 +22,6 @@ const Home = () => {
       }
     },[searchValue.value])
 
-
     return (
       <S.HomeWapper>
         <Header/>

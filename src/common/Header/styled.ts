@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const HeaderWapper = styled.div`
     height: 6vh;
@@ -27,6 +28,7 @@ export const LeftWapper = styled.div`
     background-image: linear-gradient(transparent 85%, #77D6B3 60%);
     background-repeat: no-repeat;
     background-size: 0% 100%;
+    color : ${themedPalette.text}
     }
 `;
 

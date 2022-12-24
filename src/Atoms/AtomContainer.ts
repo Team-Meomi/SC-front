@@ -19,6 +19,6 @@ export const AtomDarkModeState = atom<DarkModeState>({
 	key: 'AtomDarkModeState',
 	default: {
 		theme: 'default',
-		systemTheme: 'not-ready',
+		systemTheme: 'light',
 	},
 });

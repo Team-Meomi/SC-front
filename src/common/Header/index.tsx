@@ -6,13 +6,17 @@ import { useRecoilState } from "recoil";
 import { MemoProfileIcon, SearchIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
+import UseToggleTheme from "../../Hooks/UseToggleTheme";
+import { UseThemeEffect } from "../../Hooks";
 
 const Header = () => {
-    const router = useRouter();
-    const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-    const { data } = useSWR<Userprops>(`/user/`);
-    const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);  
-    // const [theme , toggle] = UseToggleTheme();
+  const router = useRouter();
+  const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
+  const { data } = useSWR<Userprops>(`/user/`);
+  const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);  
+  const [theme , toggle] = UseToggleTheme();
+  
+  UseThemeEffect()
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
   },[router])
@@ -21,24 +25,14 @@ const Header = () => {
     SetSearchValue({...searchValue , isClick:true})   
   }
   
-  // useEffect(()=> {
-  //   document.body.dataset.theme = 'light-mode'
-  // },[])
-
-//   const handleDarkBtnClick = (e:any) => {    
-//   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)',).matches;
-//   console.log(systemPrefersDark);
-//   toggle();
-//   if(systemPrefersDark){
-//     document.body.classList.toggle("light-theme");
-//       //   document.body.dataset.theme = 'light-mode'
-//   }else{
-//     document.body.classList.toggle("dark-theme");
-//       //   document.body.dataset.theme = 'light-mode'
-//   }
+  const handleDarkBtnClick = () => {    
+    console.log(theme);
+    toggle();
+    document.body.dataset.theme = theme
+  }
 
     return (
-      <S.HeaderWapper>
+      <S.HeaderWapper>  
         <S.LeftWapper>
           <div>S&C</div>
           <div style={{backgroundSize: currentPage == "home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
@@ -60,7 +54,7 @@ const Header = () => {
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
             <MemoProfileIcon/>
           </S.ProfileBox>
-            {/* <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button> */}
+            <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button>
         </S.RightWapper>
       </S.HeaderWapper>
     )

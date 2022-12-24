@@ -7,19 +7,19 @@ export default function UseToggleTheme() {
 
   const save = (value: 'light' | 'dark') => {
     storage.setItem('theme', value); // For CSR
-    document.cookie = `theme=${value}; path=/;`; // For SSR
-  };
-  console.log("저장하기");
+    // document.cookie = `theme=${value}; path=/;`; // For SSR
+  }; 
 
   const toggle = () => {
+    console.log(darkModeState.theme);
     if (!darkModeState.theme) return;
     if (darkModeState.theme === 'dark') {
       console.log("다크모드임");
-      setDarkModeState({...darkModeState , systemTheme:"light" })
+      setDarkModeState({...darkModeState , theme:"light" })
       save('light');
-    } else {
+    } else if(darkModeState.theme === 'light') {
       console.log("라이트모드임");
-      setDarkModeState({...darkModeState , systemTheme:"dark" })
+      setDarkModeState({...darkModeState , theme:"dark" })
       save('dark');
     }
   };
