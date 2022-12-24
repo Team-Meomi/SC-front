@@ -15,37 +15,38 @@ const HomeDetail = () => {
     const month = data?.date.slice(5,7);
     const day = data?.date.slice(8,10);
     
-    const [isStatus, SetIsStatus] = useState(data?.isStatus);
     const [isModify, setIsModify] = useState(false);
-    
-    const [title, setMIitle] = useState(data?.title);
-    const [content, setContent] = useState(data?.content);
-    const [topic, setTopic] = useState(data?.category);
-    const [date, setDate] = useState(data?.date);
-    const [maxCount, setMaxCount] = useState(data?.count.maxCount);
+    const [title, setMIitle] = useState<string>();
+    const [content, setContent] = useState<string>();
+    const [topic, setTopic] = useState<string>();
+    const [date, setDate] = useState<string>();
+    const [maxCount, setMaxCount] = useState<number>();
 
     const [commonValue,setCommonValue] = useState("");    
-    
+
+    const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count.maxCount === data?.count.count ? "신청불가" : "신청하기")
+
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
-      if(!data.isStatus && !data.isMine){
-        const id = data?.id
-        await StudyApply(id)
-        toast('신청되었습니다', {type:"success" })
-        mutate()
-        SetIsStatus(true)
-      }else if(data.isStatus && !data.isMine && data?.count.maxCount !== data?.count.count) {
-        await StudyCancel(data?.id)
-        toast('신청취소되었습니다', {type:"success" })
-        SetIsStatus(false)
-        mutate()
-      }else if(isModify && data.isMine){
-        if(!title || !content || !topic || !date || !maxCount) return toast('다 입력해주세요', {type:"warning" })
-        else if( data?.studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"warning" })
-        await StudyModify(data?.id, title, content, topic, date , maxCount)
-        toast('수정되었습니다', {type:"success" })
-        setIsModify(false)
-        mutate()
+      switch (SubmitBtnText) {
+        case "신청하기" :
+          await StudyApply(data.id)
+          toast('신청되었습니다', {type:"success" })
+          mutate()
+          break;
+        case "신청취소" :
+          await StudyCancel(data?.id)
+          toast('신청취소되었습니다', {type:"success" })
+          mutate()
+          break;
+        case "수정하기" : 
+          if(!title || !content || !topic || !date || !maxCount) return toast('다 입력해주세요', {type:"warning" })
+          else if(data?.studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"warning" })
+          await StudyModify(data?.id, title, content, topic, date , maxCount)
+          toast('수정되었습니다', {type:"success" })
+          setIsModify(false)
+          mutate()
+          break;
       }
     }
 
@@ -66,8 +67,8 @@ const HomeDetail = () => {
     }
 
     const handleCommentBtnClick = async () => {
-      if(!commonValue) return toast('내용을 입력하세요', {type:"warning" })
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
+      if(!commonValue) return toast('내용을 입력하세요', {type:"warning" })
       await CommentCreate(data?.id , commonValue)
       toast('댓글이 생성되었습니다', {type:"success"})
       setCommonValue("");
@@ -149,17 +150,21 @@ const HomeDetail = () => {
               )
             }
           </span>
-          <span>{`개설자 :`}
+          <span>
+            {`개설자 :`}
             <span style={{cursor:"pointer",color:"blue"}} onClick={() => {router.push(`/user/${data?.writer.id}`)}}>{`${data?.writer.stuNum} ${data?.writer.name}`}</span>
           </span>
           </S.SpanWrapper>
         </S.DecsWapper>
 
-        <S.SubmitBtn onClick={handleApplyClick} style={{
-          backgroundColor: data?.isMine ? (isModify? "orange" : "#EFEFEF" ) : (data?.isStatus ? (data?.count.maxCount === data?.count.count ? "#EFEFEF" : "red") : "#77D6B3") , 
-          color: data?.isMine ? (isModify? "white" : "gray" ) : ("white")
-        }}>
-          {data?.isMine ? (isModify ? "수정하기" : "개설자")  : (isStatus ? (data?.count.maxCount === data?.count.count ? "신청불가" : "신청취소") : ("신청하기")) }</S.SubmitBtn>
+        <S.SubmitBtn 
+          onClick={handleApplyClick} 
+          style={{
+            backgroundColor: (SubmitBtnText === "개설자" || SubmitBtnText === "신청불가") ? "#EFEFEF" : SubmitBtnText === "신청하기" ? "#77D6B3" : "orange" , 
+          }}
+        >
+          {SubmitBtnText}
+        </S.SubmitBtn>
         </S.LeftWapper>
 
         <S.RightWapper>

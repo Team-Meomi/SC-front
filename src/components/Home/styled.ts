@@ -114,5 +114,5 @@ export const Contants = styled.div`
   flex-wrap: wrap;
   gap: 4.8%;
   overflow-y: scroll;
-
+  padding: 20px 0;
 `;
