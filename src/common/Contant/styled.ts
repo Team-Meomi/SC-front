@@ -46,6 +46,11 @@ export const ContantBottom = styled.div`
 
 export const Topic = styled.div`
   font-size: 1.1rem;
+  display: flex;
+  width: 60%;
+  svg{
+    width: 20px;
+  }
 `;
 
 export const Date = styled.div`

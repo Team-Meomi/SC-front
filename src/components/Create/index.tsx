@@ -43,7 +43,7 @@ const Create = () => {
           <MemoCreate />
           <S.InputsWapper>
             <S.RadioBtns>
-                <input defaultChecked type="radio" value={studyType} id="컨퍼런스" name="studyType" onClick={() => setstudyType("컨퍼런스")}/><label htmlFor="컨퍼런스">컴퍼런스</label>
+                <input defaultChecked type="radio" value={studyType} id="컨퍼런스" name="studyType" onClick={() => setstudyType("컨퍼런스")}/><label htmlFor="컨퍼런스">컨퍼런스</label>
                 <input type="radio" value={studyType} id="스터디" name="studyType" onClick={() => setstudyType("스터디")} /><label htmlFor="스터디">스터디</label>
             </S.RadioBtns>
             <S.ConterWapper>
@@ -52,7 +52,7 @@ const Create = () => {
               <S.TopicBtns>
                 <input defaultChecked type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
                 <input type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
-                <input type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">IOS</label>
+                <input type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">iOS</label>
                 <input type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
                 <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>

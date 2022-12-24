@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { AtomCurrentPage, AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
-import { Memosearchicon, MemoProfileIcon } from "../../../public/svg";
+import { MemoProfileIcon, SearchIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
 
@@ -50,7 +50,7 @@ const Header = () => {
             <input type="text" value={searchValue.value} onChange={(e) => SetSearchValue({...searchValue,value:e.target.value})}  placeholder="검색어를 입력해주세요" 
             onKeyDown={(e:any) => {if (e.key === 'Enter'){handleClick()}}}
             />
-            <label onClick={handleClick}><Memosearchicon /></label>
+            <label onClick={handleClick}><SearchIcon /></label>
           </S.CenterWapper>
           ) : (
             <div/>

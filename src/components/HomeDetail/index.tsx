@@ -35,14 +35,14 @@ const HomeDetail = () => {
           mutate()
           break;
         case "신청취소" :
-          await StudyCancel(data?.id)
+          await StudyCancel(data.id)
           toast('신청취소되었습니다', {type:"success" })
           mutate()
           break;
         case "수정하기" : 
           if(!title || !content || !topic || !date || !maxCount) return toast('다 입력해주세요', {type:"warning" })
           else if(data?.studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"warning" })
-          await StudyModify(data?.id, title, content, topic, date , maxCount)
+          await StudyModify(data.id, title, content, topic, date , maxCount)
           toast('수정되었습니다', {type:"success" })
           setIsModify(false)
           mutate()
