@@ -84,6 +84,7 @@ export const LoginButton = styled.button`
   font-weight: bold;
   background-color: #77D6B3;
   border-radius: 5px;
+  cursor: pointer;
 
   &:hover {
     background-color: #71BDAC;

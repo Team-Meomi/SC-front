@@ -1,6 +1,6 @@
 import React from "react";
 
-function Intro(props: React.SVGProps<SVGSVGElement>) {
+function IntroIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
             <svg width="590" height="350" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 609 430" {...props}>
                 <path d="M593.435 41.588H96.112a15.566 15.566 0 0 0-11 4.573 15.63 15.63 0 0 0-4.565 11.023V320.08a15.63 15.63 0 0 0 4.564 11.023 15.567 15.567 0 0 0 11 4.573h497.324a15.567 15.567 0 0 0 11.001-4.573A15.631 15.631 0 0 0 609 320.081V57.184a15.63 15.63 0 0 0-4.564-11.023 15.565 15.565 0 0 0-11.001-4.573Zm14.083 278.493a14.14 14.14 0 0 1-4.129 9.974 14.08 14.08 0 0 1-9.954 4.136H96.112a14.08 14.08 0 0 1-9.954-4.136 14.14 14.14 0 0 1-4.128-9.974V57.184a14.137 14.137 0 0 1 4.128-9.974 14.08 14.08 0 0 1 9.954-4.136h497.323a14.08 14.08 0 0 1 9.954 4.136 14.137 14.137 0 0 1 4.129 9.974V320.08Z" fill="#3F3D56"/>
@@ -23,5 +23,5 @@ function Intro(props: React.SVGProps<SVGSVGElement>) {
     )
 }
 
-const MemoIntro = React.memo(Intro);
-export default MemoIntro;
+const MemoIntroIcon = React.memo(IntroIcon);
+export default MemoIntroIcon;
