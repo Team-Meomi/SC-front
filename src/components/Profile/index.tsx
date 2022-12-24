@@ -1,10 +1,11 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { BackBtnIcon, LogoutIcon, MemoAloneicon, MemoProfileIcon } from "../../../public/svg";
+import { BackBtnIcon, LogoutIcon, MemoAloneicon, MemoProfileIcon, SquareIcon } from "../../../public/svg";
 import { useState } from "react";
 import useSWR from "swr";
 import { MainPageProps, Userprops } from "../../types";
 import { UseRemoveToken } from "../../Hooks";
+import { categoryArray } from "../../Utils/categoryArray";
 
 const Profile = () => {
     const router = useRouter();
@@ -17,6 +18,8 @@ const Profile = () => {
       UseRemoveToken()
       router.push('/');
     }
+    // const Mycategory = categoryArray.filter((i) => i.value === category)[0] || ""  
+
     
     return (
       <S.Wrapper>
@@ -46,7 +49,10 @@ const Profile = () => {
               <S.ConferenceText>{item.type}</S.ConferenceText>
             </S.ContantTop>
             <S.ContantBottom>
-              <S.Topic>{item.category}</S.Topic>
+              <S.Topic>
+                <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0].color}/>
+                {item.category}
+              </S.Topic>
               <S.Date>{item.date}</S.Date>
             </S.ContantBottom>
           </S.Contant>
@@ -62,7 +68,10 @@ const Profile = () => {
                 <S.ConferenceText>{item.type}</S.ConferenceText>
               </S.ContantTop>
               <S.ContantBottom>
-                <S.Topic>{item.category}</S.Topic>
+                <S.Topic>
+                  <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0].color}/>
+                  {item.category}
+                </S.Topic>
                 <S.Date>{item.date}</S.Date>
               </S.ContantBottom>
             </S.Contant>

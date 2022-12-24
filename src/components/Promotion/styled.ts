@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 
 export const Wrapper = styled.div`
@@ -9,6 +10,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 100px;
+    background: ${themedPalette.background};
 `;
 
 export const TitleText = styled.div`

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const Wrapper = styled.div`
     display: flex;
@@ -14,6 +15,8 @@ export const LeftWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 30px;
+    background: ${themedPalette.header};
+    color: ${themedPalette.text};
 `;
 
 export const BackBtn = styled.div`
@@ -51,6 +54,8 @@ export const RightWrapper = styled.div`
     align-items: center;
     padding-top: 10vh;
     gap: 20px;
+    background: ${themedPalette.background};
+    color: ${themedPalette.text};
 `;
 
 export const KindBar = styled.div`
@@ -100,6 +105,7 @@ export const Contant = styled.div`
   padding: 10px 15px;
   margin: 7px 0;
   cursor: pointer;
+  background: ${themedPalette.boxBackground};
 `;
 
 export const ContantTop = styled.div`
@@ -133,6 +139,10 @@ export const ContantBottom = styled.div`
 
 export const Topic = styled.div`
   font-size: 1.1rem;
+  display: flex;
+  svg{
+    width: 20px;
+  }
 `;
 
 export const Date = styled.div`
