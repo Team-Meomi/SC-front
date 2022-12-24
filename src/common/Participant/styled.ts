@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const Participant = styled.div`
     width: 30%;
@@ -11,6 +12,8 @@ export const Participant = styled.div`
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background-color: white;
     font-size: 0.9rem;
+    color: #77D6B3;
+    background: ${themedPalette.boxBackground};
 
     svg{
         width: 80px;

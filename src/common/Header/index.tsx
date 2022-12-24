@@ -28,7 +28,6 @@ const Header = () => {
   const handleDarkBtnClick = () => {    
     console.log(theme);
     toggle();
-    document.body.dataset.theme = theme
   }
 
     return (

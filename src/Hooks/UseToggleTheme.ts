@@ -14,12 +14,12 @@ export default function UseToggleTheme() {
     console.log(darkModeState.theme);
     if (!darkModeState.theme) return;
     if (darkModeState.theme === 'dark') {
-      console.log("다크모드임");
       setDarkModeState({...darkModeState , theme:"light" })
+      document.body.dataset.theme = "light"
       save('light');
     } else if(darkModeState.theme === 'light') {
-      console.log("라이트모드임");
       setDarkModeState({...darkModeState , theme:"dark" })
+      document.body.dataset.theme = "dark"
       save('dark');
     }
   };

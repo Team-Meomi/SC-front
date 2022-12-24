@@ -10,6 +10,7 @@ export const HeaderWapper = styled.div`
     align-items: center;
     padding: 0 2%;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    background: ${themedPalette.header};
 `;
 
 export const LeftWapper = styled.div`

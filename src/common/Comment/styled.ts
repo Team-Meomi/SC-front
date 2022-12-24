@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const CommentBox = styled.div`
     width: 100%;
@@ -10,10 +11,11 @@ export const CommentBox = styled.div`
     padding: 5px 20px 5px 10px;
     border-radius: 6px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background: ${themedPalette.boxBackground};
+    color: ${themedPalette.text};
 
     textarea {
         border: none;
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         outline: none;
 
@@ -25,6 +27,8 @@ export const CommentBox = styled.div`
         background-color: white;
         padding: 20px 20px;
         margin: 5px 10px;
+        background: ${themedPalette.boxBackground};
+        box-shadow: 0px 2px 8px ${themedPalette.boxShadow};
 
         ::placeholder{
         color: #A4A4A5;

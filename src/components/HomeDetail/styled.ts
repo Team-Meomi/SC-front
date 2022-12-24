@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const HomeDetailWapper = styled.div`
     width: 100%;
@@ -16,7 +17,7 @@ export const LeftWapper = styled.div`
     align-items:flex-start;
     padding: 5vh 8% 15vh 8%;
     position: relative;
-
+    background: ${themedPalette.header};
 `;
 
 export const BackBtn = styled.div`
@@ -27,6 +28,7 @@ export const BackBtn = styled.div`
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
+    color: ${themedPalette.text};
 `;
 
 export const DeleteBtn = styled.div`
@@ -61,6 +63,7 @@ export const DecsWapper = styled.div`
     gap: 35px;
     font-size: 1.3rem;
     width: 100%;
+    color: ${themedPalette.text};
 `;
 
 export const DecsTitle = styled.div`
@@ -179,13 +182,13 @@ export const SubmitBtn = styled.button`
     display:flex;
     align-items:center;
     justify-content:center;
-    color: white;
     background: #77D6B3;
     border-radius: 10px;
     cursor: pointer;
     border: none;
     font-size: 1.3rem;
     font-weight: bold;
+    color: white;
 `;
 
 export const RightWapper = styled.div`
@@ -197,7 +200,7 @@ export const RightWapper = styled.div`
     align-content:flex-start;
     padding: 5vh 4% 0 4.3%;
     gap: 3vh;
-    background: #EFEFEF;
+    background: ${themedPalette.background};
     overflow-y: scroll;
 `;
 
@@ -221,7 +224,7 @@ export const CommentInputBox = styled.div`
         color: #A4A4A5;
         resize: none;
         font-size: 1.1rem;
-        background-color: white;
+        background: ${themedPalette.boxBackground};
 
 
         ::placeholder{
@@ -241,6 +244,7 @@ export const CommentBtn = styled.div`
     border-radius: 4px;
     cursor: pointer;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
 `;
 
 export const CommentListBox = styled.div`
