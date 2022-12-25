@@ -16,7 +16,6 @@ const Header = () => {
   const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);  
   const [theme , toggle] = UseToggleTheme();
   
-  UseThemeEffect()
   useEffect(() => {
     router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
   },[router])

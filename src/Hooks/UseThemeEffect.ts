@@ -5,7 +5,6 @@ import storage from '../Utils/lib/storage';
  
 const UseThemeEffect = () => {
   const [darkModeState ,setDarkModeState] = useRecoilState(AtomDarkModeState);
-  console.log(storage.getItem('theme'));
   
   useEffect(() => {
     if(!storage.getItem('theme')) {
@@ -19,12 +18,5 @@ const UseThemeEffect = () => {
       document.body.dataset.theme = storage.getItem('theme')
     }
   }, []);
-  console.log(darkModeState.theme);
-
-  // useEffect(() => {
-  //   if (darkModeState.theme !== 'default') {
-  //     document.body.dataset.theme = darkModeState.theme;
-  //   }
-  // }, [darkModeState.theme]);
 }
 export default UseThemeEffect;
