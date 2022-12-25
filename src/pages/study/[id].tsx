@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import { SWRConfig } from "swr";
+import { Shead } from "../../common";
 import { HomeDetail } from "../../components";
 import { UseGetToken } from "../../Hooks";
 import { MainDetailProps } from "../../types";
@@ -9,6 +10,7 @@ import { StudyController } from "../../Utils/lib/urls";
 const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
       <SWRConfig value={fallback}>
+        <Shead seoTitle={'디테일페이지'} />
         <HomeDetail />
       </SWRConfig>
     )

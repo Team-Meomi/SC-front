@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
 import { SWRConfig } from "swr";
-import { HomeDetail, Profile } from "../../components";
+import { Shead } from "../../common";
+import { Profile } from "../../components";
 import { UseGetToken } from "../../Hooks";
 import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
@@ -8,6 +9,7 @@ import CustomAxios from "../../Utils/lib/CustomAxios";
 const ProfilePage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
       <SWRConfig value={fallback}>
+        <Shead seoTitle={'프로필페이지'} />
         <Profile />
       </SWRConfig>
     )
