@@ -106,7 +106,6 @@ const HomeDetail = () => {
             ) : (
               data?.content
             )}
-          
         </S.DecsContent>
         <S.SpanWrapper>
           <span>

@@ -200,7 +200,7 @@ export const RightWapper = styled.div`
     align-content:flex-start;
     padding: 5vh 4% 0 4.3%;
     gap: 3vh;
-    background: ${themedPalette.background};
+    background: ${themedPalette.homeDetail};
     overflow-y: scroll;
 `;
 

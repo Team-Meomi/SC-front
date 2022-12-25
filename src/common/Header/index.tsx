@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { AtomCurrentPage, AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
-import { MemoProfileIcon, SearchIcon } from "../../../public/svg";
+import { MemoProfileIcon, MoonIcon, SearchIcon, SunIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
@@ -50,10 +50,18 @@ const Header = () => {
           )
         }
         <S.RightWapper>
+        <S.DarkModeBtn onClick={handleDarkBtnClick}>
+          {
+            theme === "light" ? (
+              <SunIcon width={30}/>
+            ) : (
+              <MoonIcon width={27} style={{color:"white"}}/>
+            )
+          }
+          </S.DarkModeBtn>
           <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
             <MemoProfileIcon/>
           </S.ProfileBox>
-            <button onClick={handleDarkBtnClick}>다크모드 토글버튼이죠</button>
         </S.RightWapper>
       </S.HeaderWapper>
     )

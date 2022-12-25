@@ -39,6 +39,8 @@ export const RightWapper = styled.div`
     height: 5vh;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
 
 `;
 
@@ -52,6 +54,24 @@ export const ProfileBox = styled.div`
 
     }
 `;
+
+export const DarkModeBtn = styled.div`
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    :hover{
+        background-color: #EFEFEF;
+    }
+
+`;
+
 
 
 export const CenterWapper = styled.div`

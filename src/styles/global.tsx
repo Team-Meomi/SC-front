@@ -8,6 +8,8 @@ const lightTheme = `
   --boxBackground: white;
   --header: white;
   --boxShadow:rgba(0, 0, 0, 0.1);
+  --homeDetail: #EFEFEF;
+
 `;
 const darkTheme = `
   --text: white;
@@ -15,6 +17,7 @@ const darkTheme = `
   --boxBackground: #383737;
   --header: #282828;
   --boxShadow:rgba(255, 255, 255, 0.5);
+  --homeDetail:#1F1F1F;
 `;
 
 const cssVar = (name: string) => `var(--${name})`;
@@ -25,6 +28,7 @@ export const themedPalette = {
   boxBackground: cssVar('boxBackground'),
   header: cssVar('header'),
   boxShadow: cssVar('boxShadow'),
+  homeDetail: cssVar('homeDetail'),
 };
 
 const style = css`
