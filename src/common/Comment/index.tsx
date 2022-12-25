@@ -1,7 +1,7 @@
 import * as S from "./styled";
 import { CommentProps } from "../../types";
 import { MemoProfileIcon } from "../../../public/svg";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import { useRouter } from "next/router";
 import { CommentDelete, CommentModify } from "../../Api/find";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const Contant = ({id,comment,isMine,writer}:CommentProps) => {
   const router = useRouter();
-  const { mutate } = useSWR<CommentProps[]>(`/comment/${router.query.id}`);
+  const { mutate } = useSWRConfig()
   const [isModify , setIsModify] = useState(false);
   const [modifyValue , setModifyValue] = useState(comment);
 
@@ -17,13 +17,13 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
     await CommentModify(id , modifyValue)
     toast('댓글이 수정되었습니다.', {type:"success"})
     setIsModify(false)
-    mutate();
+    mutate(`/comment/${router.query.id}`);
   }
 
   const handleDeleteBtnClick = async () => {
     await CommentDelete(id)
     toast('댓글이 삭제되었습니다.', {type:"success"})
-    mutate();
+    mutate(`/comment/${router.query.id}`);
   }
     return (
       <S.CommentBox>
