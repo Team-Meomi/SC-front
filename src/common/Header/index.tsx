@@ -7,7 +7,6 @@ import { MemoProfileIcon, MoonIcon, SearchIcon, SunIcon } from "../../../public/
 import useSWR from "swr";
 import { Userprops } from "../../types";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
-import { UseThemeEffect } from "../../Hooks";
 
 const Header = () => {
   const router = useRouter();

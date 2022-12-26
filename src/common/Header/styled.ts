@@ -91,7 +91,7 @@ export const CenterWapper = styled.div`
     input {
         color: gray;
         border: none;
-        width: 60%;
+        width: 87%;
         height: 100%;
         outline: none;
         font-size: 1rem;

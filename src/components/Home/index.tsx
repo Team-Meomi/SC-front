@@ -14,6 +14,7 @@ const Home = () => {
     const { data } = useSWR<MainPageProps[]>(StudyController.Study());
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
     const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
+    const month = ('0' + (new Date().getMonth() + 1)).slice(-2);
     
     useEffect(() => {
       if(searchValue.isClick){
@@ -35,7 +36,8 @@ const Home = () => {
         </S.IntroWapper>
 
         <S.ContansWapper>
-        <S.ContansMainTitle>12 월 최신글</S.ContansMainTitle>
+        <S.ContansMainTitle>
+          {searchValue.isClick ? `"${searchValue.value}" 에 대한 검색결과입니다` : `${month} 월 최신글`}</S.ContansMainTitle>
         <S.Contants>
         {searchValue.isClick === false ? (
             data?.map((item,index) => (
@@ -49,7 +51,7 @@ const Home = () => {
             />  
             ))
           ) : (
-            SearchData? ( SearchData.map((item,index) => (
+            SearchData && SearchData.length !== 0? ( SearchData.map((item,index) => (
               <Contant
                 key={index}
                 id={item.id}
@@ -59,7 +61,9 @@ const Home = () => {
                 type={item.type}
               />
             ))
-            ):(<p>로딩중</p>)
+            ):(
+              <h3>검색결과가 없습니다</h3>
+            )
         )}
         </S.Contants>
 

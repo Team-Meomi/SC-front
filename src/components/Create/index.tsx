@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { Header } from "../../common";
-import { MemoCreate } from "../../../public/svg";
+import { CalendarIcon, MemoCreate } from "../../../public/svg";
 import { useEffect, useState } from "react";
 import { create } from "../../Api/find";
 import { toast } from "react-toastify";
@@ -13,20 +13,19 @@ const Create = () => {
     const [content , setContent] = useState("");
     const [topic, setTopic] = useState("BE");
     const [maxCount , setmaxCount] = useState<number>();
-    const [date , setDate] = useState("");
-
     const today = new Date();
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
     const TodayDate = year + '-' + month  + '-' + day;    
+    const [date , setDate] = useState(TodayDate);
+
 
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요.', {type: 'warning' })
     else if(!content) return toast('내용을 입력하세요.', {type: 'warning' })
     else if(!maxCount) return toast('인원수를 입력하세요.', {type: 'warning' })
     else if(!date) return toast('날짜를 선택하세요.', {type: 'warning' })
-    else if(date < TodayDate ) return toast('오늘 이전 날짜는 선택할 수 없습니다.', {type: 'warning' })
     else if(studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
     const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);    
     if (errorMsg === '시청각실을 빌릴 수 없는 날짜 입니다.') {
@@ -71,7 +70,10 @@ const Create = () => {
                     <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount || ''} onChange={(e:any) => setmaxCount(e.target.value) }/>
                   )
                 }
-                <S.BottomInput placeholder="날짜 선택" type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" value={date} min={TodayDate} onChange={(e) => setDate(e.target.value)}/>
+                <label htmlFor="날짜">
+                  <CalendarIcon/>
+                </label>
               </S.BottomWapper>
             </S.ConterWapper>
             <S.SubmitBtn onClick={handleClick}>생성하기</S.SubmitBtn>

@@ -156,19 +156,39 @@ export const BottomWapper = styled.div`
     }
 
     input[type="date"] {
-        width:35%;
-        padding-right: 20px;
+        width:40%;
+        padding-right: 50px;
+        position: relative;
     }
     input[type="date"]::before {
         display:none;
     }
-    input[type="date"].after::-webkit-calendar-picker-indicator{
+    input[type="date"]::-webkit-calendar-picker-indicator{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
         margin-left: 0px;
+        cursor: pointer;
+    }
+    label{
+        cursor: no-drop;
+        position: absolute;
+        left:91vw;
+        color: #A4A4A5;
+        width: 30px;
+        display: flex;
+        align-items: center;
+    }
+    label svg{
+        width: 30px;
     }
 `;
 
 export const BottomInput = styled.input`
-    width: 40%;
+    width: 45%;
     height: 50px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -192,5 +212,4 @@ export const SubmitBtn = styled.button`
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-
 `;
