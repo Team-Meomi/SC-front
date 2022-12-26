@@ -61,7 +61,6 @@ const Home = () => {
             ))
             ):(<p>로딩중</p>)
         )}
-          
         </S.Contants>
 
         </S.ContansWapper>

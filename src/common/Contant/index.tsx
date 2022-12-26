@@ -17,7 +17,7 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
       <S.ContantBottom>
         <S.Topic>
           <SquareIcon color={Mycategory.color}/>
-          {Mycategory.fullname || category}
+          {category}
           </S.Topic>
         <S.Date>{date}</S.Date>
       </S.ContantBottom>

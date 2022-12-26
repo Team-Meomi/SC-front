@@ -15,11 +15,18 @@ const Create = () => {
     const [maxCount , setmaxCount] = useState<number>();
     const [date , setDate] = useState("");
 
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    const TodayDate = year + '-' + month  + '-' + day;    
+
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요.', {type: 'warning' })
     else if(!content) return toast('내용을 입력하세요.', {type: 'warning' })
     else if(!maxCount) return toast('인원수를 입력하세요.', {type: 'warning' })
     else if(!date) return toast('날짜를 선택하세요.', {type: 'warning' })
+    else if(date < TodayDate ) return toast('오늘 이전 날짜는 선택할 수 없습니다.', {type: 'warning' })
     else if(studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
     const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);
     if (errorMsg === 'Request failed with status code 400') {

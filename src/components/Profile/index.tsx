@@ -18,9 +18,7 @@ const Profile = () => {
       UseRemoveToken()
       router.push('/');
     }
-    // const Mycategory = categoryArray.filter((i) => i.value === category)[0] || ""  
-
-    
+        
     return (
       <S.Wrapper>
         <S.LeftWrapper>
