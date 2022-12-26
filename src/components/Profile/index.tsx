@@ -48,7 +48,7 @@ const Profile = () => {
             </S.ContantTop>
             <S.ContantBottom>
               <S.Topic>
-                <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0].color}/>
+                <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0]?.color}/>
                 {item.category}
               </S.Topic>
               <S.Date>{item.date}</S.Date>
@@ -67,7 +67,7 @@ const Profile = () => {
               </S.ContantTop>
               <S.ContantBottom>
                 <S.Topic>
-                  <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0].color}/>
+                  <SquareIcon color={categoryArray.filter((i) => i.value === item.category)[0]?.color}/>
                   {item.category}
                 </S.Topic>
                 <S.Date>{item.date}</S.Date>

@@ -54,7 +54,7 @@ export const RightWrapper = styled.div`
     align-items: center;
     padding-top: 10vh;
     gap: 20px;
-    background: ${themedPalette.background};
+    background: ${themedPalette.homeDetail};
     color: ${themedPalette.text};
 `;
 

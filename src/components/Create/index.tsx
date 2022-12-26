@@ -28,9 +28,9 @@ const Create = () => {
     else if(!date) return toast('날짜를 선택하세요.', {type: 'warning' })
     else if(date < TodayDate ) return toast('오늘 이전 날짜는 선택할 수 없습니다.', {type: 'warning' })
     else if(studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
-    const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);
-    if (errorMsg === 'Request failed with status code 400') {
-      return toast('해당날짜에 신청할 수 없습니다.', {type: 'warning' })
+    const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);    
+    if (errorMsg === '시청각실을 빌릴 수 없는 날짜 입니다.') {
+      return toast(errorMsg , {type: 'warning' })
     }
     router.push('/home')
     }
