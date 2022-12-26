@@ -82,6 +82,7 @@ export const DecsTitle = styled.div`
         outline: none;
         border: none;
         text-align: center;
+        color: black;
     }
 `;
 
@@ -122,6 +123,7 @@ export const SpanWrapper = styled.div`
         border-radius: 8px;
         outline: none;
         border: none;
+        color: black;
     }
     input[type="date"]::before {
     display:none;

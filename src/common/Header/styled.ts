@@ -65,6 +65,9 @@ export const DarkModeBtn = styled.div`
     border: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    svg{
+        color: ${themedPalette.text}
+    }
 
     :hover{
         background-color: #EFEFEF;
