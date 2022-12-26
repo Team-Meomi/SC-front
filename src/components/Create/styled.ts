@@ -19,7 +19,7 @@ export const CreateWapper = styled.div`
     padding: 0 4%;
 
     svg {
-        width: 49%;
+        width: 46%;
     }
 
 `;
@@ -155,16 +155,16 @@ export const BottomWapper = styled.div`
 	  margin: 0;
     }
 
-input[type="date"] {
-  width:35%;
-  padding-right: 20px;
-}
-input[type="date"]::before {
-  display:none;
-}
-input[type="date"].after::-webkit-calendar-picker-indicator{
-    margin-left: 0px;
-}
+    input[type="date"] {
+        width:35%;
+        padding-right: 20px;
+    }
+    input[type="date"]::before {
+        display:none;
+    }
+    input[type="date"].after::-webkit-calendar-picker-indicator{
+        margin-left: 0px;
+    }
 `;
 
 export const BottomInput = styled.input`
