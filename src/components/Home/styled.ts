@@ -3,12 +3,14 @@ import { themedPalette } from "../../styles/global";
 
 export const HomeWapper = styled.div`
   width: 100%;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content:flex-start;
   height: 100vh;
+  overflow-y: scroll;
   background-color: ${themedPalette.background};
 `;
 
@@ -84,6 +86,5 @@ export const Contants = styled.div`
   width: 100%;
   flex-wrap: wrap;
   gap: 4.8%;
-  overflow-y: scroll;
-  padding: 20px 0;
+  /* padding: 10px 0; */
 `;

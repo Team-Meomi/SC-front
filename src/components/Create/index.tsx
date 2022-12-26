@@ -17,9 +17,8 @@ const Create = () => {
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
-    const TodayDate = year + '-' + month  + '-' + day;    
+    const TodayDate = year + '-' + month  + '-' + day;
     const [date , setDate] = useState(TodayDate);
-
 
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요.', {type: 'warning' })

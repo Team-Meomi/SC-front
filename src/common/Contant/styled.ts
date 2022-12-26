@@ -3,7 +3,7 @@ import { themedPalette } from "../../styles/global";
 
 export const Contant = styled.div`
   width: 30.1%;
-  height: 100px;
+  height: 10vh;
   background: #FFFFFF;
   border-radius: 8px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
