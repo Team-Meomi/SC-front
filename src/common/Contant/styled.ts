@@ -9,7 +9,6 @@ export const Contant = styled.div`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 10px 15px;
-  margin: 7px 0;
   cursor: pointer;
   color : ${themedPalette.text};
   background-color: ${themedPalette.boxBackground};

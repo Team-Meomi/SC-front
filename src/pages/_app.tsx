@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil';
 import CustomAxios from '../Utils/lib/CustomAxios';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyle from '../styles/global';
+import AppLayout from '../common/AppLayout';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -22,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <RecoilRoot>
           <GlobalStyle/>
-          <Component {...pageProps} />
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
           <ToastContainer autoClose={1000} pauseOnHover={true} hideProgressBar={true}/>
         </RecoilRoot>
       </SWRConfig>

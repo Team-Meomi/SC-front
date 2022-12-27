@@ -93,7 +93,8 @@ export const ContansMainTitle = styled.div`
 export const Contants = styled.div`
   display: flex;
   width: 100%;
+  height: auto;
   flex-wrap: wrap;
   gap: 4.8%;
-  padding: 0 0 100px 0;
+  padding-bottom: 100px;
 `;

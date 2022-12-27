@@ -41,7 +41,7 @@ const Home = () => {
           {searchValue.isClick ? `"${searchValue.value}" 에 대한 검색결과입니다` : `${month} 월 최신글`}</S.ContansMainTitle>
         <S.Contants>
         {searchValue.isClick === false ? (
-            data?.map((item,index) => (
+            data ? (data.map((item,index) => (
             <Contant
               key={index}
               id={item.id}
@@ -49,8 +49,11 @@ const Home = () => {
               category={item.category}
               date={item.date}
               type={item.type}
-            />  
+            />
             ))
+            ):(
+              <h3>게시글이 없습니다.</h3>
+            )
           ) : (
             SearchData && SearchData.length !== 0? ( SearchData.map((item,index) => (
               <Contant

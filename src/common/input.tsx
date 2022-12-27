@@ -9,12 +9,10 @@ export default function Input({
     required,
     placeholder,
     maxLength,
-    onKeyPress
   }: InputProps) {
     return (
       <InputStyle>
         <input
-            onKeyPress={() => onkeydown}
             placeholder={placeholder}
             id={id}
             required={required}
