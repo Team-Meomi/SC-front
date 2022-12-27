@@ -5,8 +5,8 @@ import { Error } from "../components";
 const ErrorPage:NextPage = ({ statusCode }:any) => {
     return (
       <>
-          <Shead seoTitle={statusCode? `${statusCode} 페이지`: '404페이지'} />
-          <Error title={statusCode ? `${statusCode}페이지 입니다.`: '404페이지 입니다.'}/>
+        <Shead seoTitle={statusCode? `${statusCode} 페이지`: '404페이지'} />
+        <Error title={statusCode ? `${statusCode}페이지 입니다.`: '404페이지 입니다.'}/>
       </>
     )
   }

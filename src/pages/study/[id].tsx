@@ -18,13 +18,14 @@ const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({f
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx)
+  const id = ctx.query.id as string
   
     try {
-      const {data:studyData} = await CustomAxios.get(StudyController.StudyId(ctx.query.id as string) ,{headers: {Authorization}});
+      const {data:studyData} = await CustomAxios.get(StudyController.StudyId(id) ,{headers: {Authorization}});
       return {
         props: {
           fallback: {
-            '/study/1' : studyData,
+            [`/study/${id}`] : studyData,
           },
         },
       };

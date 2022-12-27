@@ -9,7 +9,7 @@ const Contant = ({id,title,category,date,type}:MainPageProps) => {
   const Mycategory = categoryArray.filter((i) => i.value === category)[0] || ""
 
   return (
-    <S.Contant onClick={() => router.push(`study/${id}`)}>
+    <S.Contant onClick={() => router.push(`/study/${id}`)}>
       <S.ContantTop>
         <p>{title}</p>
         <S.ConferenceText style={{color: type === "컨퍼런스" ? "#7B95F3" : "#D89DF4"}}>{type}</S.ConferenceText>

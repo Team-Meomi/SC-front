@@ -13,7 +13,7 @@ const Profile = () => {
     const { data:myData} = useSWR<Userprops>(`/user/${router.query.id}`);
     const { data:JoinedData } = useSWR<MainPageProps[]>(`/user/joined/${router.query.id}`);
     const { data:WrittenData } = useSWR<MainPageProps[]>(`/user/written/${router.query.id}`);
-
+    
     const handleLogoutClick = () => {
       UseRemoveToken()
       router.push('/');

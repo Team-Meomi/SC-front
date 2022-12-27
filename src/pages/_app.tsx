@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <GlobalStyle/>
             <AppLayout>
               <Component {...pageProps} />
-            </AppLayout>
+          </AppLayout>
           <ToastContainer autoClose={1000} pauseOnHover={true} hideProgressBar={true}/>
         </RecoilRoot>
       </SWRConfig>

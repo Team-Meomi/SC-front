@@ -87,7 +87,6 @@ export const ContantWrapper = styled.div`
     align-content: flex-start;
     gap: 28px;
     overflow-y: scroll;
-    overflow-x: hidden;
     padding-left: 15%;
 
     svg{

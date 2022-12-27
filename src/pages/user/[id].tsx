@@ -1,33 +1,36 @@
 import { GetServerSideProps, NextPage } from "next";
-import { SWRConfig } from "swr";
+import useSWR, { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { Profile } from "../../components";
 import { UseGetToken } from "../../Hooks";
-import { MainDetailProps } from "../../types";
+import { MainDetailProps, MainPageProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 
 const ProfilePage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
+      <>
       <SWRConfig value={fallback}>
         <Shead seoTitle={'프로필페이지'} />
         <Profile />
       </SWRConfig>
+      </>
     )
 }
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
-    const { postid } = ctx.query;  
+    const id = ctx.query.id as string;
     const { Authorization } = await UseGetToken(ctx)
-
     try {
-      const {data:profileData} = await CustomAxios.get(`/${postid}`,{headers: {Authorization}});
+      const {data:profileData} = await CustomAxios.get(`/user/joined/${id}`,{headers: {Authorization}});
+      const {data:WrittenData} = await CustomAxios.get(`/user/written/${id}`,{headers: {Authorization}});
       return {
         props: {
-          fallback: {
-            '/1' : profileData,
-          },
+          fallback:{
+            [`/user/joined/${id}`]:profileData,
+            [`/user/written/${id}`]:WrittenData
+          }
         },
-      };
+    };
     } catch (e) {
       console.log(e);
       return { props: {} };
