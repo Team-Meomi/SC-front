@@ -91,10 +91,12 @@ export const ContansMainTitle = styled.div`
 `;
 
 export const Contants = styled.div`
-  display: flex;
   width: 100%;
   height: auto;
+  display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
   gap: 4.8%;
-  padding-bottom: 100px;
+
 `;

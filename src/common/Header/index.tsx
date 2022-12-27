@@ -7,6 +7,7 @@ import { MemoProfileIcon, MoonIcon, SearchIcon, SunIcon } from "../../../public/
 import useSWR from "swr";
 import { Userprops } from "../../types";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
+import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const Header = () => {
     return (
       <S.HeaderWapper>  
         <S.LeftWapper>
-          <div>S&C</div>
+          <Link href="/home">S&C</Link>
           <div style={{backgroundSize: currentPage == "home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
           <div style={{backgroundSize: currentPage == "create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
         </S.LeftWapper>

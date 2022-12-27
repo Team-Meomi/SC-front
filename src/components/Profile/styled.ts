@@ -43,6 +43,7 @@ export const LogoutBtn = styled.div`
 export const ProfileName = styled.div`
     font-size: 2.3rem;
     font-weight: bold;
+    cursor: pointer;
 `;
 
 export const RightWrapper = styled.div`

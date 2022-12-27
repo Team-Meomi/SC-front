@@ -20,16 +20,23 @@ export const LeftWapper = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     div {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    font-size: 1.1rem;
-    height: 70%;
-    width: 70px;
-    background-image: linear-gradient(transparent 85%, #77D6B3 60%);
-    background-repeat: no-repeat;
-    background-size: 0% 100%;
-    color : ${themedPalette.text}
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        font-size: 1.1rem;
+        height: 70%;
+        width: 70px;
+        background-image: linear-gradient(transparent 85%, #77D6B3 60%);
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        color : ${themedPalette.text}
+    }
+    a{
+        font-size: 1.5rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color : ${themedPalette.text}
     }
 `;
 

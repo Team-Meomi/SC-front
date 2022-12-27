@@ -8,7 +8,8 @@ const lightTheme = `
   --boxBackground: white;
   --header: white;
   --boxShadow:rgba(0, 0, 0, 0.1);
-  --homeDetail: #EFEFEF;
+  --homeDetail:#EFEFEF;
+  --profileLink :#0075FF;
 
 `;
 const darkTheme = `
@@ -18,6 +19,7 @@ const darkTheme = `
   --header: #282828;
   --boxShadow:rgba(255, 255, 255, 0.5);
   --homeDetail:#1F1F1F;
+  --profileLink :#8CACFF;
 `;
 
 const cssVar = (name: string) => `var(--${name})`;
@@ -29,6 +31,7 @@ export const themedPalette = {
   header: cssVar('header'),
   boxShadow: cssVar('boxShadow'),
   homeDetail: cssVar('homeDetail'),
+  profileLink: cssVar('profileLink'),
 };
 
 const style = css`

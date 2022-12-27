@@ -23,13 +23,13 @@ const Profile = () => {
       <S.Wrapper>
         <S.LeftWrapper>
         <S.BackBtn onClick={() => router.back()}>
-          <BackBtnIcon />
+          <BackBtnIcon/>
         </S.BackBtn>
         <S.LogoutBtn onClick={handleLogoutClick}>
           <LogoutIcon />
         </S.LogoutBtn>
             <MemoProfileIcon />
-            <S.ProfileName>{myData?.stuNum}{myData?.name}</S.ProfileName>
+            <S.ProfileName onClick={() => {router.push(`/user/${myData?.id}`)}}>{myData?.stuNum} {myData?.name}</S.ProfileName>
         </S.LeftWrapper>
         <S.RightWrapper>
         <S.KindBar>

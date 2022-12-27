@@ -7,6 +7,7 @@ import { CommentCreate, StudyApply, StudyCancel, StudyDelete, StudyModify } from
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { BackBtnIcon, DeleteIcon, MemoAloneicon, ModifyIcon } from "../../../public/svg";
+import { themedPalette } from "../../styles/global";
 
 const HomeDetail = () => {
     const router = useRouter();
@@ -97,14 +98,14 @@ const HomeDetail = () => {
             {isModify ? (
               <input type="text" value={title} onChange={(e)=> {setMIitle(e.target.value)}}/> 
             ) : (
-              data?.title
+              data?.title || "제목"
             )}
           </S.DecsTitle>
           <S.DecsContent>
             {isModify ? (
               <textarea value={content} onChange={(e)=> {setContent(e.target.value)}}/> 
             ) : (
-              data?.content
+              data?.content || "콘텐츠"
             )}
         </S.DecsContent>
         <S.SpanWrapper>
@@ -120,7 +121,7 @@ const HomeDetail = () => {
                   <input defaultChecked={data?.category === "기타" && true} type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
                 </S.TopicBtns>
               ) : (
-                data?.category
+                data?.category || "전공"
               )
             }
           </span>
@@ -130,7 +131,7 @@ const HomeDetail = () => {
               isModify ? (
                 <input type="date" value={date} onChange={(e)=> {setDate(e.target.value)}}/>
               ) : (
-                `${month}월 ${day}일`
+                `${month || "0"}월 ${day || "0"}일`
               )
             }
           </span>
@@ -145,13 +146,13 @@ const HomeDetail = () => {
                   <input type="number" readOnly value={5}/>
                 )
               ) : (
-                `${data?.count?.count}/${data?.count?.maxCount} 명`
+                `${data?.count?.count || ""}/${data?.count?.maxCount || ""} 명`
               )
             }
           </span>
           <span>
             {`개설자 :`}
-            <span style={{cursor:"pointer",color:"blue"}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum} ${data?.writer?.name}`}</span>
+            <span style={{cursor:"pointer",color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum} ${data?.writer?.name}`}</span>
           </span>
           </S.SpanWrapper>
         </S.DecsWapper>

@@ -15,6 +15,8 @@ const Home = () => {
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
     const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
     const month = ('0' + (new Date().getMonth() + 1)).slice(-2);
+    console.log(data);
+    
     
     useEffect(() => {
       if(searchValue.isClick){
