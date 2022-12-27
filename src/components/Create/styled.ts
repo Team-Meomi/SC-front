@@ -157,7 +157,7 @@ export const BottomWapper = styled.div`
 
     input[type="date"] {
         width:40%;
-        padding-right: 50px;
+        /* padding-right: 50px; */
         position: relative;
     }
     input[type="date"]::before {
@@ -172,18 +172,6 @@ export const BottomWapper = styled.div`
         background: transparent;
         margin-left: 0px;
         cursor: pointer;
-    }
-    label{
-        cursor: no-drop;
-        position: absolute;
-        left:91vw;
-        color: #A4A4A5;
-        width: 30px;
-        display: flex;
-        align-items: center;
-    }
-    label svg{
-        width: 30px;
     }
 `;
 

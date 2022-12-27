@@ -1,9 +1,17 @@
 import styled from "@emotion/styled";
 import { themedPalette } from "../../styles/global";
 
-export const HomeWapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: ${themedPalette.background};
+`;
+
+export const HomeWrapper = styled.div`
+  width: 100%;
+  height: 94vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -11,8 +19,9 @@ export const HomeWapper = styled.div`
   justify-content:flex-start;
   height: 100vh;
   overflow-y: scroll;
-  background-color: ${themedPalette.background};
 `;
+
+
 
 export const IntroWapper = styled.div`
   width: 100%;
@@ -86,5 +95,5 @@ export const Contants = styled.div`
   width: 100%;
   flex-wrap: wrap;
   gap: 4.8%;
-  /* padding: 10px 0; */
+  padding: 0 0 100px 0;
 `;

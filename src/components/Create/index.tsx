@@ -18,7 +18,7 @@ const Create = () => {
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
     const TodayDate = year + '-' + month  + '-' + day;
-    const [date , setDate] = useState(TodayDate);
+    const [date , setDate] = useState("");
 
     const handleClick = async () => {
     if(!title) return toast('제목을 입력하세요.', {type: 'warning' })
@@ -70,9 +70,6 @@ const Create = () => {
                   )
                 }
                 <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" value={date} min={TodayDate} onChange={(e) => setDate(e.target.value)}/>
-                <label htmlFor="날짜">
-                  <CalendarIcon/>
-                </label>
               </S.BottomWapper>
             </S.ConterWapper>
             <S.SubmitBtn onClick={handleClick}>생성하기</S.SubmitBtn>

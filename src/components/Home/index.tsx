@@ -24,8 +24,9 @@ const Home = () => {
     },[searchValue.value])
 
     return (
-      <S.HomeWapper>
+      <S.Wrapper>
         <Header/>
+      <S.HomeWrapper>
         <S.IntroWapper>
           <S.IntroductionWapper>
             <S.IntroTitle>당신의 전공실력을<br/>늘려보세요!</S.IntroTitle>
@@ -68,7 +69,8 @@ const Home = () => {
         </S.Contants>
 
         </S.ContansWapper>
-      </S.HomeWapper>
+      </S.HomeWrapper>
+      </S.Wrapper>
     )
 }
 
