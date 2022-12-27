@@ -21,7 +21,7 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
   }
 
   const handleDeleteBtnClick = async () => {
-    await CommentDelete(id)
+    await CommentDelete(id);
     toast('댓글이 삭제되었습니다.', {type:"success"})
     mutate(`/comment/${router.query.id}`);
   }

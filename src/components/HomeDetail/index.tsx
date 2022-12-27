@@ -12,8 +12,8 @@ const HomeDetail = () => {
     const router = useRouter();
     const { data, mutate } = useSWR<MainDetailProps>(`${router.asPath}`);
     const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(`/comment/${router.query.id}`);
-    const month = data?.date.slice(5,7);
-    const day = data?.date.slice(8,10);
+    const month = data?.date?.slice(5,7);
+    const day = data?.date?.slice(8,10);
     
     const [isModify, setIsModify] = useState(false);
     const [title, setMIitle] = useState<string>();
@@ -24,7 +24,7 @@ const HomeDetail = () => {
 
     const [commonValue,setCommonValue] = useState("");    
 
-    const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count.maxCount === data?.count.count ? "신청불가" : "신청하기")
+    const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
 
     const handleApplyClick = async () => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
@@ -145,13 +145,13 @@ const HomeDetail = () => {
                   <input type="number" readOnly value={5}/>
                 )
               ) : (
-                `${data?.count.count}/${data?.count.maxCount} 명`
+                `${data?.count?.count}/${data?.count?.maxCount} 명`
               )
             }
           </span>
           <span>
             {`개설자 :`}
-            <span style={{cursor:"pointer",color:"blue"}} onClick={() => {router.push(`/user/${data?.writer.id}`)}}>{`${data?.writer.stuNum} ${data?.writer.name}`}</span>
+            <span style={{cursor:"pointer",color:"blue"}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum} ${data?.writer?.name}`}</span>
           </span>
           </S.SpanWrapper>
         </S.DecsWapper>
