@@ -26,17 +26,17 @@ const HomeDetail = () => {
     const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
 
     const onValid:SubmitHandler<StudyModifyType> = async (d) => {
-      if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
+      if(!data?.id) return
       switch (SubmitBtnText) {
         case "신청하기" :
           await StudyApply(data.id)
           toast('신청되었습니다', {type:"success" })
-          mutate()
+          mutate();
           break;
         case "신청취소" :
           await StudyCancel(data.id)
           toast('신청취소되었습니다', {type:"success" })
-          mutate()
+          mutate();
           break;
         case "수정하기" :
           if(!d.title || !d.content || !d.category || !d.date || !d.maxCount) return toast('다 입력해주세요', {type:"warning" })
@@ -114,11 +114,11 @@ const HomeDetail = () => {
                 <div>
                   <span>전공 : </span>
                   <S.TopicBtns>
-                    <input defaultChecked={data?.category === "BE"} type="radio" id="BE" name="topic" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
-                    <input defaultChecked={data?.category === "FE"} type="radio" id="FE" name="topic" onClick={() => setValue("category", "FE")} /><label htmlFor="FE">FE</label>
-                    <input defaultChecked={data?.category === "iOS"} type="radio" id="iOS" name="topic" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
-                    <input defaultChecked={data?.category === "AOS"} type="radio" id="AOS" name="topic" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
-                    <input defaultChecked={data?.category === "기타"} type="radio" id="기타" name="topic" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
+                    <input defaultChecked={data?.category === "BE"} type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
+                    <input defaultChecked={data?.category === "FE"} type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")} /><label htmlFor="FE">FE</label>
+                    <input defaultChecked={data?.category === "iOS"} type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
+                    <input defaultChecked={data?.category === "AOS"} type="radio" id="AOS" name="category" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
+                    <input defaultChecked={data?.category === "기타"} type="radio" id="기타" name="category" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
                   </S.TopicBtns>
                 </div>
               ) : (

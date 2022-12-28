@@ -4,5 +4,5 @@ export interface StudyModifyType {
 	content:string,
 	category:string,
 	date:string,
-	maxCount:number,
+	maxCount?:number,
 }

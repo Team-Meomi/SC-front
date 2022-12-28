@@ -5,28 +5,26 @@ import { useEffect, useState } from "react";
 import { create } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { StudyModifyType } from "../../types";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const Create = () => {
     const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
-    const [title , setTitle] = useState("");
-    const [content , setContent] = useState("");
-    const [topic, setTopic] = useState("BE");
-    const [maxCount , setmaxCount] = useState<number>();
+    const { register, handleSubmit, setValue } = useForm<StudyModifyType>();
     const today = new Date();
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
     const TodayDate = year + '-' + month  + '-' + day;
-    const [date , setDate] = useState("");
-
-    const handleClick = async () => {
-    if(!title) return toast('제목을 입력하세요.', {type: 'warning' })
-    else if(!content) return toast('내용을 입력하세요.', {type: 'warning' })
-    else if(!maxCount) return toast('인원수를 입력하세요.', {type: 'warning' })
-    else if(!date) return toast('날짜를 선택하세요.', {type: 'warning' })
-    else if(studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
-    const {errorMsg}:any =  await create(title, content, topic, date, maxCount, studyType);    
+    console.log(studyType);
+    const onValid:SubmitHandler<StudyModifyType> = async (d) => {
+    if(!d.title) return toast('제목을 입력하세요.', {type: 'warning' })
+    else if(!d.content) return toast('내용을 입력하세요.', {type: 'warning' })
+    else if(!d.maxCount) return toast('인원수를 입력하세요.', {type: 'warning' })
+    else if(!d.date) return toast('날짜를 선택하세요.', {type: 'warning' })
+    else if(studyType === "컨퍼런스" && ( d.maxCount > 35 || d.maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
+    const {errorMsg}:any =  await create(d.title, d.content, d.category, d.date, d.maxCount, studyType);    
     if (errorMsg === '시청각실을 빌릴 수 없는 날짜 입니다.') {
       return toast(errorMsg , {type: 'warning' })
     }
@@ -35,9 +33,9 @@ const Create = () => {
 
     useEffect(() => {
       if(studyType === "스터디"){
-        setmaxCount(5);
-      }else{
-        setmaxCount(0);
+        setValue("maxCount", 5)
+      }else {
+        setValue("maxCount", undefined)
       }
     },[studyType])
 
@@ -52,27 +50,27 @@ const Create = () => {
                 <input type="radio" value={studyType} id="스터디" name="studyType" onClick={() => setstudyType("스터디")} /><label htmlFor="스터디">스터디</label>
             </S.RadioBtns>
             <S.ConterWapper>
-              <S.TitleInput placeholder="제목을 입력하세요" value={title} onChange={(e) => setTitle(e.target.value) }/>
-              <S.ContentText placeholder="내용을 입력해주세요" value={content} onChange={(e) => setContent(e.target.value) }/>
+              <S.TitleInput placeholder="제목을 입력하세요" {...register("title")}/>
+              <S.ContentText placeholder="내용을 입력해주세요" {...register("content")}/>
               <S.TopicBtns>
-                <input defaultChecked type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
-                <input type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
-                <input type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">iOS</label>
-                <input type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
-                <input type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
+                <input defaultChecked type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
+                <input type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")}/><label htmlFor="FE">FE</label>
+                <input type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
+                <input type="radio" id="AOS" name="category" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
+                <input type="radio" id="기타" name="category" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
               </S.TopicBtns>
               <S.BottomWapper>
                 {
                   studyType === "스터디" ? (
                     <S.BottomInput readOnly type="number" value={5}/>
                   ) : (
-                    <S.BottomInput placeholder="인원 수 입력" type="number" value={maxCount || ''} onChange={(e:any) => setmaxCount(e.target.value) }/>
+                    <S.BottomInput placeholder="인원 수 입력" type="number"  {...register("maxCount")}/>
                   )
                 }
-                <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" value={date} min={TodayDate} onChange={(e) => setDate(e.target.value)}/>
+                <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" min={TodayDate} {...register("date")}/>
               </S.BottomWapper>
             </S.ConterWapper>
-            <S.SubmitBtn onClick={handleClick}>생성하기</S.SubmitBtn>
+            <S.SubmitBtn onClick={handleSubmit(onValid)}>생성하기</S.SubmitBtn>
           </S.InputsWapper>
         </S.CreateWapper>
       </S.Wapper>
