@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler, useWatch } from "react-hook-form"
 import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function Signin() {
   const router = useRouter();
   const redirect = (url: string) => router.push(url);
-  const { register, handleSubmit, reset,watch} = useForm<SigninForm>();
+  const { register, handleSubmit, reset, watch } = useForm<SigninForm>();
   const [isIdError , SetIsIdError] = useState({isError:false , msg:"학교이메일을 입력해주세요."});
   const [isPasswordError , SetPasswordError] = useState({isError:false , msg:"8~20자 이내로 입력해주세요."});
 
@@ -22,12 +22,13 @@ export default function Signin() {
     if(!data.email) return SetIsIdError({isError:true , msg:"학교이메일을 입력해주세요."})
     else if(!data.password) return SetPasswordError({isError:true , msg:"8~20자 이내로 입력해주세요."})
     const res = await signin(data.email + '@gsm.hs.kr', data.password);
-    if (res?.errorMsg === 'Request failed with status code 404') {
-      return SetIsIdError({isError:true , msg:"가입된 이메일이 아닙니다."})
-		}else if(res?.errorMsg === 'Request failed with status code 400'){
-      return SetPasswordError({isError:true, msg:"비밀번호가 맞지 않습니다."})
+    
+    if (res?.errorMsg === '가입된 이메일이 아닙니다.') {
+      return SetIsIdError({isError:true , msg:res.errorMsg})
+		}else if(res?.errorMsg === '비밀번호가 일치하지 않습니다.'){
+      return SetPasswordError({isError:true, msg:res.errorMsg})
     }
-    reset()
+    reset();
     router.replace("/home")
   }
 

@@ -63,7 +63,7 @@ export const StudyModify = async (
 	id:number,
 	title:string,
 	content:string,
-	topic:string,
+	category:string,
 	date:string,
 	maxCount:number,
 ) => {
@@ -71,7 +71,7 @@ export const StudyModify = async (
 		const {data} = await CustomAxios.patch(StudyController.StudyId(id),{
 			title,
 			content,
-			category:topic,
+			category,
 			date,
 			maxCount
 		})

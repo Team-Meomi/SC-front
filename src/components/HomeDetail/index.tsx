@@ -1,35 +1,31 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
-import { CommentProps, MainDetailProps } from "../../types";
+import { CommentProps, MainDetailProps, StudyModifyType } from "../../types";
 import { Comment, Participant } from "../../common";
 import { CommentCreate, StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { BackBtnIcon, DeleteIcon, MemoAloneicon, ModifyIcon } from "../../../public/svg";
 import { themedPalette } from "../../styles/global";
-import { CommentController, StudyController } from "../../Utils/lib/urls";
+import { CommentController } from "../../Utils/lib/urls";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const HomeDetail = () => {
     const router = useRouter();
     const id = router.query.id as string;
-    
-    const { data , mutate } = useSWR<MainDetailProps>(router.asPath);
+    const { data , mutate} = useSWR<MainDetailProps>(router.asPath);
     const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(CommentController.Comment(id));
+    
     const month = data?.date?.slice(5,7);
     const day = data?.date?.slice(8,10);
-    
+    const { register, handleSubmit, setValue } = useForm<StudyModifyType>();
     const [isModify, setIsModify] = useState(false);
-    const [title, setMIitle] = useState<string>();
-    const [content, setContent] = useState<string>();
-    const [topic, setTopic] = useState<string>();
-    const [date, setDate] = useState<string>();
-    const [maxCount, setMaxCount] = useState<number>();
 
     const [commonValue,setCommonValue] = useState("");    
     const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
 
-    const handleApplyClick = async () => {
+    const onValid:SubmitHandler<StudyModifyType> = async (d) => {
       if(!data?.id) return toast('id 가 없습니다', {type: 'warning' })
       switch (SubmitBtnText) {
         case "신청하기" :
@@ -42,10 +38,10 @@ const HomeDetail = () => {
           toast('신청취소되었습니다', {type:"success" })
           mutate()
           break;
-        case "수정하기" : 
-          if(!title || !content || !topic || !date || !maxCount) return toast('다 입력해주세요', {type:"warning" })
-          else if(data?.studyType === "컨퍼런스" && ( maxCount > 35 || maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"warning" })
-          await StudyModify(data.id, title, content, topic, date , maxCount)
+        case "수정하기" :
+          if(!d.title || !d.content || !d.category || !d.date || !d.maxCount) return toast('다 입력해주세요', {type:"warning" })
+          else if(data?.studyType === "컨퍼런스" && ( d.maxCount > 35 || d.maxCount < 15)) return toast('컨퍼런스 인원은 15명부터 35명 입니다' , { type:"warning" })
+          await StudyModify(data.id, d.title, d.content, d.category, d.date , d.maxCount)
           toast('수정되었습니다', {type:"success" })
           setIsModify(false)
           mutate()
@@ -54,11 +50,12 @@ const HomeDetail = () => {
     }
 
     const handleModifyClick = () => {
-      setMIitle(data?.title)
-      setContent(data?.content)
-      setTopic(data?.category)
-      setDate(data?.date)
-      setMaxCount(data?.count.maxCount)
+      if(!data) return;
+      setValue("title", data?.title)      
+      setValue("content", data?.content)      
+      setValue("category", data?.category)      
+      setValue("date", data?.date)      
+      setValue("maxCount", data?.count.maxCount)
       setIsModify(true)
     }
     
@@ -98,14 +95,14 @@ const HomeDetail = () => {
         <S.DecsWapper>
           <S.DecsTitle>
             {isModify ? (
-              <input type="text" value={title} onChange={(e)=> {setMIitle(e.target.value)}}/> 
+              <input type="text" {...register("title")} /> 
             ) : (
               data?.title
             )}
           </S.DecsTitle>
           <S.DecsContent>
             {isModify ? (
-              <textarea value={content} onChange={(e)=> {setContent(e.target.value)}}/> 
+              <textarea {...register("content")}/> 
             ) : (
               data?.content
             )}
@@ -117,11 +114,11 @@ const HomeDetail = () => {
                 <div>
                   <span>전공 : </span>
                   <S.TopicBtns>
-                    <input defaultChecked={data?.category === "BE" && true} type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
-                    <input defaultChecked={data?.category === "FE" && true} type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
-                    <input defaultChecked={data?.category === "iOS" && true} type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">iOS</label>
-                    <input defaultChecked={data?.category === "AOS" && true} type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
-                    <input defaultChecked={data?.category === "기타" && true} type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
+                    <input defaultChecked={data?.category === "BE"} type="radio" id="BE" name="topic" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
+                    <input defaultChecked={data?.category === "FE"} type="radio" id="FE" name="topic" onClick={() => setValue("category", "FE")} /><label htmlFor="FE">FE</label>
+                    <input defaultChecked={data?.category === "iOS"} type="radio" id="iOS" name="topic" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
+                    <input defaultChecked={data?.category === "AOS"} type="radio" id="AOS" name="topic" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
+                    <input defaultChecked={data?.category === "기타"} type="radio" id="기타" name="topic" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
                   </S.TopicBtns>
                 </div>
               ) : (
@@ -134,7 +131,7 @@ const HomeDetail = () => {
               isModify ? (
                 <div>
                   <span>날짜 : </span>
-                  <input type="date" value={date} onChange={(e)=> {setDate(e.target.value)}}/>
+                  <input type="date" {...register("date")}/>
                 </div>
               ) : (
                 month && day && `날짜 : ${month}월 ${day}일`
@@ -148,7 +145,7 @@ const HomeDetail = () => {
                 data?.studyType === "컨퍼런스" ? (
                   <div>
                     <span>최대인원 : </span>
-                    <input type="number" value={maxCount} onChange={(e:any)=> {setMaxCount(e.target.value)}}/>
+                    <input type="date" {...register("maxCount")}/>
                   </div>
                 ) : (
                   <div>
@@ -169,7 +166,7 @@ const HomeDetail = () => {
         </S.DecsWapper>
 
         <S.SubmitBtn 
-          onClick={handleApplyClick} 
+          onClick={handleSubmit(onValid)}
           style={{
             backgroundColor: (SubmitBtnText === "개설자" || SubmitBtnText === "신청불가") ? "#EFEFEF" : SubmitBtnText === "신청하기" ? "#77D6B3" : "orange" , 
           }}

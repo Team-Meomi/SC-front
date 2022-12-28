@@ -8,6 +8,9 @@ const Shead: NextPage<{seoTitle : string}> = ({seoTitle}) => {
   return (
         <Head>
         <title>S&C | {seoTitle}</title>
+        <meta name="description" content="S&C"/>
+        <meta name="author" content="hawnbinyoo"/>
+        <meta name="keyword" content="frontend, react"/>
         </Head>
     )
 }

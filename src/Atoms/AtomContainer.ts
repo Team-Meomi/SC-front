@@ -7,7 +7,7 @@ export type DarkModeState = {
 
 export const AtomCurrentPage = atom<string>({
 	key: 'AtomCurrentPage',
-	default: "home",
+	default: "/home",
 });
 
 export const AtomSearchValue = atom<{value: string,isClick:boolean}>({

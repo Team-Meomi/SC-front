@@ -21,7 +21,6 @@ export const signup = async (
 		toast('회원가입이 되었습니다', {type:"success" })
 		return { data };
 	} catch (e: any) {
-		console.log(e)
 		return { errorMsg:e.response.data.message }
 	}
 };
@@ -38,8 +37,7 @@ export const signin = async (
 		toast('로그인이 되었습니다', {type: 'success' })		
 		UseSetToken(data.accessToken, data.refreshToken , null);
 	} catch (e: any) {
-		console.log(e);
-		return {errorMsg:e.message}
+		return {errorMsg:e.response.data.message}
 	}
 };
 

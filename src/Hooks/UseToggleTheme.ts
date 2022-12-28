@@ -11,7 +11,6 @@ export default function UseToggleTheme() {
   }; 
 
   const toggle = () => {
-    console.log(darkModeState.theme);
     if (!darkModeState.theme) return;
     if (darkModeState.theme === 'dark') {
       setDarkModeState({...darkModeState , theme:"light" })
