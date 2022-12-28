@@ -16,8 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         value={{ 
           fetcher :(url:string) =>
           CustomAxios.get(url).then((response) => response.data),
-          revalidateIfStale: false,
-          revalidateOnFocus: false,
+          revalidateIfStale: true,
+          revalidateOnFocus: true,
           revalidateOnReconnect: false
         }}
       >

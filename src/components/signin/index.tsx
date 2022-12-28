@@ -28,7 +28,7 @@ export default function Signin() {
       return SetPasswordError({isError:true, msg:"비밀번호가 맞지 않습니다."})
     }
     reset()
-    redirect("/home");
+    router.replace("/home")
   }
 
   return (
@@ -37,7 +37,7 @@ export default function Signin() {
         <S.LoginTitle onClick={() => redirect('/auth/signup')}>Login</S.LoginTitle>
         <S.DecsTitle>컨퍼런스와 스터디의 재미를<br/> 느껴보세요!</S.DecsTitle>
       <S.InputsWapper>
-        <S.InputStyle style={{border: isIdError.isError ? "1px solid red" : "none" }}>
+        <S.InputStyle style={{border: isIdError.isError ? "1px solid #FF4747" : "none" }}>
           <Input
             register={register("email")}
             type="text"
@@ -48,7 +48,7 @@ export default function Signin() {
           <label>@gsm.hs.kr</label>
           <span style={{display: isIdError.isError ? "block" : "none"}}>{isIdError.msg}</span>
         </S.InputStyle>
-        <S.InputStyle onSubmit={handleSubmit(onValid)} style={{border: isPasswordError.isError ? "1px solid red" : "none" }}>
+        <S.InputStyle onSubmit={handleSubmit(onValid)} style={{border: isPasswordError.isError ? "1px solid #FF4747" : "none" }}>
           <Input
             register={register("password")}
             type="password"

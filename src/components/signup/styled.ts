@@ -39,41 +39,39 @@ export const InputsWapper = styled.div`
 `;
 
 export const InputStyle = styled.div`
-position: relative;
-width: 45%;
-height: 65px;
-border: 1px solid black;
-display: flex;
-align-items: center;
-padding-left: 20px;
-border-radius: 14px;
-border: none;
-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-background-color: white;
+  position: relative;
+  width: 370px;
+  height: 65px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
 
+  label{
+    opacity: 0.5;
+      position: absolute;
+      top: 23px;
+      right: 30px;
+      font-size: 1.1rem;
+      color: gray;
+  }
 
-label{
-  opacity: 0.5;
-		position: absolute;
-		top: 2.1vh;
-		left: 15.7vw;
-    font-size: 1.1rem;
-    color: gray;
-}
-
-span{
-  opacity: 0.5;
-		position: absolute;
-		top: 7.2vh;
-		left: 11vw;
+  span{
+    position: absolute;
+    top:67px;
+    right: 20px;
     font-size: 0.8rem;
-    color: red;
-}  
+    color: #FF4747;
+  }  
 `;
 
 
 export const LoginButton = styled.button`
-  width: 23%;
+  width: 370px;
   height: 7vh;
   border-radius: 10px;
   border: none;

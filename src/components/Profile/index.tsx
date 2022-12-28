@@ -10,15 +10,15 @@ import { UserController } from "../../Utils/lib/urls";
 
 const Profile = () => {
     const router = useRouter();
-    const id = router.query.id as string;
     const [isOutline,setIsOutline] = useState(true);
+    const id = router.query.id as string;
     const { data:myData} = useSWR<Userprops>(UserController.User(id));
     const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
     const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
     
     const handleLogoutClick = () => {
       UseRemoveToken()
-      router.push('/');
+      router.replace('/');
     }
         
     return (

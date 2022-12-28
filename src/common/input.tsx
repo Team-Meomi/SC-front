@@ -26,7 +26,7 @@ export default function Input({
 
 const InputStyle = styled.div`
     input {
-    width: 60%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

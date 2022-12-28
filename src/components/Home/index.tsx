@@ -11,12 +11,10 @@ import { useEffect } from "react";
 
 const Home = () => {
     const router = useRouter();
-    const { data } = useSWR<MainPageProps[]>(StudyController.Study());
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
+    const { data } = useSWR<MainPageProps[]>(StudyController.Study());
     const { data:SearchData,mutate } = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
     const month = ('0' + (new Date().getMonth() + 1)).slice(-2);
-    console.log(data);
-    
     
     useEffect(() => {
       if(searchValue.isClick){
