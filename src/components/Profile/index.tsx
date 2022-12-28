@@ -13,7 +13,8 @@ const Profile = () => {
     const router = useRouter();
     const [isOutline,setIsOutline] = useState(true);
     const id = router.query.id as string;
-    const { data:myData} = useSWR<Userprops>(UserController.User(id));
+    const { data:ProfileData} = useSWR<Userprops>(UserController.User(id));
+    const { data:MyData } = useSWR<Userprops>(UserController.UserBase());
     const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
     const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
     
@@ -31,10 +32,13 @@ const Profile = () => {
           <BackBtnIcon/>
         </S.BackBtn>
         <S.LogoutBtn onClick={handleLogoutClick}>
+        {
+          ProfileData?.id === MyData?.id &&
           <LogoutIcon />
+        }
         </S.LogoutBtn>
             <MemoProfileIcon />
-            <S.ProfileName onClick={() => {router.push(`/user/${myData?.id}`)}}>{myData?.stuNum} {myData?.name}</S.ProfileName>
+            <S.ProfileName onClick={() => {router.push(`/user/${ProfileData?.id}`)}}>{ProfileData?.stuNum} {ProfileData?.name}</S.ProfileName>
         </S.LeftWrapper>
         <S.RightWrapper>
         <S.KindBar>

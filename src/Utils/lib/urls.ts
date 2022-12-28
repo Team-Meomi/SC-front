@@ -34,6 +34,9 @@ export const CommentController = {
 }
 
 export const UserController = {
+	UserBase: () => {
+		return `/user/`
+	},
 	User: (id:number|string) => {
 		return `/user/${id}`
 	},

@@ -8,11 +8,12 @@ import useSWR from "swr";
 import { Userprops } from "../../types";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import Link from "next/link";
+import { UserController } from "../../Utils/lib/urls";
 
 const Header = () => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
-  const { data } = useSWR<Userprops>(`/user/`);
+  const { data } = useSWR<Userprops>(UserController.UserBase());
   const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);  
   const [theme , toggle] = UseToggleTheme();
   
