@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 import { themedPalette } from "../../styles/global";
 
+interface TopicProps {
+    BtnColor?: string;
+  };
+
 export const HomeDetailWapper = styled.div`
     width: 100%;
     height: 100vh;
@@ -39,7 +43,7 @@ export const DeleteBtn = styled.div`
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    color: red;
+    color: #F87070;
 `;
 
 export const ModifyBtn = styled.div`
@@ -50,7 +54,7 @@ export const ModifyBtn = styled.div`
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    color: orange;
+    color: #FFBC41;
 `;
 
 
@@ -187,7 +191,7 @@ export const TopicBtns = styled.div`
         cursor: pointer;
     }
     input[type=radio]:checked+label{
-        background: #FFCD9F;
+        background: ${(props:TopicProps) => props.BtnColor};
         color: white;
     }
 `;

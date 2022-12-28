@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { themedPalette } from "../../styles/global";
 
+interface TopicProps {
+    BtnColor?: string;
+  };
 
 export const Wapper = styled.div`
     width: 100%;
@@ -137,7 +140,7 @@ export const TopicBtns = styled.div`
 
     }
     input[type=radio]:checked+label{
-        background: #FFCD9F;
+        background: ${(props:TopicProps) => props.BtnColor};
         color: white;
     }
 `;

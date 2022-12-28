@@ -7,17 +7,19 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { StudyModifyType } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { categoryArray } from "../../Utils/categoryArray";
 
 const Create = () => {
     const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
-    const { register, handleSubmit, setValue } = useForm<StudyModifyType>();
+    const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
     const today = new Date();
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
     const TodayDate = year + '-' + month  + '-' + day;
-    console.log(studyType);
+    const [radioBtnColor , setRadioBtnColor] = useState("");
+
     const onValid:SubmitHandler<StudyModifyType> = async (d) => {
     if(!d.title) return toast('제목을 입력하세요.', {type: 'warning' })
     else if(!d.content) return toast('내용을 입력하세요.', {type: 'warning' })
@@ -30,6 +32,11 @@ const Create = () => {
     }
     router.push('/home')
     }
+
+    useEffect(() => {
+      const Mycategory = categoryArray.filter((i) => i.value === watch().category)[0] || "";
+      setRadioBtnColor(Mycategory.color)
+    },[watch().category])
 
     useEffect(() => {
       if(studyType === "스터디"){
@@ -52,7 +59,7 @@ const Create = () => {
             <S.ConterWapper>
               <S.TitleInput placeholder="제목을 입력하세요" {...register("title")}/>
               <S.ContentText placeholder="내용을 입력해주세요" {...register("content")}/>
-              <S.TopicBtns>
+              <S.TopicBtns BtnColor={radioBtnColor}>
                 <input defaultChecked type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
                 <input type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")}/><label htmlFor="FE">FE</label>
                 <input type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>

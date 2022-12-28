@@ -5,11 +5,12 @@ import { CommentProps, MainDetailProps, StudyModifyType } from "../../types";
 import { Comment, Participant } from "../../common";
 import { CommentCreate, StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BackBtnIcon, DeleteIcon, MemoAloneicon, ModifyIcon } from "../../../public/svg";
 import { themedPalette } from "../../styles/global";
 import { CommentController } from "../../Utils/lib/urls";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { categoryArray } from "../../Utils/categoryArray";
 
 const HomeDetail = () => {
     const router = useRouter();
@@ -19,11 +20,18 @@ const HomeDetail = () => {
     
     const month = data?.date?.slice(5,7);
     const day = data?.date?.slice(8,10);
-    const { register, handleSubmit, setValue } = useForm<StudyModifyType>();
+    const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
     const [isModify, setIsModify] = useState(false);
+
+    const [radioBtnColor , setRadioBtnColor] = useState("");
 
     const [commonValue,setCommonValue] = useState("");    
     const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
+
+    useEffect(() => {
+      const Mycategory = categoryArray.filter((i) => i.value === watch().category)[0] || "";
+      setRadioBtnColor(Mycategory.color)
+    },[watch().category])
 
     const onValid:SubmitHandler<StudyModifyType> = async (d) => {
       if(!data?.id) return
@@ -113,7 +121,7 @@ const HomeDetail = () => {
               isModify ? (
                 <div>
                   <span>전공 : </span>
-                  <S.TopicBtns>
+                  <S.TopicBtns BtnColor={radioBtnColor}>
                     <input defaultChecked={data?.category === "BE"} type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
                     <input defaultChecked={data?.category === "FE"} type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")} /><label htmlFor="FE">FE</label>
                     <input defaultChecked={data?.category === "iOS"} type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
@@ -168,7 +176,7 @@ const HomeDetail = () => {
         <S.SubmitBtn 
           onClick={handleSubmit(onValid)}
           style={{
-            backgroundColor: (SubmitBtnText === "개설자" || SubmitBtnText === "신청불가") ? "#EFEFEF" : SubmitBtnText === "신청하기" ? "#77D6B3" : "orange" , 
+            backgroundColor: (SubmitBtnText === "개설자" || SubmitBtnText === "신청불가") ? "#B4B4B4" : SubmitBtnText === "신청하기" ? "#77D6B3" : SubmitBtnText === "신청취소" ? "#F87070" : "#FFBC41" , 
           }}
         >
           {SubmitBtnText}
