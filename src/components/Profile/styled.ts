@@ -5,6 +5,14 @@ export const Wrapper = styled.div`
     display: flex;
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const ProfileWrapper = styled.div`
+  width: 100%;
+  height: 94vh;
+  display: flex;
 `;
 
 export const LeftWrapper = styled.div`
@@ -21,7 +29,7 @@ export const LeftWrapper = styled.div`
 
 export const BackBtn = styled.div`
     position: absolute;
-    top: 40px;
+    top: 100px;
     left: 50px;
     width: 30px;
     height: 30px;
@@ -31,7 +39,7 @@ export const BackBtn = styled.div`
 
 export const LogoutBtn = styled.div`
     position: absolute;
-    top: 40px;
+    top: 100px;
     left: 25%;
     width: 30px;
     height: 30px;

@@ -129,11 +129,21 @@ export const SpanWrapper = styled.div`
         border: none;
         color: black;
     }
-    input[type="date"]::before {
-    display:none;
+    input[type="date"] {
+        position: relative;
     }
-    input[type="date"].after::-webkit-calendar-picker-indicator{
-    margin-left: 0px;
+    input[type="date"]::before {
+        display:none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        margin-left: 0px;
+        cursor: pointer;
     }
     input[type="number"] {
         text-align: center;

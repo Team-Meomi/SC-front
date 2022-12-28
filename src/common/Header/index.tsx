@@ -17,7 +17,7 @@ const Header = () => {
   const [theme , toggle] = UseToggleTheme();
   
   useEffect(() => {
-    router.pathname === "/create" ? setCurrentPage("create") : setCurrentPage("home")
+    setCurrentPage(router.pathname)
   },[router])
 
   const handleClick = () => {
@@ -33,8 +33,8 @@ const Header = () => {
       <S.HeaderWapper>  
         <S.LeftWapper>
           <Link href="/home">S&C</Link>
-          <div style={{backgroundSize: currentPage == "home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
-          <div style={{backgroundSize: currentPage == "create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
+          <div style={{backgroundSize: currentPage == "/home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
+          <div style={{backgroundSize: currentPage == "/create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
         </S.LeftWapper>
         {
           currentPage === "home" ? (

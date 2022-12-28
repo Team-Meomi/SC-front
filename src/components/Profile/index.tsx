@@ -7,6 +7,7 @@ import { MainPageProps, Userprops } from "../../types";
 import { UseRemoveToken } from "../../Hooks";
 import { categoryArray } from "../../Utils/categoryArray";
 import { UserController } from "../../Utils/lib/urls";
+import { Header } from "../../common";
 
 const Profile = () => {
     const router = useRouter();
@@ -23,6 +24,8 @@ const Profile = () => {
         
     return (
       <S.Wrapper>
+        <Header />
+        <S.ProfileWrapper>
         <S.LeftWrapper>
         <S.BackBtn onClick={() => router.back()}>
           <BackBtnIcon/>
@@ -81,8 +84,8 @@ const Profile = () => {
           )
       )}
     </S.ContantWrapper>
-
         </S.RightWrapper>
+        </S.ProfileWrapper>
       </S.Wrapper>
     )
 }

@@ -13,7 +13,8 @@ import { CommentController, StudyController } from "../../Utils/lib/urls";
 const HomeDetail = () => {
     const router = useRouter();
     const id = router.query.id as string;
-    const { data , mutate } = useSWR<MainDetailProps>(StudyController.StudyId(id));
+    
+    const { data , mutate } = useSWR<MainDetailProps>(router.asPath);
     const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(CommentController.Comment(id));
     const month = data?.date?.slice(5,7);
     const day = data?.date?.slice(8,10);

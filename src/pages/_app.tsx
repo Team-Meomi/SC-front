@@ -8,7 +8,6 @@ import { ToastContainer } from 'react-toastify';
 import GlobalStyle from '../styles/global';
 import AppLayout from '../common/AppLayout';
 
-
 function MyApp({ Component, pageProps }: AppProps) {
   return(
     <>
