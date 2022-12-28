@@ -27,8 +27,8 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
   }
     return (
       <S.CommentBox>
-        <S.CommentTop style={{flexDirection : isMine ? "row" : "row-reverse"}}>
-          <S.Profile style={{flexDirection : isMine ? "row" : "row-reverse"}}>
+        <S.CommentTop>
+          <S.Profile>
             <MemoProfileIcon/>
             <span>{`${writer.stuNum} ${writer.name}`}</span>
           </S.Profile>
@@ -50,7 +50,7 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
               onKeyPress={(e:any) => {if (e.key === 'Enter'){handleModifySubmitBtnClick()}}}
               />
           ) : (
-            <S.CommentBottom style={{flexDirection : isMine ? "row" : "row-reverse"}}>{comment}</S.CommentBottom>
+            <S.CommentBottom>{comment}</S.CommentBottom>
           )
         }
       {

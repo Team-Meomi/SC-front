@@ -14,11 +14,12 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleText = styled.div`
-    width: 500px;
+    width: 600px;
     text-align: center;
+    font-weight: bold;
 
     p{
-        font-size: 4rem;
+        font-size: 4.5rem;
         color: #77D6B3;
         margin:  10px 0;
     }

@@ -14,6 +14,7 @@ export const Participant = styled.div`
     font-size: 0.9rem;
     color: #77D6B3;
     background: ${themedPalette.boxBackground};
+    cursor: pointer;
 
     svg{
         width: 80px;

@@ -10,10 +10,10 @@ import { StudyController } from "../../Utils/lib/urls";
 const HomePage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback}) => {
   return (
     <>
-      <SWRConfig value={fallback}>
+      {/* <SWRConfig value={fallback}> */}
         <Shead seoTitle={'메인페이지'} />
         <Home />
-      </SWRConfig>
+      {/* </SWRConfig> */}
     </>
   );
 }

@@ -121,7 +121,7 @@ const HomeDetail = () => {
                   <input defaultChecked={data?.category === "기타" && true} type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
                 </S.TopicBtns>
               ) : (
-                data?.category || "전공"
+                data?.category || "FE"
               )
             }
           </span>
@@ -135,7 +135,7 @@ const HomeDetail = () => {
               )
             }
           </span>
-          <span>장소 : {data?.studyType === "컨퍼런스" ? "시청각실" : data?.studyType === "스터디" ?  "홈베" : data?.studyType}</span>
+          <span>장소 : {data?.studyType === "컨퍼런스" ? "시청각실" : "홈베"}</span>
           <span>
             {isModify ? "최대인원 : " : "현재인원 : "}
             {
@@ -146,13 +146,13 @@ const HomeDetail = () => {
                   <input type="number" readOnly value={5}/>
                 )
               ) : (
-                `${data?.count?.count || ""}/${data?.count?.maxCount || ""} 명`
+                `${data?.count?.count || "0"}/${data?.count?.maxCount || "5"} 명`
               )
             }
           </span>
           <span>
             {`개설자 :`}
-            <span style={{cursor:"pointer",color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum} ${data?.writer?.name}`}</span>
+            <span style={{cursor:"pointer", color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum || ""} ${data?.writer?.name || ""}`}</span>
           </span>
           </S.SpanWrapper>
         </S.DecsWapper>
