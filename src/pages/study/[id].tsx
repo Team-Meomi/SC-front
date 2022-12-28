@@ -5,7 +5,7 @@ import { HomeDetail } from "../../components";
 import { UseGetToken } from "../../Hooks";
 import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
-import { StudyController } from "../../Utils/lib/urls";
+import { CommentController, StudyController } from "../../Utils/lib/urls";
 
 const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
@@ -21,11 +21,13 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const id = ctx.query.id as string
   
     try {
-      const {data:studyData} = await CustomAxios.get(StudyController.StudyId(id) ,{headers: {Authorization}});
+      const {data:studyData} = await CustomAxios.get(StudyController.StudyId(id),{headers: {Authorization}});
+      const { data:CommentData } = await CustomAxios.get(CommentController.Comment(id),{headers: {Authorization}});
       return {
         props: {
           fallback: {
-            [`/study/${id}`] : studyData,
+            [StudyController.StudyId(id)]:studyData,
+            [CommentController.Comment(id)]:CommentData,
           },
         },
       };

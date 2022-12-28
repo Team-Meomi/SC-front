@@ -112,6 +112,10 @@ export const SpanWrapper = styled.div`
     flex-direction: column;
     gap: 25px;
     width: 100%;
+    div{
+        display: flex;
+        gap: 25px;
+    }
 
     input {
         width: 200px;

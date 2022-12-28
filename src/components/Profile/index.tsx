@@ -6,13 +6,15 @@ import useSWR from "swr";
 import { MainPageProps, Userprops } from "../../types";
 import { UseRemoveToken } from "../../Hooks";
 import { categoryArray } from "../../Utils/categoryArray";
+import { UserController } from "../../Utils/lib/urls";
 
 const Profile = () => {
     const router = useRouter();
+    const id = router.query.id as string;
     const [isOutline,setIsOutline] = useState(true);
-    const { data:myData} = useSWR<Userprops>(`/user/${router.query.id}`);
-    const { data:JoinedData } = useSWR<MainPageProps[]>(`/user/joined/${router.query.id}`);
-    const { data:WrittenData } = useSWR<MainPageProps[]>(`/user/written/${router.query.id}`);
+    const { data:myData} = useSWR<Userprops>(UserController.User(id));
+    const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
+    const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
     
     const handleLogoutClick = () => {
       UseRemoveToken()

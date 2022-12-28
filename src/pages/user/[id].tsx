@@ -5,6 +5,7 @@ import { Profile } from "../../components";
 import { UseGetToken } from "../../Hooks";
 import { MainDetailProps, MainPageProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
+import { UserController } from "../../Utils/lib/urls";
 
 const ProfilePage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({fallback}) => {
     return (
@@ -21,13 +22,13 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
     const id = ctx.query.id as string;
     const { Authorization } = await UseGetToken(ctx)
     try {
-      const {data:profileData} = await CustomAxios.get(`/user/joined/${id}`,{headers: {Authorization}});
-      const {data:WrittenData} = await CustomAxios.get(`/user/written/${id}`,{headers: {Authorization}});
+      const {data:profileData} = await CustomAxios.get(UserController.UserJoined(id),{headers: {Authorization}});
+      const {data:WrittenData} = await CustomAxios.get(UserController.UserWritten(id),{headers: {Authorization}});
       return {
         props: {
           fallback:{
-            [`/user/joined/${id}`]:profileData,
-            [`/user/written/${id}`]:WrittenData
+            [UserController.UserJoined(id)]:profileData,
+            [UserController.UserWritten(id)]:WrittenData
           }
         },
     };

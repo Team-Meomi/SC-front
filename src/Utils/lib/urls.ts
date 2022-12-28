@@ -28,7 +28,19 @@ export const StudyController = {
 }
 
 export const CommentController = {
-	Comment: (id:number) => {
+	Comment: (id:number|string) => {
 		return `/comment/${id}`
 	},
+}
+
+export const UserController = {
+	User: (id:number|string) => {
+		return `/user/${id}`
+	},
+	UserJoined : (id:number|string) => {
+		return `/user/joined/${id}`
+	},
+	UserWritten : (id:number|string) => {
+		return `/user/written/${id}`
+	}
 }

@@ -8,11 +8,13 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { BackBtnIcon, DeleteIcon, MemoAloneicon, ModifyIcon } from "../../../public/svg";
 import { themedPalette } from "../../styles/global";
+import { CommentController, StudyController } from "../../Utils/lib/urls";
 
 const HomeDetail = () => {
     const router = useRouter();
-    const { data, mutate } = useSWR<MainDetailProps>(`${router.asPath}`);
-    const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(`/comment/${router.query.id}`);
+    const id = router.query.id as string;
+    const { data , mutate } = useSWR<MainDetailProps>(StudyController.StudyId(id));
+    const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(CommentController.Comment(id));
     const month = data?.date?.slice(5,7);
     const day = data?.date?.slice(8,10);
     
@@ -24,7 +26,6 @@ const HomeDetail = () => {
     const [maxCount, setMaxCount] = useState<number>();
 
     const [commonValue,setCommonValue] = useState("");    
-
     const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
 
     const handleApplyClick = async () => {
@@ -98,61 +99,70 @@ const HomeDetail = () => {
             {isModify ? (
               <input type="text" value={title} onChange={(e)=> {setMIitle(e.target.value)}}/> 
             ) : (
-              data?.title || "제목"
+              data?.title
             )}
           </S.DecsTitle>
           <S.DecsContent>
             {isModify ? (
               <textarea value={content} onChange={(e)=> {setContent(e.target.value)}}/> 
             ) : (
-              data?.content || "콘텐츠"
+              data?.content
             )}
         </S.DecsContent>
         <S.SpanWrapper>
           <span>
-            {"전공 : "} 
             {
               isModify ? (
-                <S.TopicBtns>
-                  <input defaultChecked={data?.category === "BE" && true} type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
-                  <input defaultChecked={data?.category === "FE" && true} type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
-                  <input defaultChecked={data?.category === "iOS" && true} type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("IOS")}/><label htmlFor="IOS">iOS</label>
-                  <input defaultChecked={data?.category === "AOS" && true} type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
-                  <input defaultChecked={data?.category === "기타" && true} type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
-                </S.TopicBtns>
+                <div>
+                  <span>전공 : </span>
+                  <S.TopicBtns>
+                    <input defaultChecked={data?.category === "BE" && true} type="radio" value={topic} id="BE" name="topic" onClick={() => setTopic("BE")}/><label htmlFor="BE">BE</label>
+                    <input defaultChecked={data?.category === "FE" && true} type="radio" value={topic} id="FE" name="topic" onClick={() => setTopic("FE")} /><label htmlFor="FE">FE</label>
+                    <input defaultChecked={data?.category === "iOS" && true} type="radio" value={topic} id="iOS" name="topic" onClick={() => setTopic("iOS")}/><label htmlFor="iOS">iOS</label>
+                    <input defaultChecked={data?.category === "AOS" && true} type="radio" value={topic} id="AOS" name="topic" onClick={() => setTopic("AOS")}/><label htmlFor="AOS">AOS</label>
+                    <input defaultChecked={data?.category === "기타" && true} type="radio" value={topic} id="기타" name="topic" onClick={() => setTopic("기타")}/><label htmlFor="기타">기타</label>
+                  </S.TopicBtns>
+                </div>
               ) : (
-                data?.category || "FE"
+                data?.category && `전공 : ${data.category}`
               )
             }
           </span>
           <span>
-            {"날짜 : "}
             {
               isModify ? (
-                <input type="date" value={date} onChange={(e)=> {setDate(e.target.value)}}/>
+                <div>
+                  <span>날짜 : </span>
+                  <input type="date" value={date} onChange={(e)=> {setDate(e.target.value)}}/>
+                </div>
               ) : (
-                `${month || "0"}월 ${day || "0"}일`
+                month && day && `날짜 : ${month}월 ${day}일`
               )
             }
           </span>
-          <span>장소 : {data?.studyType === "컨퍼런스" ? "시청각실" : "홈베"}</span>
+          <span>{data?.studyType && `장소 : ${data.studyType === "컨퍼런스" ? "시청각실" : "홈베"}`}</span>
           <span>
-            {isModify ? "최대인원 : " : "현재인원 : "}
             {
               isModify ? (
                 data?.studyType === "컨퍼런스" ? (
-                  <input type="number" value={maxCount} onChange={(e:any)=> {setMaxCount(e.target.value)}}/>
+                  <div>
+                    <span>최대인원 : </span>
+                    <input type="number" value={maxCount} onChange={(e:any)=> {setMaxCount(e.target.value)}}/>
+                  </div>
                 ) : (
-                  <input type="number" readOnly value={5}/>
+                  <div>
+                    <span>최대인원 : </span>
+                    <input type="number" readOnly value={5}/>
+                  </div>
                 )
               ) : (
-                `${data?.count?.count || "0"}/${data?.count?.maxCount || "5"} 명`
+                data?.count && `현재인원 : ${data?.count?.count || "0"}/${data?.count?.maxCount || "5"} 명`
               )
             }
           </span>
           <span>
-            {`개설자 :`}
-            <span style={{cursor:"pointer", color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{`${data?.writer?.stuNum || ""} ${data?.writer?.name || ""}`}</span>
+            <span>{data?.writer && "개설자 :"}</span>
+            <span style={{cursor:"pointer", color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{data?.writer && `${ data?.writer?.stuNum} ${data?.writer?.name || ""}`}</span>
           </span>
           </S.SpanWrapper>
         </S.DecsWapper>
