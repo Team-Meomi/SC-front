@@ -116,7 +116,7 @@ const HomeDetail = () => {
             )}
         </S.DecsContent>
         <S.SpanWrapper>
-          <span>
+          <div>
             {
               isModify ? (
                 <div>
@@ -133,8 +133,8 @@ const HomeDetail = () => {
                 data?.category && `전공 : ${data.category}`
               )
             }
-          </span>
-          <span>
+          </div>
+          <div>
             {
               isModify ? (
                 <div>
@@ -145,9 +145,9 @@ const HomeDetail = () => {
                 month && day && `날짜 : ${month}월 ${day}일`
               )
             }
-          </span>
+          </div>
           <span>{data?.studyType && `장소 : ${data.studyType === "컨퍼런스" ? "시청각실" : "홈베"}`}</span>
-          <span>
+          <div>
             {
               isModify ? (
                 data?.studyType === "컨퍼런스" ? (
@@ -165,11 +165,11 @@ const HomeDetail = () => {
                 data?.count && `현재인원 : ${data?.count?.count || "0"}/${data?.count?.maxCount || "5"} 명`
               )
             }
-          </span>
-          <span>
+          </div>
+          <div>
             <span>{data?.writer && "개설자 :"}</span>
             <span style={{cursor:"pointer", color: themedPalette.profileLink}} onClick={() => {router.push(`/user/${data?.writer?.id}`)}}>{data?.writer && `${ data?.writer?.stuNum} ${data?.writer?.name || ""}`}</span>
-          </span>
+          </div>
           </S.SpanWrapper>
         </S.DecsWapper>
 

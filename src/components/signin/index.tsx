@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useRouter } from "next/router";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";

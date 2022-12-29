@@ -3,15 +3,18 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Shead } from '../common';
 import { Promotion } from '../components';
-import { UseGetTokenDom } from '../Hooks';
+import { UseGetToken } from '../Hooks';
 
 const PromotionPage: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    const {RefreshToken} = UseGetTokenDom();
-    if(RefreshToken){
-      router.push('/home');
+    const a = async() => {
+      const {RefreshToken} = await UseGetToken(null)
+      if(RefreshToken){
+        router.push('/home');
+      }
     }
+    a();
   },[])
   return (
       <>

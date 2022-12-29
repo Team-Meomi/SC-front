@@ -60,7 +60,7 @@ const Create = () => {
               <S.TitleInput placeholder="제목을 입력하세요" {...register("title")}/>
               <S.ContentText placeholder="내용을 입력해주세요" {...register("content")}/>
               <S.TopicBtns BtnColor={radioBtnColor}>
-                <input defaultChecked type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
+                <input type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")} defaultChecked/><label htmlFor="BE">BE</label>
                 <input type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")}/><label htmlFor="FE">FE</label>
                 <input type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
                 <input type="radio" id="AOS" name="category" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>

@@ -118,7 +118,7 @@ export const SpanWrapper = styled.div`
     width: 100%;
     div{
         display: flex;
-        gap: 25px;
+        gap: 15px;
     }
 
     input {

@@ -8,6 +8,7 @@ import { StudyController } from "../../Utils/lib/urls";
 import { AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
+import { UseRole } from "../../Hooks";
 
 const Home = () => {
     const router = useRouter();
@@ -21,6 +22,10 @@ const Home = () => {
         mutate()
       }
     },[searchValue.value])
+
+    useEffect(() => {
+      console.log(UseRole());
+    },[])
 
     return (
       <S.Wrapper>

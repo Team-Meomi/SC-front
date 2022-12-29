@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig } from "axios";
-import {UseGetTokenDom , UseSetToken} from "../../Hooks/index";
+import {UseGetToken, UseSetToken} from "../../Hooks/index";
 import { BASEURL } from "./BaseUrl";
 
 export const requestCheck = async (config: AxiosRequestConfig) => {
   if(typeof window !== 'object') return config;
-  const { Authorization , RefreshToken } =  UseGetTokenDom()
+  const {Authorization, RefreshToken} = await UseGetToken(null)
   
   if (config.headers && Authorization){
     config.headers["Authorization"] = Authorization
