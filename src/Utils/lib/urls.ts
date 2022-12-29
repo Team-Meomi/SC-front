@@ -13,8 +13,8 @@ export const MemberController = {
 
 // 전체 게시글
 export const StudyController = {
-	Study: (role:string) => {
-		return `/${role}}/study/`
+	Study: () => {
+		return `/user/study/`
 	},
 	StudyId:(id:number|string) => {
 		return `/user/study/${id}`

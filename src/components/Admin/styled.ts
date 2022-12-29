@@ -29,17 +29,14 @@ export const FilterWrapper = styled.div`
   gap: 20px;
   span{
     font-size: 2.2rem;
+    color: ${themedPalette.text};
   }
 `;
-
-export const FilterBox = styled.div`
-
-`;
-
 
 export const RightWrapper = styled.div`
     width: 65%;
     height: 100%;
+    position: relative;
     display:flex;
     flex-direction:column;
     align-items: center;
@@ -47,6 +44,29 @@ export const RightWrapper = styled.div`
     gap: 20px;
     background: ${themedPalette.homeDetail};
     color: ${themedPalette.text};
+`;
+
+export const DarkModeBtn = styled.div`
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 100px;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    svg{
+        color: ${themedPalette.text}
+    }
+
+    :hover{
+        background-color: #EFEFEF;
+    }
+
 `;
 
 export const KindBar = styled.div`
@@ -70,7 +90,7 @@ export const KindBar = styled.div`
 
 export const ContantWrapper = styled.div`
     width: 100%;
-    height: 74vh;
+    height: 80vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

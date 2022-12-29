@@ -20,24 +20,17 @@ const Classification: React.FC<ClassificationProps> = ({
 	setStuClass,
 	setStuName,
 }) => {
-	const gradeSelect = (e:any) => {
-		setStuGrade(e.target.value);
-	};
-	const classSelect = (e:any) => {
-		setStuClass(e.target.value);
-	};
-
 	return (
 		<>
 			<S.SelectWrapper>
-				<S.SelectBox onChange={gradeSelect} value={stuGrade}>
-					<S.Option value="">전체</S.Option>
+				<S.SelectBox onChange={(e) => setStuGrade(e.target.value)} value={stuGrade}>
+					<S.Option value="0">전체</S.Option>
 					<S.Option value="1">1</S.Option>
 					<S.Option value="2">2</S.Option>
 					<S.Option value="3">3</S.Option>
 				</S.SelectBox>
 				<S.Label>학년</S.Label>
-				<S.SelectBox onChange={classSelect} value={stuClass}>
+				<S.SelectBox onChange={(e) => setStuClass(e.target.value)} value={stuClass}>
 					<S.Option value="">전체</S.Option>
 					<S.Option value="1">1</S.Option>
 					<S.Option value="2">2</S.Option>

@@ -5,6 +5,7 @@ import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
 import { useEffect, useState } from "react";
+import { UseRole } from "../../Hooks";
 
 export default function Signin() {
   const router = useRouter();
@@ -29,7 +30,12 @@ export default function Signin() {
       return SetPasswordError({isError:true, msg:res.errorMsg})
     }
     reset();
-    router.replace("/home")
+    const role = await UseRole();
+    if(role === "user"){
+      router.replace("/home")
+    }else if(role === "admin"){
+      router.replace("/admin")
+    }
   }
 
   return (
