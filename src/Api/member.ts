@@ -43,7 +43,7 @@ export const signin = async (
 
 export const tokenReissue = async (
 	RefreshToken: string,
-	ctx:GetServerSidePropsContext
+	ctx:GetServerSidePropsContext|null
 ) => {
 	let newAuthorization:string
 	try{

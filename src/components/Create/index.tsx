@@ -8,16 +8,13 @@ import { useRouter } from "next/router";
 import { StudyModifyType } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { categoryArray } from "../../Utils/categoryArray";
+import { UseToday } from "../../Hooks";
 
 const Create = () => {
     const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
     const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = ('0' + (today.getMonth() + 1)).slice(-2);
-    const day = ('0' + today.getDate()).slice(-2);
-    const TodayDate = year + '-' + month  + '-' + day;
+    const {todayDate} = UseToday();
     const [radioBtnColor , setRadioBtnColor] = useState("");
 
     const onValid:SubmitHandler<StudyModifyType> = async (d) => {
@@ -74,7 +71,7 @@ const Create = () => {
                     <S.BottomInput placeholder="인원 수 입력" type="number"  {...register("maxCount")}/>
                   )
                 }
-                <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" min={TodayDate} {...register("date")}/>
+                <S.BottomInput placeholder="날짜 선택" id="날짜" type="date" min={todayDate} {...register("date")}/>
               </S.BottomWapper>
             </S.ConterWapper>
             <S.SubmitBtn onClick={handleSubmit(onValid)}>생성하기</S.SubmitBtn>

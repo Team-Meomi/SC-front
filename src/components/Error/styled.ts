@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { themedPalette } from "../../styles/global";
 
-export const Warpper = styled.div`
+export const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
 

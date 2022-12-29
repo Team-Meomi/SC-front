@@ -3,10 +3,10 @@ import * as S from "./styled";
 
 const Error = ({title}:{title:string}) => {
     return (
-        <S.Warpper>
+        <S.Wrapper>
             <MemoAloneicon />
             <p>{title}</p>
-        </S.Warpper>
+        </S.Wrapper>
     )
 }
 

@@ -13,23 +13,23 @@ export const MemberController = {
 
 // 전체 게시글
 export const StudyController = {
-	Study: () => {
-		return `/study/`
+	Study: (role:string) => {
+		return `/${role}}/study/`
 	},
 	StudyId:(id:number|string) => {
-		return `/study/${id}`
+		return `/user/study/${id}`
 	},
 	StudyCancel:(id:number) => {
-		return `/study/cancel/${id}`
+		return `/user/study/cancel/${id}`
 	},
 	StudySearch:(value:string) => {
-		return `study/search?title=${value}&category=`
+		return `/user/study/search?title=${value}&category=`
 	},
 }
 
 export const CommentController = {
 	Comment: (id:number|string) => {
-		return `/comment/${id}`
+		return `/user/comment/${id}`
 	},
 }
 

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import {UseGetToken, UseSetToken} from "../../Hooks/index";
-import { BASEURL } from "./BaseUrl";
+import { tokenReissue } from "../../Api/member";
+import {UseGetToken} from "../../Hooks/index";
 
 export const requestCheck = async (config: AxiosRequestConfig) => {
   if(typeof window !== 'object') return config;
@@ -11,13 +11,8 @@ export const requestCheck = async (config: AxiosRequestConfig) => {
   }
 
   else if (!Authorization && config.url !== "/auth/signin" && config.url !== "/auth/signup"){
-    try{
-        const {data} = await axios.patch(`${BASEURL}/auth/`,{},{headers: {"Refresh-Token":RefreshToken}});
-        if (config.headers) config.headers["Authorization"] = data.accessToken
-        UseSetToken(data.accessToken,data.refreshToken,null)
-    } catch(e){ 
-        console.log(e);
-    }
+    const {newAuthorization}: any = await tokenReissue(RefreshToken,null)
+    if (config.headers) config.headers["Authorization"] = newAuthorization
   }
 
   return config;

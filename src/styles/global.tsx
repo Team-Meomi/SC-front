@@ -4,14 +4,14 @@ import { Global, css } from '@emotion/react';
 
 const lightTheme = `
   --text: black;
-  --background: white;
-  --boxBackground: white;
-  --header: white;
+  --background: #F9F9F9;
+  --boxBackground: #F9F9F9;
+  --header: #F9F9F9;
   --boxShadow:rgba(0, 0, 0, 0.1);
   --homeDetail:#EFEFEF;
   --profileLink :#0075FF;
-
 `;
+
 const darkTheme = `
   --text: white;
   --background: #1F1F1F;

@@ -2,7 +2,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { HomeDetail } from "../../components";
-import { UseGetToken } from "../../Hooks";
+import { UseGetToken, UseRole } from "../../Hooks";
 import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 import { CommentController, StudyController } from "../../Utils/lib/urls";
@@ -19,6 +19,7 @@ const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({f
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx)
   const id = ctx.query.id as string
+  const role = await UseRole();
   
     try {
       const {data:studyData} = await CustomAxios.get(StudyController.StudyId(id),{headers: {Authorization}});
