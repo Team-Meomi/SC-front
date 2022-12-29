@@ -17,6 +17,6 @@ export const categoryArray = [
     },
     {
         value : "기타",
-        color : "black"
+        color : "#1C1C1E"
     },
 ]

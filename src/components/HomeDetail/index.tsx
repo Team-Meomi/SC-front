@@ -15,14 +15,14 @@ import { categoryArray } from "../../Utils/categoryArray";
 const HomeDetail = () => {
     const router = useRouter();
     const id = router.query.id as string;
-    const { data , mutate} = useSWR<MainDetailProps>(router.asPath);
+    const { data , mutate} = useSWR<MainDetailProps>(`/user${router.asPath}`);
     const { data:CommentData, mutate:mutateComment } = useSWR<CommentProps[]>(CommentController.Comment(id));
     
     const month = data?.date?.slice(5,7);
     const day = data?.date?.slice(8,10);
     const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
     const [isModify, setIsModify] = useState(false);
-
+  
     const [radioBtnColor , setRadioBtnColor] = useState("");
 
     const [commonValue,setCommonValue] = useState("");    

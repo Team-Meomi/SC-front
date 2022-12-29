@@ -15,6 +15,7 @@ export const Participant = styled.div`
     color: #77D6B3;
     background: ${themedPalette.boxBackground};
     cursor: pointer;
+    transition: all 0.3s ease-in;
 
     svg{
         width: 80px;

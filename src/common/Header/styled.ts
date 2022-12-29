@@ -11,6 +11,7 @@ export const HeaderWapper = styled.div`
     padding: 0 2%;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     background: ${themedPalette.header};
+    transition: all 0.3s ease-in;
 `;
 
 export const LeftWapper = styled.div`
@@ -48,7 +49,6 @@ export const RightWapper = styled.div`
     justify-content: flex-end;
     align-items: center;
     gap: 30px;
-
 `;
 
 export const ProfileBox = styled.div`

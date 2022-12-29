@@ -13,8 +13,9 @@ import { UseRole } from "../../Hooks";
 const Home = () => {
     const router = useRouter();
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
-    const { data } = useSWR<MainPageProps[]>(StudyController.Study("user"));
+    const { data } = useSWR<MainPageProps[]>(StudyController.Study());
     const { data:SearchData, mutate} = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
+    console.log(data);
     
     useEffect(() => {
       if(searchValue.isClick){

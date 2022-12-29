@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { themedPalette } from "../../styles/global";
 
 export const SelectWrapper = styled.div`
 	display: flex;
@@ -12,19 +13,23 @@ export const SelectWrapper = styled.div`
 	align-items: center;
 	padding: 0 10px;
 	margin: 20px 0;
+	background-color: ${themedPalette.boxBackground};
+	transition: all 0.3s ease-in;
 `;
 
 export const SelectBox = styled.select`
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 5px;
-	border: 2px solid #77D6B3;
 	width: 70px;
 	height: 30px;
 	text-align: center;
 	color: #898989;
 	outline: #77D6B3;
 	cursor: pointer;
+	background: transparent;
+	border: 1px solid  #77D6B3;
+	
 `;
 
 export const Option = styled.option`
@@ -35,6 +40,8 @@ export const Label = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	width: 40px;
+	color: ${themedPalette.text};
+	transition: all 0.3s ease-in;
 `;
 
 export const Search = styled.input`
@@ -46,6 +53,8 @@ export const Search = styled.input`
 	justify-content: center;
 	outline: #77D6B3;
 	border: none;
+	background: transparent;
+	color: ${themedPalette.text};
 `;
 
 export const Btn = styled.button`
@@ -58,11 +67,11 @@ export const Btn = styled.button`
 	font-weight: bold;
 	outline: none;
 	background-color: #77D6B3;
-    transition: all 0.3s ease-in-out;
 	cursor: pointer;
+	transition: all 0.15s ease-in;
 	&:hover {
 		background-color: #fff;
 		color: #77D6B3;
-		border: 2px solid #77D6B3;
+		border: 1px solid #77D6B3;
 	}
 `;

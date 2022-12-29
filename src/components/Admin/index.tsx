@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import useSWR from "swr";
 import { MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
-import { SearchAudiovisual } from "../../Api/find";
 import { Classification, Participant } from "../../common";
 import { UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
@@ -12,21 +12,20 @@ const Admin = () => {
     const [isAudiovisual, setIsAudiovisual] = useState(true);
     const {todayDate, dayOfWeek} = UseToday();
     const [theme , toggle] = UseToggleTheme();
-    // const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
-    // const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/audiovisual');
-    const [stuGrade, setStuGrade] = useState('0');
+    const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
+    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/audiovisual');
+    const [stuGrade, setStuGrade] = useState('');
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
-    const [isSearchBtnClick ,setIsSearchBtnClick] = useState(false);
-    // const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/search?title=${stuName}`);
-    // const { searchAudiovisualData,  setSearchAudiovisualData} = useState<DetailListType[]>();
-    // const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/search?title=${stuName}`);
-    
+    const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
+    const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/search?stuNum=${stuGrade}${stuClass}stuName=${stuName}`);
+    // const { searchAudiovisualData,  setSearchAudiovisualData} = useState<{list:DetailListType[]}>();
+    const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/search?title=${stuName}`);
+
     const handleSubmit = async () => {
-        console.log(stuGrade,stuClass,stuName);
-        const {SearchAuData}:any = await SearchAudiovisual(stuGrade,stuClass,stuName)
-        // setSearchAudiovisualData(data.list)
-        // searchAudiovisualDataMutate();
+        if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
+        // setSearchAudiovisualData(data)
+        searchAudiovisualDataMutate();
         // searchHomebaseMutate();
         setIsSearchBtnClick(true);
     }
@@ -64,7 +63,7 @@ const Admin = () => {
                     <span style={{color: isAudiovisual ? "#999999" : "#77D6B3"}} onClick={() => setIsAudiovisual(false)}>홈베이스</span>
                 </S.KindBar>
                 <S.ContantWrapper>
-                {/* {
+                {
                     isAudiovisual ? (
                         isSearchBtnClick ? ( 
                             searchAudiovisualData?.list ? (searchAudiovisualData.list.map((i:DetailListType) => (
@@ -112,7 +111,7 @@ const Admin = () => {
                         )  
                         )
                     )               
-                }                */}
+                }               
                 </S.ContantWrapper>
             </S.RightWrapper>
         </S.Wrapper>

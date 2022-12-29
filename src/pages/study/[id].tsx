@@ -19,8 +19,7 @@ const StudyDetailPage:NextPage<{fallback: Record<string,MainDetailProps>}> = ({f
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx)
   const id = ctx.query.id as string
-  const role = await UseRole();
-  
+    
     try {
       const {data:studyData} = await CustomAxios.get(StudyController.StudyId(id),{headers: {Authorization}});
       const { data:CommentData } = await CustomAxios.get(CommentController.Comment(id),{headers: {Authorization}});

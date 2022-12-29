@@ -18,6 +18,8 @@ export const LeftWrapper = styled.div`
     svg{
       width: 85%;
     }
+    background: ${themedPalette.header};
+    transition: all 0.3s ease-in;
 `;
 
 export const FilterWrapper = styled.div`
@@ -30,6 +32,7 @@ export const FilterWrapper = styled.div`
   span{
     font-size: 2.2rem;
     color: ${themedPalette.text};
+    transition: all 0.3s ease-in;
   }
 `;
 
@@ -44,6 +47,7 @@ export const RightWrapper = styled.div`
     gap: 20px;
     background: ${themedPalette.homeDetail};
     color: ${themedPalette.text};
+    transition: all 0.3s ease-in;
 `;
 
 export const DarkModeBtn = styled.div`
@@ -58,11 +62,10 @@ export const DarkModeBtn = styled.div`
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in;
     svg{
         color: ${themedPalette.text}
     }
-
     :hover{
         background-color: #EFEFEF;
     }
@@ -80,6 +83,7 @@ export const KindBar = styled.div`
         font-size: 30px;
         color: #999999;
         font-weight: bold;
+        transition: all 0.1s ease-in;
     }
     div{
         font-size: 30px;

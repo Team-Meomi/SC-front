@@ -25,6 +25,7 @@ export const LeftWrapper = styled.div`
     gap: 30px;
     background: ${themedPalette.header};
     color: ${themedPalette.text};
+    transition: all 0.3s ease-in;
 `;
 
 export const BackBtn = styled.div`
@@ -65,6 +66,7 @@ export const RightWrapper = styled.div`
     gap: 20px;
     background: ${themedPalette.homeDetail};
     color: ${themedPalette.text};
+    transition: all 0.3s ease-in;
 `;
 
 export const KindBar = styled.div`
@@ -78,6 +80,7 @@ export const KindBar = styled.div`
         font-size: 30px;
         color: #999999;
         font-weight: bold;
+        transition: all 0.2s ease-in;
     }
     div{
         font-size: 30px;

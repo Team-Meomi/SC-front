@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${themedPalette.background};
+  transition: all 0.3s ease-in;
 `;
 
 export const HomeWrapper = styled.div`
@@ -98,5 +99,5 @@ export const Contants = styled.div`
   align-content: flex-start;
   justify-content: flex-start;
   gap: 4.8%;
-
+  color: ${themedPalette.text};
 `;

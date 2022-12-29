@@ -12,6 +12,7 @@ export const Contant = styled.div`
   cursor: pointer;
   color : ${themedPalette.text};
   background-color: ${themedPalette.boxBackground};
+  transition: all 0.3s ease-in;
 `;
 
 export const ContantTop = styled.div`
