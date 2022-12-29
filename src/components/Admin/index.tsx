@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { MemoAdmincon, MemoAloneicon } from "../../../public/svg";
 import { Classification, Participant } from "../../common";
-import { UseRole, UseToday } from "../../Hooks";
+import { UseToday } from "../../Hooks";
+import { DetailListType } from "../../types";
 import * as S from "./styled";
 
 const Admin = () => {
-    const [isConference,setIsConference] = useState(true);
-    //   const role = await UseRole();
-    //   const { data } = useSWR<MainPageProps[]>(StudyController.Study("user"));
-    const data:any[] = [];
+    const [isAudiovisual, setIsAudiovisual] = useState(true);
+    const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
+    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/audiovisual');
     const {todayDate, dayOfWeek} = UseToday();
-    const [stuGrade, setStuGrade] = useState<string>('0');
-	const [stuClass, setStuClass] = useState<string>('');
-	const [stuName, setStuName] = useState<string>('');
-
+    const [stuGrade, setStuGrade] = useState('');
+	const [stuClass, setStuClass] = useState('');
+	const [stuName, setStuName] = useState('');
+    const [isSearchBtnClick ,setIsSearchBtnClick] = useState(false);
+    const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/search?title=${stuName}`);
+    const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/search?title=${stuName}`);
+    
     const handleSubmit = () => {
-        console.log("제출버튼");
+        console.log(stuGrade,stuClass,stuName);
+        searchAudiovisualDataMutate();
+        searchHomebaseMutate();
+        setIsSearchBtnClick(true);
     }
-      
     return (
         <S.Wrapper>
             <S.LeftWrapper>
@@ -25,11 +31,13 @@ const Admin = () => {
                     <span>{`${todayDate}(${dayOfWeek})`}</span>
                     <span>컨퍼런스와 스터디 입니다.</span>
                     <Classification
-					onSubmit={handleSubmit}
-					stuGrade={stuGrade}
-					stuClass={stuClass}
-					setStuGrade={setStuGrade}
-					setStuClass={setStuClass}
+                        onSubmit={handleSubmit}
+                        stuGrade={stuGrade}
+                        stuClass={stuClass}
+                        stuName={stuName}
+                        setStuGrade={setStuGrade}
+                        setStuClass={setStuClass}
+                        setStuName={setStuName}
 				    />
                     <S.FilterBox></S.FilterBox>
                 </S.FilterWrapper>
@@ -37,17 +45,61 @@ const Admin = () => {
             </S.LeftWrapper>
             <S.RightWrapper>
                 <S.KindBar>
-                <span style={{color: isConference ? "#77D6B3" : "#999999" }} onClick={() => setIsConference(true)}>컨퍼런스</span>
+                <span style={{color: isAudiovisual ? "#77D6B3" : "#999999" }} onClick={() => setIsAudiovisual(true)}>시청각실</span>
                 <div>|</div>
-                <span style={{color: isConference ? "#999999" : "#77D6B3"}} onClick={() => setIsConference(false)}>스터디</span>
+                <span style={{color: isAudiovisual ? "#999999" : "#77D6B3"}} onClick={() => setIsAudiovisual(false)}>홈베이스</span>
                 </S.KindBar>
                 <S.ContantWrapper>
                 {
-                    
+                    isAudiovisual ? (
+                        isSearchBtnClick ? ( 
+                            searchAudiovisualData?.list ? (searchAudiovisualData.list.map((i) => (
+                                <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                            ))
+                            ):(
+                                <MemoAloneicon/>
+                            )
+                        ) : (
+                            audiovisualData?.list ? (audiovisualData.list.map((i) => (
+                                <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                            ))
+                            ):(
+                                <MemoAloneicon/>
+                            )
+                        )
+                    ) : (
+                        isSearchBtnClick ? (
+                            homebaseData?.list ? (homebaseData.list.map((item) => (
+                                <div>
+                                {
+                                item.map((i) => (
+                                    <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                ))
+                                }
+                            <MemoAloneicon/>
+                                </div>
+                            ))
+                            ):(
+                                <MemoAloneicon/>
+                            )
+                        ) : (
+                            searchHomebaseData?.list ? (searchHomebaseData.list.map((item) => (
+                                <div>
+                                {
+                                item.map((i) => (
+                                    <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                ))
+                                }
+                               <MemoAloneicon/>
+                                </div>
+                            ))
+                            ):(
+                                <MemoAloneicon/>
+                            )
+                            
+                        )
+                    )               
                 }
-                    <Participant id={0} stuNum={2308} name={"유환빈"} />
-                    <Participant id={0} stuNum={2308} name={"유환빈"} />
-                    <Participant id={0} stuNum={2308} name={"유환빈"} />
                 
                 </S.ContantWrapper>
             </S.RightWrapper>

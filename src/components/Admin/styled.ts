@@ -28,7 +28,7 @@ export const FilterWrapper = styled.div`
   align-items: center;
   gap: 20px;
   span{
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 `;
 
@@ -80,55 +80,8 @@ export const ContantWrapper = styled.div`
     padding: 0 15% 0 19%;
 `;
 
-export const Contant = styled.div`
-  width: 40%;
-  height: 100px;
-  background: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 10px 15px;
-  margin: 7px 0;
-  cursor: pointer;
-`;
-
-export const ContantTop = styled.div`
-  width: 100%;
-  height: 60%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  p{
-    width: 70%;
-    font-size: 1.3rem;
-    font-weight: bold;
-      overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-`;
-
-export const ConferenceText = styled.span`
-  color: #7092BA;
-  font-weight: bold;
-`;
-
-export const ContantBottom = styled.div`
-  width: 100%;
-  height: 40%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const Topic = styled.div`
-  font-size: 1.1rem;
-  display: flex;
-  svg{
-    width: 20px;
-  }
-`;
-
-export const Date = styled.div`
-  font-size: 0.9rem;
+export const UnderLine = styled.div`
+  width: 80%;
+  height: 5px;
+  background: ${themedPalette.text};
 `;

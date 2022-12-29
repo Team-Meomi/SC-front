@@ -5,18 +5,21 @@ interface ClassificationProps {
 	onSubmit: () => void;
 	stuGrade: string;
 	stuClass: string;
+	stuName: string
 	setStuGrade: any;
 	setStuClass: any;
+	setStuName:any;
 }
 
 const Classification: React.FC<ClassificationProps> = ({
 	onSubmit,
 	stuGrade,
 	stuClass,
+	stuName,
 	setStuGrade,
 	setStuClass,
+	setStuName,
 }) => {
-	const [stuName, setStuName] = useState<string>('');
 	const gradeSelect = (e:any) => {
 		setStuGrade(e.target.value);
 	};
@@ -43,14 +46,15 @@ const Classification: React.FC<ClassificationProps> = ({
 				</S.SelectBox>
 				<S.Label>반</S.Label>
 				<S.Search
-						placeholder="이름"
-						onChange={(e) => {
-							setStuName(e.target.value);
-						}}
-						onKeyPress={(e) => {
-							if (e.key === 'Enter') onSubmit;
-						}}
-					/>
+					placeholder="이름"
+					value={stuName}
+					onChange={(e) => {
+						setStuName(e.target.value);
+					}}
+					onKeyPress={(e) => {
+						if (e.key === 'Enter') onSubmit;
+					}}
+				/>
 				<S.Btn onClick={onSubmit}>검색</S.Btn>
 			</S.SelectWrapper>
 		</>
