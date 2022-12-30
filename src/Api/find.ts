@@ -144,3 +144,16 @@ export const SearchAudiovisual = async (
 		console.log(e);
 	}
 }
+
+export const SearchHomebase = async (
+	stuGrade:string,
+	stuClass:string,
+	stuName:string
+) => {
+	try {
+		const {data} = await CustomAxios.get(`admin/study/homebase/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`)
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}

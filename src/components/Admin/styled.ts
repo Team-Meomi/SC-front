@@ -116,7 +116,24 @@ export const ContantWrapper = styled.div`
 `;
 
 export const UnderLine = styled.div`
-  width: 80%;
-  height: 5px;
-  background: ${themedPalette.text};
+  width: 100%;
+  height: 2px;
+  /* background: ${themedPalette}; */
+  background: #999999;
+`;
+
+export const HomeBaseWapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+`;
+
+export const HomeBasePeople = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding: 0 0  25px 0;
 `;

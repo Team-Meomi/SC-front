@@ -4,14 +4,16 @@ import { parseCookies } from 'nookies';
 import { useEffect } from 'react';
 import { Shead } from '../common';
 import { Promotion } from '../components';
+import { UseRemoveToken } from '../Hooks';
 
 const PromotionPage: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    const {RefreshToken} = parseCookies()
-      if(RefreshToken){
-        router.push('/home');
-      }
+    // const {RefreshToken} = parseCookies()
+      // if(RefreshToken){
+        // router.push('/home');
+      // }
+      UseRemoveToken();
   },[])
   return (
       <>

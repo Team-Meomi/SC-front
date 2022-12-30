@@ -80,7 +80,7 @@ export const KindBar = styled.div`
         font-size: 30px;
         color: #999999;
         font-weight: bold;
-        transition: all 0.2s ease-in;
+        transition: all 0.1s ease-in;
     }
     div{
         font-size: 30px;

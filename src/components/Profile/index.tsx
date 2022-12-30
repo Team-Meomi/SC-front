@@ -4,7 +4,6 @@ import { BackBtnIcon, LogoutIcon, MemoAloneicon, MemoProfileIcon, SquareIcon } f
 import { useState } from "react";
 import useSWR from "swr";
 import { MainPageProps, Userprops } from "../../types";
-import { UseRemoveToken } from "../../Hooks";
 import { categoryArray } from "../../Utils/categoryArray";
 import { UserController } from "../../Utils/lib/urls";
 import { Header } from "../../common";
@@ -14,13 +13,13 @@ const Profile = () => {
     const [isOutline,setIsOutline] = useState(true);
     const id = router.query.id as string;
     const { data:ProfileData} = useSWR<Userprops>(UserController.User(id));
-    const { data:MyData } = useSWR<Userprops>(UserController.UserBase());
-    const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
-    const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
+    const { data:MyData } = useSWR<Userprops>(UserController.UserBase(),{revalidateIfStale: false});
+    const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id),{revalidateIfStale: false});
+    const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id),{revalidateIfStale: false});
     
     const handleLogoutClick = () => {
       router.push('/');
-      UseRemoveToken();
+      // UseRemoveToken();
     }
         
     return (

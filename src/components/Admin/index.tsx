@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useSWR from "swr";
 import { LogoutIcon, MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
-import { SearchAudiovisual } from "../../Api/find";
+import { SearchAudiovisual, SearchHomebase } from "../../Api/find";
 import { Classification, Participant } from "../../common";
 import { UseRemoveToken, UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
@@ -22,13 +22,16 @@ const Admin = () => {
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
     const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
-    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
+    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:DetailListType[]}>();
 
     const handleSubmit = async () => {
         if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
-        const {data:searchData}:any = await SearchAudiovisual(stuGrade,stuClass,stuName)
-        setSearchAudiovisualData(searchData);
-        setSearchHomebaseData(searchData);
+        const {data:searchDataA}:any = await SearchAudiovisual(stuGrade,stuClass,stuName)
+        const {data:searchDataH}:any = await SearchHomebase(stuGrade,stuClass,stuName)
+        console.log(searchDataH);
+        
+        setSearchAudiovisualData(searchDataA);
+        setSearchHomebaseData(searchDataH);
         setIsSearchBtnClick(true);
     }
 
@@ -79,15 +82,15 @@ const Admin = () => {
                 {
                     isAudiovisual ? (
                         isSearchBtnClick ? ( 
-                            searchAudiovisualData?.list ? (searchAudiovisualData.list.map((i:DetailListType) => (
-                                <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                            searchAudiovisualData?.list ? (searchAudiovisualData.list.map((i:DetailListType,index) => (
+                                <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
                             ))
                             ):(
                                 <MemoAloneicon/>
                             )
                         ) : (
-                            audiovisualData?.list ? (audiovisualData.list.map((i) => (
-                                <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
+                            audiovisualData?.list ? (audiovisualData.list.map((i,index) => (
+                                <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
                             ))
                             ):(
                                 <MemoAloneicon/>
@@ -95,28 +98,25 @@ const Admin = () => {
                         )
                     ) : (
                         isSearchBtnClick ? (
-                            homebaseData?.list ? (homebaseData.list.map((item) => (
-                                <div>
-                                {
-                                item.map((i) => (
-                                    <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
-                                ))
-                                }
-                                <S.UnderLine/>
-                                </div>
+                            searchHomebaseData?.list ? (searchHomebaseData.list.map((i,index) => (
+                                    <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+
                             ))
                         ):(
                             <MemoAloneicon/>
                         )
                         ) : (
-                        searchHomebaseData?.list ? (searchHomebaseData.list.map((item) => (
-                            <div>
-                            {
-                            item.map((i) => (
-                                <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
-                            ))
-                            }
-                            </div>
+                            homebaseData?.list ? (homebaseData.list.map((item,index) => (
+                            <S.HomeBaseWapper key={index}>
+                                <S.HomeBasePeople>
+                                {
+                                item.map((i,index) => (
+                                    <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                ))
+                                }
+                                </S.HomeBasePeople>
+                            <S.UnderLine/>
+                            </S.HomeBaseWapper>
                         ))
                         ):(
                             <MemoAloneicon/>
