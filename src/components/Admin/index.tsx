@@ -1,47 +1,62 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import useSWR from "swr";
-import { MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
+import { LogoutIcon, MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
+import { SearchAudiovisual } from "../../Api/find";
 import { Classification, Participant } from "../../common";
-import { UseToday } from "../../Hooks";
+import { UseRemoveToken, UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import { DetailListType } from "../../types";
 import * as S from "./styled";
 
 const Admin = () => {
+    const router = useRouter();
     const [isAudiovisual, setIsAudiovisual] = useState(true);
     const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
     const {todayDate, dayOfWeek} = UseToday();
     const [theme , toggle] = UseToggleTheme();
     const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
-    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/audiovisual');
+    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/homebase');
     const [stuGrade, setStuGrade] = useState('');
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
-    const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/audiovisual/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`);
-    const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/homebaseData/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`);
-    
+    const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
+    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
+
     const handleSubmit = async () => {
         if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
-        searchAudiovisualDataMutate();
-        searchHomebaseMutate();
+        const {data:searchData}:any = await SearchAudiovisual(stuGrade,stuClass,stuName)
+        setSearchAudiovisualData(searchData);
+        setSearchHomebaseData(searchData);
         setIsSearchBtnClick(true);
     }
+
+    const handleLogoutClick = () => {
+        router.push('/');
+        UseRemoveToken();
+    }
+
     return (
         <S.Wrapper>
             <S.LeftWrapper>
                 <S.FilterWrapper>
-                    <span>{`${todayDate}(${dayOfWeek})`}</span>
-                    <span>컨퍼런스와 스터디 입니다.</span>
-                    <Classification
-                        onSubmit={handleSubmit}
-                        stuGrade={stuGrade}
-                        stuClass={stuClass}
-                        stuName={stuName}
-                        setStuGrade={setStuGrade}
-                        setStuClass={setStuClass}
-                        setStuName={setStuName}
-				    />
+                <S.LogoutBtn onClick={handleLogoutClick}>
+                {
+                    <LogoutIcon />
+                }
+                </S.LogoutBtn>
+                <span>{`${todayDate}(${dayOfWeek})`}</span>
+                <span>컨퍼런스와 스터디 입니다.</span>
+                <Classification
+                    onSubmit={handleSubmit}
+                    stuGrade={stuGrade}
+                    stuClass={stuClass}
+                    stuName={stuName}
+                    setStuGrade={setStuGrade}
+                    setStuClass={setStuClass}
+                    setStuName={setStuName}
+                />
                 </S.FilterWrapper>
                 <MemoAdmincon/>
             </S.LeftWrapper>
@@ -87,7 +102,7 @@ const Admin = () => {
                                     <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
                                 ))
                                 }
-                                <MemoAloneicon/>
+                                <S.UnderLine/>
                                 </div>
                             ))
                         ):(
@@ -101,7 +116,6 @@ const Admin = () => {
                                 <Participant key={i.id} id={i.id} stuNum={i.stuNum} name={i.name} />
                             ))
                             }
-                            <MemoAloneicon/>
                             </div>
                         ))
                         ):(

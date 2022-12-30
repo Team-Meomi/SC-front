@@ -31,7 +31,7 @@ export const LeftWapper = styled.div`
         background-repeat: no-repeat;
         background-size: 0% 100%;
         color : ${themedPalette.text};
-        transition: all 0.3s ease-in;
+        transition: div 0.3s ease-in;
     }
     a{
         font-size: 1.5rem;

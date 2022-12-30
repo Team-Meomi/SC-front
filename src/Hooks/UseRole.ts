@@ -6,8 +6,8 @@ const UseRole = async () => {
     const {Authorization} = await UseGetToken(null)
     const user:RoleType = jwt(Authorization ?? '');
     console.log(user);
-	if (user.auth[0] === 'USER') return 'user';
-	else if (user.auth[0] === 'ADMIN') return 'admin';
+	if (user.auth[0] === 'ROLE_USER') return 'user';
+	else if (user.auth[0] === 'ROLE_ADMIN') return 'admin';
 	else return '';
 };
 

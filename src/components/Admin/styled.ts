@@ -22,6 +22,17 @@ export const LeftWrapper = styled.div`
     transition: all 0.3s ease-in;
 `;
 
+export const LogoutBtn = styled.div`
+    position: absolute;
+    top: 50px;
+    left: 30%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: red;
+`;
+
 export const FilterWrapper = styled.div`
   width: 100%;
   height: 40vh;

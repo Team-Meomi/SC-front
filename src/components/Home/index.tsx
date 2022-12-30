@@ -40,7 +40,7 @@ const Home = () => {
           {searchValue.isClick ? `"${searchValue.value}" 에 대한 검색결과입니다` : `최근 한달간 게시글`}</S.ContansMainTitle>
         <S.Contants>
         {searchValue.isClick === false ? (
-            data ? (data.map((item,index) => (
+            data && data.length !== 0? (data.map((item,index) => (
             <Contant
               key={index}
               id={item.id}

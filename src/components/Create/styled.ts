@@ -20,11 +20,9 @@ export const CreateWapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 4%;
-
     svg {
         width: 46%;
     }
-
 `;
 
 export const InputsWapper = styled.div`

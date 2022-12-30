@@ -8,7 +8,6 @@ import { UseRemoveToken } from "../../Hooks";
 import { categoryArray } from "../../Utils/categoryArray";
 import { UserController } from "../../Utils/lib/urls";
 import { Header } from "../../common";
-import { toast } from "react-toastify";
 
 const Profile = () => {
     const router = useRouter();
@@ -20,9 +19,8 @@ const Profile = () => {
     const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
     
     const handleLogoutClick = () => {
-      UseRemoveToken();
       router.push('/');
-      toast('로그아웃 되었습니다.', {type: "success" })
+      UseRemoveToken();
     }
         
     return (

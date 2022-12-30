@@ -103,4 +103,5 @@ export const Contants = styled.div`
   justify-content: flex-start;
   gap: 4.8%;
   color: ${themedPalette.text};
+  transition: all 0.3s ease-in;
 `;

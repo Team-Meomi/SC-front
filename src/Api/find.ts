@@ -130,3 +130,17 @@ export const CommentModify = async (
 		console.log(e);
 	}
 }
+
+
+export const SearchAudiovisual = async (
+	stuGrade:string,
+	stuClass:string,
+	stuName:string
+) => {
+	try {
+		const {data} = await CustomAxios.get(`admin/study/audiovisual/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`)
+		return {data}
+	} catch(e:any){
+		console.log(e);
+	}
+}
