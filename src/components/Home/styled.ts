@@ -46,14 +46,16 @@ export const IntroductionWapper = styled.div`
   span{
     font-size: 1.2rem;
     font-weight: 300;
-    color : ${themedPalette.text}
+    color : ${themedPalette.text};
+    transition: all 0.3s ease-in;
   }
 `;
 
 export const IntroTitle = styled.div`
   font-size: 3rem;
   font-weight: bold;
-  color : ${themedPalette.text}
+  color : ${themedPalette.text};
+  transition: all 0.3s ease-in;
 `;
 
 
@@ -88,7 +90,8 @@ export const ContansWapper = styled.div`
 export const ContansMainTitle = styled.div`
     font-size: 2rem;
     font-weight: bold;
-    color : ${themedPalette.text}
+    color : ${themedPalette.text};
+    transition: all 0.3s ease-in;
 `;
 
 export const Contants = styled.div`

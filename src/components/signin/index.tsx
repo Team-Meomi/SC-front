@@ -23,7 +23,6 @@ export default function Signin() {
     if(!data.email) return SetIsIdError({isError:true , msg:"학교이메일을 입력해주세요."})
     else if(!data.password) return SetPasswordError({isError:true , msg:"8~20자 이내로 입력해주세요."})
     const res = await signin(data.email + '@gsm.hs.kr', data.password);
-    
     if (res?.errorMsg === '가입된 이메일이 아닙니다.') {
       return SetIsIdError({isError:true , msg:res.errorMsg})
 		}else if(res?.errorMsg === '비밀번호가 일치하지 않습니다.'){
@@ -32,9 +31,9 @@ export default function Signin() {
     reset();
     const role = await UseRole();
     if(role === "user"){
-      router.replace("/home")
+      router.push("/home");
     }else if(role === "admin"){
-      router.replace("/admin")
+      router.push("/admin");
     }
   }
 

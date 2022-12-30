@@ -10,6 +10,7 @@ import * as S from "./styled";
 
 const Admin = () => {
     const [isAudiovisual, setIsAudiovisual] = useState(true);
+    const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
     const {todayDate, dayOfWeek} = UseToday();
     const [theme , toggle] = UseToggleTheme();
     const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
@@ -17,16 +18,13 @@ const Admin = () => {
     const [stuGrade, setStuGrade] = useState('');
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
-    const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
-    const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/search?stuNum=${stuGrade}${stuClass}stuName=${stuName}`);
-    // const { searchAudiovisualData,  setSearchAudiovisualData} = useState<{list:DetailListType[]}>();
-    const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/search?title=${stuName}`);
-
+    const { data:searchAudiovisualData, mutate:searchAudiovisualDataMutate } = useSWR<{list:DetailListType[]}>(`admin/study/audiovisual/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`);
+    const { data:searchHomebaseData, mutate:searchHomebaseMutate } = useSWR<{list:[DetailListType[]]}>(`admin/study/homebaseData/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`);
+    
     const handleSubmit = async () => {
         if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
-        // setSearchAudiovisualData(data)
         searchAudiovisualDataMutate();
-        // searchHomebaseMutate();
+        searchHomebaseMutate();
         setIsSearchBtnClick(true);
     }
     return (

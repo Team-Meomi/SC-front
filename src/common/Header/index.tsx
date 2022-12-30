@@ -32,7 +32,7 @@ const Header = () => {
         <div style={{backgroundSize: currentPage === "/home" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/home')}>홈</div>
         <div style={{backgroundSize: currentPage === "/create" ? "100% 100%" : "0% 100%"}} onClick={() => router.push('/create')}>생성하기</div>
       </S.LeftWapper>
-      {
+      { 
         currentPage === "/home" ? (
         <S.CenterWapper>
           <input type="text" value={searchValue.value} onChange={(e) => SetSearchValue({...searchValue,value:e.target.value})}  placeholder="검색어를 입력해주세요" 

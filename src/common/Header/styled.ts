@@ -30,14 +30,16 @@ export const LeftWapper = styled.div`
         background-image: linear-gradient(transparent 85%, #77D6B3 60%);
         background-repeat: no-repeat;
         background-size: 0% 100%;
-        color : ${themedPalette.text}
+        color : ${themedPalette.text};
+        transition: all 0.3s ease-in;
     }
     a{
         font-size: 1.5rem;
         height: 100%;
         display: flex;
         align-items: center;
-        color : ${themedPalette.text}
+        color : ${themedPalette.text};
+        transition: all 0.3s ease-in;
     }
 `;
 

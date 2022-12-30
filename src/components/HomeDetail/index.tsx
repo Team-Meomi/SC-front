@@ -25,7 +25,7 @@ const HomeDetail = () => {
   
     const [radioBtnColor , setRadioBtnColor] = useState("");
 
-    const [commonValue,setCommonValue] = useState("");    
+    const [commonValue,setCommonValue] = useState("");
     const SubmitBtnText = data?.isMine ? (isModify ? "수정하기" : "개설자") : (data?.isStatus ? "신청취소" : data?.count?.maxCount === data?.count?.count ? "신청불가" : "신청하기")
 
     useEffect(() => {

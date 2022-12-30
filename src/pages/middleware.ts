@@ -14,5 +14,5 @@ export const middleware = async (req:NextRequest) => {
 }
 
 export const config = {
-  matcher: ['/home','/create','/study/(.*)','/user/(.*)'],
+  matcher: ['/home','/create','/study/(.*)','/user/(.*)','/admin'],
 };

@@ -13,7 +13,7 @@ const lightTheme = `
 `;
 
 const darkTheme = `
-  --text: white;
+  --text: #EFEFEF;
   --background: #1F1F1F;
   --boxBackground: #383737;
   --header: #282828;

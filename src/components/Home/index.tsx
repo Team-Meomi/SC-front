@@ -8,14 +8,12 @@ import { StudyController } from "../../Utils/lib/urls";
 import { AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
-import { UseRole } from "../../Hooks";
 
 const Home = () => {
     const router = useRouter();
     const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
     const { data } = useSWR<MainPageProps[]>(StudyController.Study());
     const { data:SearchData, mutate} = useSWR<MainPageProps[]>(StudyController.StudySearch(searchValue.value));
-    console.log(data);
     
     useEffect(() => {
       if(searchValue.isClick){
@@ -23,10 +21,6 @@ const Home = () => {
         mutate()
       }
     },[searchValue.value])
-
-    useEffect(() => {
-      console.log(UseRole());
-    },[])
 
     return (
       <S.Wrapper>
