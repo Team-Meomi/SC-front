@@ -9,7 +9,7 @@ export const Participant = styled.div`
     align-items: center;
     border-radius: 4px;
     padding: 0 20px 0 5px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: ${themedPalette.boxShadow} 0px 8px 24px;
     background-color: white;
     font-size: 0.9rem;
     color: #77D6B3;

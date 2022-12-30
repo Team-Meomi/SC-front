@@ -22,7 +22,7 @@ const Admin = () => {
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
     const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
-    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:DetailListType[]}>();
+    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
 
     const handleSubmit = async () => {
         if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
@@ -82,14 +82,14 @@ const Admin = () => {
                 {
                     isAudiovisual ? (
                         isSearchBtnClick ? ( 
-                            searchAudiovisualData?.list ? (searchAudiovisualData.list.map((i:DetailListType,index) => (
+                            searchAudiovisualData?.list && searchAudiovisualData?.list.length > 0 ? (searchAudiovisualData.list.map((i:DetailListType,index) => (
                                 <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
                             ))
                             ):(
                                 <MemoAloneicon/>
                             )
                         ) : (
-                            audiovisualData?.list ? (audiovisualData.list.map((i,index) => (
+                            audiovisualData?.list && audiovisualData?.list.length > 0 ? (audiovisualData.list.map((i,index) => (
                                 <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
                             ))
                             ):(
@@ -98,15 +98,24 @@ const Admin = () => {
                         )
                     ) : (
                         isSearchBtnClick ? (
-                            searchHomebaseData?.list ? (searchHomebaseData.list.map((i,index) => (
-                                    <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
-
+                            searchHomebaseData?.list && searchHomebaseData?.list.length > 0 ? (searchHomebaseData.list.map((item,index) => (
+                                // <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                <S.HomeBaseWapper key={index}>
+                                    <S.HomeBasePeople>
+                                    {
+                                    item.map((i,index) => (
+                                        <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                    ))
+                                    }
+                                    </S.HomeBasePeople>
+                                <S.UnderLine/>
+                                </S.HomeBaseWapper>
                             ))
                         ):(
                             <MemoAloneicon/>
                         )
                         ) : (
-                            homebaseData?.list ? (homebaseData.list.map((item,index) => (
+                            homebaseData?.list && homebaseData?.list.length > 0 ? ( homebaseData.list.map((item,index) => (
                             <S.HomeBaseWapper key={index}>
                                 <S.HomeBasePeople>
                                 {

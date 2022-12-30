@@ -117,7 +117,7 @@ export const ContantWrapper = styled.div`
 
 export const UnderLine = styled.div`
   width: 100%;
-  height: 2px;
+  height: 6px;
   /* background: ${themedPalette}; */
   background: #999999;
 `;

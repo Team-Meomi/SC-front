@@ -17,7 +17,7 @@ const darkTheme = `
   --background: #1F1F1F;
   --boxBackground: #383737;
   --header: #282828;
-  --boxShadow:rgba(255, 255, 255, 0.5);
+  --boxShadow:#383737;
   --homeDetail:#1F1F1F;
   --profileLink :#8CACFF;
 `;

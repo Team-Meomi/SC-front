@@ -10,9 +10,10 @@ export const CommentBox = styled.div`
     background-color: white;
     padding: 5px 20px 5px 10px;
     border-radius: 6px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background: ${themedPalette.boxBackground};
     color: ${themedPalette.text};
+    box-shadow: 0px 2px 8px ${themedPalette.boxShadow};
+
 
     textarea {
         border: none;
@@ -27,9 +28,7 @@ export const CommentBox = styled.div`
         background-color: white;
         padding: 20px 20px;
         margin: 5px 10px;
-        background: ${themedPalette.boxBackground};
-        box-shadow: 0px 2px 8px ${themedPalette.boxShadow};
-
+        background: #efefef;
         ::placeholder{
         color: #A4A4A5;
         }

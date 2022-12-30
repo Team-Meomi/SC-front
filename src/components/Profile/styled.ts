@@ -117,6 +117,7 @@ export const Contant = styled.div`
   margin: 7px 0;
   cursor: pointer;
   background: ${themedPalette.boxBackground};
+  transition: all 0.3s ease-in;
 `;
 
 export const ContantTop = styled.div`
@@ -129,9 +130,11 @@ export const ContantTop = styled.div`
     width: 70%;
     font-size: 1.3rem;
     font-weight: bold;
-      overflow: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: ${themedPalette.text};
+    transition: all 0.3s ease-in;
   }
 `;
 
@@ -151,6 +154,8 @@ export const ContantBottom = styled.div`
 export const Topic = styled.div`
   font-size: 1.1rem;
   display: flex;
+  color: ${themedPalette.text};
+  transition: all 0.3s ease-in;
   svg{
     width: 20px;
   }
@@ -158,4 +163,6 @@ export const Topic = styled.div`
 
 export const Date = styled.div`
   font-size: 0.9rem;
+  color: ${themedPalette.text};
+  transition: all 0.3s ease-in;
 `;

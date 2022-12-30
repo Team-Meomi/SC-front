@@ -11,6 +11,7 @@ export const Wapper = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${themedPalette.background};
+    transition: all 0.3s ease-in;
 `;
 
 export const CreateWapper = styled.div`

@@ -37,8 +37,8 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
           {
             isMine ? (
               <S.ModifyBtn>
-                <span style={{color:"orange"}} onClick={() => setIsModify(prv => !prv)}>수정</span>
-                <span style={{color:"red"}} onClick={handleDeleteBtnClick}>삭제</span>
+                <span style={{color:"#FFB800"}} onClick={() => setIsModify(prv => !prv)}>수정</span>
+                <span style={{color:"#F87070"}} onClick={handleDeleteBtnClick}>삭제</span>
               </S.ModifyBtn>
             ) : (
               <S.ModifyBtn/>
