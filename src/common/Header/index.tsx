@@ -3,19 +3,20 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { AtomCurrentPage, AtomSearchValue } from "../../Atoms";
 import { useRecoilState } from "recoil";
-import { MemoProfileIcon, MoonIcon, SearchIcon, SunIcon } from "../../../public/svg";
+import { MemoProfileIcon, SearchIcon } from "../../../public/svg";
 import useSWR from "swr";
 import { Userprops } from "../../types";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import Link from "next/link";
 import { UserController } from "../../Utils/lib/urls";
+import ThemeIcon from "../ThemeIcon";
 
 const Header = () => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
   const { data } = useSWR<Userprops>(UserController.UserBase());
+  const [,toggle] = UseToggleTheme();
+  const [currentPage, setCurrentPage] = useRecoilState(AtomCurrentPage);
   const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
-  const [theme , toggle] = UseToggleTheme();
   useEffect(() => {
     setCurrentPage(router.pathname)
   },[router])
@@ -44,14 +45,8 @@ const Header = () => {
         )
       }
       <S.RightWapper>
-      <S.DarkModeBtn onClick={toggle}>
-        {
-          theme === "light" ? (
-            <SunIcon width={30}/>
-          ) : (
-            <MoonIcon width={27} style={{color:"white"}}/>
-          )
-        }
+        <S.DarkModeBtn onClick={toggle}>
+          <ThemeIcon/>
         </S.DarkModeBtn>
         <S.ProfileBox onClick={() => router.push(`/user/${data?.id}`)}>
           <MemoProfileIcon/>

@@ -1,4 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { Admin } from "../../components";
@@ -7,7 +9,17 @@ import { MainPageProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 import { AdminController } from "../../Utils/lib/urls";
 
-const HomePage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback}) => {
+const AdminPage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback}) => {
+  const router = useRouter();
+  const role = UseRole();
+  useEffect(() => {
+    async function a(){
+      if(await role !== "admin"){
+        router.back();
+      }
+    }
+    a()
+  },[])
   return (
     <>
       <SWRConfig value={fallback}>
@@ -37,4 +49,4 @@ export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
-export default HomePage
+export default AdminPage

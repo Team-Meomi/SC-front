@@ -2,7 +2,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { HomeDetail } from "../../components";
-import { UseGetToken, UseRole } from "../../Hooks";
+import { UseGetToken } from "../../Hooks";
 import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 import { CommentController, StudyController } from "../../Utils/lib/urls";

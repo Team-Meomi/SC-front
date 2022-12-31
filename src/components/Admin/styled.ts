@@ -113,6 +113,10 @@ export const ContantWrapper = styled.div`
     gap: 28px;
     overflow-y: scroll;
     padding: 0 15% 0 19%;
+
+    svg{
+        height: 60vh;
+    }
 `;
 
 export const UnderLine = styled.div`

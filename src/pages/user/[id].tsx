@@ -1,9 +1,9 @@
 import { GetServerSideProps, NextPage } from "next";
-import useSWR, { SWRConfig } from "swr";
+import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { Profile } from "../../components";
 import { UseGetToken } from "../../Hooks";
-import { MainDetailProps, MainPageProps } from "../../types";
+import { MainDetailProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 import { UserController } from "../../Utils/lib/urls";
 

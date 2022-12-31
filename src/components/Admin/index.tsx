@@ -2,10 +2,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import useSWR from "swr";
-import { LogoutIcon, MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
+import { LogoutIcon, MemoAdmincon, MemoAloneicon } from "../../../public/svg";
 import { SearchAudiovisual, SearchHomebase } from "../../Api/find";
 import { AtomClassification } from "../../Atoms";
 import { Classification, KindBar, Participant } from "../../common";
+import ThemeIcon from "../../common/ThemeIcon";
 import { UseRemoveToken, UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import { DetailListType } from "../../types";
@@ -18,7 +19,7 @@ const Admin = () => {
     const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
     const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
     const {todayDate, dayOfWeek} = UseToday();
-    const [theme , toggle] = UseToggleTheme();
+    const [,toggle] = UseToggleTheme();
     const [isAudiovisual, setIsAudiovisual] = useState(true);
     const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
 	const [classificationValue,] = useRecoilState(AtomClassification);
@@ -52,15 +53,9 @@ const Admin = () => {
                 <MemoAdmincon/>
             </S.LeftWrapper>
             <S.RightWrapper>
-            <S.DarkModeBtn onClick={toggle}>
-            {
-            theme === "light" ? (
-                <SunIcon width={30}/>
-            ) : (
-                <MoonIcon width={27} style={{color:"white"}}/>
-            )
-            }
-            </S.DarkModeBtn>
+                <S.DarkModeBtn onClick={toggle}>
+                    <ThemeIcon/>
+                </S.DarkModeBtn>
                 <KindBar state={isAudiovisual} stuState={setIsAudiovisual} />
                 <S.ContantWrapper>
                 {
