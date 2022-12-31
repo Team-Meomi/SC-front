@@ -20,6 +20,7 @@ const HomePage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx);
+  
   try {
     const {data} = await CustomAxios.get(StudyController.Study(), {headers: {Authorization}});
     return {

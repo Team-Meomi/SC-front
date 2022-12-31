@@ -1,25 +1,13 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { Admin } from "../../components";
-import { UseGetToken, UseRole } from "../../Hooks";
+import { UseGetToken } from "../../Hooks";
 import { MainPageProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
 import { AdminController } from "../../Utils/lib/urls";
 
 const AdminPage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback}) => {
-  const router = useRouter();
-  const role = UseRole();
-  useEffect(() => {
-    async function a(){
-      if(await role !== "admin"){
-        router.back();
-      }
-    }
-    a()
-  },[])
   return (
     <>
       <SWRConfig value={fallback}>
