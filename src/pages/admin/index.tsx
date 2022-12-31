@@ -20,7 +20,6 @@ const HomePage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback
 
 export const  getServerSideProps: GetServerSideProps = async (ctx) => {
   const { Authorization } = await UseGetToken(ctx);
-  const role = await UseRole();
   try {
     const {data:audiovisualData} = await CustomAxios.get(AdminController.AdminKind("audiovisual"),{headers: {Authorization}});
     const {data:homebaseData} = await CustomAxios.get(AdminController.AdminKind("homebase"),{headers: {Authorization}});

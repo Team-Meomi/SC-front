@@ -1,36 +1,23 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { AtomClassification } from '../../Atoms';
 import * as S from './styled';
 
-interface ClassificationProps {
-	onSubmit: () => void;
-	stuGrade: string;
-	stuClass: string;
-	stuName: string
-	setStuGrade: any;
-	setStuClass: any;
-	setStuName:any;
-}
-
-const Classification: React.FC<ClassificationProps> = ({
+const Classification: React.FC<{onSubmit:() => void}> = ({
 	onSubmit,
-	stuGrade,
-	stuClass,
-	stuName,
-	setStuGrade,
-	setStuClass,
-	setStuName,
 }) => {
+	const [classificationValue, SetClassificationValue] = useRecoilState(AtomClassification);
 	return (
 		<>
 			<S.SelectWrapper>
-				<S.SelectBox onChange={(e) => setStuGrade(e.target.value)} value={stuGrade}>
+				<S.SelectBox onChange={(e) => SetClassificationValue({...classificationValue, stuGrade:e.target.value})} value={classificationValue.stuGrade}>
 					<S.Option value="">전체</S.Option>
 					<S.Option value="1">1</S.Option>
 					<S.Option value="2">2</S.Option>
 					<S.Option value="3">3</S.Option>
 				</S.SelectBox>
 				<S.Label>학년</S.Label>
-				<S.SelectBox onChange={(e) => setStuClass(e.target.value)} value={stuClass}>
+				<S.SelectBox onChange={(e) => SetClassificationValue({...classificationValue, stuClass:e.target.value})} value={classificationValue.stuClass}>
 					<S.Option value="">전체</S.Option>
 					<S.Option value="1">1</S.Option>
 					<S.Option value="2">2</S.Option>
@@ -40,9 +27,9 @@ const Classification: React.FC<ClassificationProps> = ({
 				<S.Label>반</S.Label>
 				<S.Search
 					placeholder="이름"
-					value={stuName}
+					value={classificationValue.stuName}
 					onChange={(e) => {
-						setStuName(e.target.value);
+						SetClassificationValue({...classificationValue, stuClass:e.target.value})
 					}}
 					onKeyPress={(e) => {
 						if (e.key === 'Enter') onSubmit;

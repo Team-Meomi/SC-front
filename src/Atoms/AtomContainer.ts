@@ -1,9 +1,5 @@
 import { atom } from 'recoil';
-
-export type DarkModeState = {
-	theme: 'dark' | 'light' | 'default';
-	systemTheme: 'dark' | 'light' | 'not-ready';
-  };
+import { ClassificationState, DarkModeState } from '../types';
 
 export const AtomCurrentPage = atom<string>({
 	key: 'AtomCurrentPage',
@@ -20,5 +16,14 @@ export const AtomDarkModeState = atom<DarkModeState>({
 	default: {
 		theme: 'default',
 		systemTheme: 'not-ready',
+	},
+});
+
+export const AtomClassification = atom<ClassificationState>({
+	key: 'AtomClassification',
+	default: {
+		stuGrade: "",
+		stuClass: "",
+		stuName: "",
 	},
 });

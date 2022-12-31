@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useRecoilState } from "recoil";
 import useSWR from "swr";
 import { LogoutIcon, MemoAdmincon, MemoAloneicon, MoonIcon, SunIcon } from "../../../public/svg";
 import { SearchAudiovisual, SearchHomebase } from "../../Api/find";
-import { Classification, Participant } from "../../common";
+import { AtomClassification } from "../../Atoms";
+import { Classification, KindBar, Participant } from "../../common";
 import { UseRemoveToken, UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import { DetailListType } from "../../types";
@@ -12,24 +13,20 @@ import { AdminController } from "../../Utils/lib/urls";
 import * as S from "./styled";
 
 const Admin = () => {
-    const router = useRouter();
     const { data:audiovisualData } = useSWR<{list:DetailListType[]}>(AdminController.AdminKind("audiovisual"));
     const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>(AdminController.AdminKind("homebase"));
     const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
     const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
-    const [isAudiovisual, setIsAudiovisual] = useState(true);
-    const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
     const {todayDate, dayOfWeek} = UseToday();
     const [theme , toggle] = UseToggleTheme();
-    const [stuGrade, setStuGrade] = useState('');
-	const [stuClass, setStuClass] = useState('');
-	const [stuName, setStuName] = useState('');
+    const [isAudiovisual, setIsAudiovisual] = useState(true);
+    const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
+	const [classificationValue,] = useRecoilState(AtomClassification);
 
     const handleSubmit = async () => {
-        if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
-        const {data:searchDataA}:any = await SearchAudiovisual(stuGrade,stuClass,stuName)
-        const {data:searchDataH}:any = await SearchHomebase(stuGrade,stuClass,stuName)
-        console.log(searchDataH);
+        if(classificationValue.stuClass && !classificationValue.stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
+        const {data:searchDataA}:any = await SearchAudiovisual(classificationValue)
+        const {data:searchDataH}:any = await SearchHomebase(classificationValue)
         
         setSearchAudiovisualData(searchDataA);
         setSearchHomebaseData(searchDataH);
@@ -46,21 +43,11 @@ const Admin = () => {
             <S.LeftWrapper>
                 <S.FilterWrapper>
                 <S.LogoutBtn onClick={handleLogoutClick}>
-                {
-                    <LogoutIcon />
-                }
+                <LogoutIcon />
                 </S.LogoutBtn>
                 <span>{`${todayDate}(${dayOfWeek})`}</span>
                 <span>컨퍼런스와 스터디 입니다.</span>
-                <Classification
-                    onSubmit={handleSubmit}
-                    stuGrade={stuGrade}
-                    stuClass={stuClass}
-                    stuName={stuName}
-                    setStuGrade={setStuGrade}
-                    setStuClass={setStuClass}
-                    setStuName={setStuName}
-                />
+                <Classification onSubmit={handleSubmit}/>
                 </S.FilterWrapper>
                 <MemoAdmincon/>
             </S.LeftWrapper>
@@ -74,11 +61,7 @@ const Admin = () => {
             )
             }
             </S.DarkModeBtn>
-                <S.KindBar>
-                    <span style={{color: isAudiovisual ? "#77D6B3" : "#999999" }} onClick={() => setIsAudiovisual(true)}>시청각실</span>
-                    <div>|</div>
-                    <span style={{color: isAudiovisual ? "#999999" : "#77D6B3"}} onClick={() => setIsAudiovisual(false)}>홈베이스</span>
-                </S.KindBar>
+                <KindBar state={isAudiovisual} stuState={setIsAudiovisual} />
                 <S.ContantWrapper>
                 {
                     isAudiovisual ? (

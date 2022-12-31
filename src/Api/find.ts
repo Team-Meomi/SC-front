@@ -133,12 +133,14 @@ export const CommentModify = async (
 
 
 export const SearchAudiovisual = async (
-	stuGrade:string,
-	stuClass:string,
-	stuName:string
+	classificationValue: {
+		stuGrade:string,
+		stuClass:string,
+		stuName:string
+	}
 ) => {
 	try {
-		const {data} = await CustomAxios.get(AdminController.AdminSearch("audiovisual",stuGrade,stuClass,stuName))
+		const {data} = await CustomAxios.get(AdminController.AdminSearch("audiovisual",classificationValue))
 		return {data}
 	} catch(e:any){
 		console.log(e);
@@ -146,12 +148,14 @@ export const SearchAudiovisual = async (
 }
 
 export const SearchHomebase = async (
-	stuGrade:string,
-	stuClass:string,
-	stuName:string
+	classificationValue :{
+		stuGrade:string,
+		stuClass:string,
+		stuName:string
+	}
 ) => {
 	try {
-		const {data} = await CustomAxios.get(AdminController.AdminSearch("homebase",stuGrade,stuClass,stuName))
+		const {data} = await CustomAxios.get(AdminController.AdminSearch("homebase",classificationValue))
 		return {data}
 	} catch(e:any){
 		console.log(e);
