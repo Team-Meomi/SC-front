@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
 import { AdminController, CommentController, StudyController } from "../Utils/lib/urls";
 
@@ -19,7 +18,6 @@ export const create = async (
             maxCount,
 			studyType,
 		});
-		toast('게시글이 작성되었습니다', {type: 'success' })
 		return { data };
 	} catch (e: any) {
 		return { errorMsg:e.response.data.message }

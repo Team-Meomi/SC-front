@@ -8,7 +8,10 @@ export const MemberController = {
 	},
 	tokenReissue: () => {
 		return `/auth/`
-	}
+	},
+	logout: () => {
+		return '/auth/';
+	},
 }
 
 // 전체 게시글

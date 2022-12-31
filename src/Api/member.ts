@@ -41,6 +41,16 @@ export const signin = async (
 	}
 };
 
+export const logout = async () => {
+	try {
+		const { data } = await CustomAxios.delete(MemberController.logout());
+		return { data };
+	} catch (e: any) {
+		console.log(e);
+		
+	}
+};
+
 export const tokenReissue = async (
 	RefreshToken: string,
 	ctx:GetServerSidePropsContext|null

@@ -8,20 +8,26 @@ import { categoryArray } from "../../Utils/categoryArray";
 import { UserController } from "../../Utils/lib/urls";
 import { Header, KindBar } from "../../common";
 import { UseRemoveToken } from "../../Hooks";
+import { logout } from "../../Api/member";
+
+const TryLogout = () => {
+	const onLogout = async () => {
+		await logout();
+    window.location.href='/';
+    UseRemoveToken();
+	};
+	return onLogout;
+};
 
 const Profile = () => {
     const router = useRouter();
+    const onLogout = TryLogout();
     const [isOutline,setIsOutline] = useState(true);
     const id = router.query.id as string;
     const { data:ProfileData} = useSWR<Userprops>(UserController.User(id));
     const { data:MyData } = useSWR<Userprops>(UserController.UserBase());
     const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
     const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
-
-    const handleLogoutClick = () => { 
-      UseRemoveToken();
-      window.location.href='/';
-    }
 
     return (
       <S.Wrapper>
@@ -31,7 +37,7 @@ const Profile = () => {
         <S.BackBtn onClick={() => router.back()}>
           <BackBtnIcon/>
         </S.BackBtn>
-        <S.LogoutBtn onClick={handleLogoutClick}>
+        <S.LogoutBtn onClick={onLogout}>
         {
           ProfileData?.id === MyData?.id &&
           <LogoutIcon />

@@ -13,7 +13,7 @@ import { UseToday } from "../../Hooks";
 const Create = () => {
     const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
-    const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
+    const { register, handleSubmit, setValue, watch, reset } = useForm<StudyModifyType>();
     const {todayDate} = UseToday();
     const [radioBtnColor , setRadioBtnColor] = useState("");
 
@@ -28,6 +28,7 @@ const Create = () => {
       return toast(errorMsg , {type: 'warning' })
     }
     router.push('/home')
+    toast('게시글이 작성되었습니다', {type: 'success' })
     }
 
     useEffect(()=> {
@@ -70,7 +71,7 @@ const Create = () => {
               <S.BottomWapper>
                 {
                   studyType === "스터디" ? (
-                    <S.BottomInput readOnly type="number" value={4}/>
+                    <S.BottomInput readOnly type="number" {...register("maxCount")}/>
                   ) : (
                     <S.BottomInput placeholder="인원 수 입력" type="number"  {...register("maxCount")}/>
                   )

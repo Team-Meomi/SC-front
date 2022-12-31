@@ -68,6 +68,7 @@ export const CommentBottom = styled.div`
     width: 100%;
     padding: 0 15px 15px 15px;
     display: flex;
+    font-size: 1.1rem;
 `;
 
 export const ModifySubmitBtn = styled.div`

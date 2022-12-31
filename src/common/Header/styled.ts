@@ -40,6 +40,7 @@ export const LeftWapper = styled.div`
         align-items: center;
         color : ${themedPalette.text};
         transition: all 0.3s ease-in;
+        text-decoration: none;
     }
 `;
 

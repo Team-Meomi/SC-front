@@ -191,8 +191,7 @@ const HomeDetail = () => {
           {
             data?.studyType === "스터디"  && data?.count.count > 0 && (data.isStatus || data?.isMine) &&
             <S.CommentInputBox>
-              <textarea placeholder="자료를 공유해보세요!" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} 
-                onKeyPress={(e:any) => {if (e.key === 'Enter'){handleCommentBtnClick()}}}
+              <textarea placeholder="자료를 공유해보세요!(마크다운형식)" value={commonValue} onChange={(e) => setCommonValue(e.target.value)} 
               />
               <S.CommentBtn onClick={handleCommentBtnClick}>올리기</S.CommentBtn>
             </S.CommentInputBox>

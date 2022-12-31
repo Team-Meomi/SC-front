@@ -7,6 +7,8 @@ import { CommentDelete, CommentModify } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { CommentController } from "../../Utils/lib/urls";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const Contant = ({id,comment,isMine,writer}:CommentProps) => {
   const router = useRouter();
@@ -49,10 +51,16 @@ const Contant = ({id,comment,isMine,writer}:CommentProps) => {
         {
           isModify ? (
               <textarea value={modifyValue} onChange={(e) => {setModifyValue(e.target.value)}}
-              onKeyPress={(e:any) => {if (e.key === 'Enter'){handleModifySubmitBtnClick()}}}
               />
           ) : (
-            <S.CommentBottom>{comment}</S.CommentBottom>
+            <S.CommentBottom>
+              <pre>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                children={comment}
+              />
+            </pre>
+            </S.CommentBottom>
           )
         }
       {
