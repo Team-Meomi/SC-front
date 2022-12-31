@@ -47,3 +47,12 @@ export const UserController = {
 		return `/user/written/${id}`
 	}
 }
+
+export const AdminController = {
+	AdminKind: (kind:string) => {
+		return `/admin/study/${kind}`
+	},
+	AdminSearch : (kind:string,stuGrade:string,stuClass:string,stuName:string) => {
+		return `admin/study/${kind}/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`
+	}
+}

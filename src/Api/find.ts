@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import CustomAxios from "../Utils/lib/CustomAxios";
-import { CommentController, StudyController } from "../Utils/lib/urls";
+import { AdminController, CommentController, StudyController } from "../Utils/lib/urls";
 
 export const create = async (
 	title: string,
@@ -138,7 +138,7 @@ export const SearchAudiovisual = async (
 	stuName:string
 ) => {
 	try {
-		const {data} = await CustomAxios.get(`admin/study/audiovisual/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`)
+		const {data} = await CustomAxios.get(AdminController.AdminSearch("audiovisual",stuGrade,stuClass,stuName))
 		return {data}
 	} catch(e:any){
 		console.log(e);
@@ -151,7 +151,7 @@ export const SearchHomebase = async (
 	stuName:string
 ) => {
 	try {
-		const {data} = await CustomAxios.get(`admin/study/homebase/search?stuNum=${stuGrade}${stuClass}&stuName=${stuName}`)
+		const {data} = await CustomAxios.get(AdminController.AdminSearch("homebase",stuGrade,stuClass,stuName))
 		return {data}
 	} catch(e:any){
 		console.log(e);

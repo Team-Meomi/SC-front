@@ -1,38 +1,41 @@
 import { GetServerSideProps, NextPage } from "next";
+import { SWRConfig } from "swr";
 import { Shead } from "../../common";
 import { Admin } from "../../components";
 import { UseGetToken, UseRole } from "../../Hooks";
 import { MainPageProps } from "../../types";
 import CustomAxios from "../../Utils/lib/CustomAxios";
-import { StudyController } from "../../Utils/lib/urls";
+import { AdminController } from "../../Utils/lib/urls";
 
 const HomePage:NextPage<{fallback: Record<string,MainPageProps[]>}> = ({fallback}) => {
   return (
     <>
-      {/* <SWRConfig value={fallback}> */}
+      <SWRConfig value={fallback}>
         <Shead seoTitle={'어드민페이지'} />
         <Admin />
-      {/* </SWRConfig> */}
+      </SWRConfig>
     </>
   );
 }
 
-// export const  getServerSideProps: GetServerSideProps = async (ctx) => {
-//   const { Authorization } = await UseGetToken(ctx);
-//   const role = await UseRole();
-//   try {
-//     const {data} = await CustomAxios.get(StudyController.Study(role), {headers: {Authorization}});
-//     return {
-//       props: {
-//         fallback: {
-//           [StudyController.Study(role)] : data,
-//         },
-//       },
-//     };
-//   } catch (e) {
-//     console.log(e);
-//     return { props: {} };
-//   }
-// }
+export const  getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { Authorization } = await UseGetToken(ctx);
+  const role = await UseRole();
+  try {
+    const {data:audiovisualData} = await CustomAxios.get(AdminController.AdminKind("audiovisual"),{headers: {Authorization}});
+    const {data:homebaseData} = await CustomAxios.get(AdminController.AdminKind("homebase"),{headers: {Authorization}});
+    return {
+      props: {
+        fallback: {
+          [AdminController.AdminKind("audiovisual")] : audiovisualData,
+          [AdminController.AdminKind("homebase")] : homebaseData,
+        },
+      },
+    };
+  } catch (e) {
+    console.log(e);
+    return { props: {} };
+  }
+}
 
 export default HomePage

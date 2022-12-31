@@ -8,21 +8,22 @@ import { Classification, Participant } from "../../common";
 import { UseRemoveToken, UseToday } from "../../Hooks";
 import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import { DetailListType } from "../../types";
+import { AdminController } from "../../Utils/lib/urls";
 import * as S from "./styled";
 
 const Admin = () => {
     const router = useRouter();
+    const { data:audiovisualData } = useSWR<{list:DetailListType[]}>(AdminController.AdminKind("audiovisual"));
+    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>(AdminController.AdminKind("homebase"));
+    const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
+    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
     const [isAudiovisual, setIsAudiovisual] = useState(true);
     const [isSearchBtnClick, setIsSearchBtnClick] = useState(false);
     const {todayDate, dayOfWeek} = UseToday();
     const [theme , toggle] = UseToggleTheme();
-    const { data:audiovisualData } = useSWR<{list:DetailListType[]}>('admin/study/audiovisual');
-    const { data:homebaseData } = useSWR<{list:[DetailListType[]]}>('admin/study/homebase');
     const [stuGrade, setStuGrade] = useState('');
 	const [stuClass, setStuClass] = useState('');
 	const [stuName, setStuName] = useState('');
-    const [searchAudiovisualData, setSearchAudiovisualData] = useState<{list:DetailListType[]}>();
-    const [searchHomebaseData, setSearchHomebaseData] = useState<{list:[DetailListType[]]}>();
 
     const handleSubmit = async () => {
         if(stuClass && !stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
@@ -36,8 +37,8 @@ const Admin = () => {
     }
 
     const handleLogoutClick = () => {
-        router.push('/');
         UseRemoveToken();
+        window.location.href='/';
     }
 
     return (
