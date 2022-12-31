@@ -41,7 +41,7 @@ const Create = () => {
 
     useEffect(() => {
       if(studyType === "스터디"){
-        setValue("maxCount", 5)
+        setValue("maxCount", 4)
       }else {
         setValue("maxCount", undefined)
       }
@@ -70,7 +70,7 @@ const Create = () => {
               <S.BottomWapper>
                 {
                   studyType === "스터디" ? (
-                    <S.BottomInput readOnly type="number" value={5}/>
+                    <S.BottomInput readOnly type="number" value={4}/>
                   ) : (
                     <S.BottomInput placeholder="인원 수 입력" type="number"  {...register("maxCount")}/>
                   )

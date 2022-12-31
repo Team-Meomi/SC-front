@@ -31,16 +31,16 @@ export default function Signin() {
     reset();
     const role = await UseRole();
     if(role === "user"){
-      router.push("/home");
+      router.replace("/home");
     }else if(role === "admin"){
-      router.push("/admin");
+      router.replace("/admin");
     }
   }
 
   return (
     <>
     <S.LoginWapper >
-        <S.LoginTitle onClick={() => redirect('/auth/signup')}>Login</S.LoginTitle>
+        <S.LoginTitle>Login</S.LoginTitle>
         <S.DecsTitle>컨퍼런스와 스터디의 재미를<br/> 느껴보세요!</S.DecsTitle>
       <S.InputsWapper>
         <S.InputStyle style={{border: isIdError.isError ? "1px solid #FF4747" : "none" }}>

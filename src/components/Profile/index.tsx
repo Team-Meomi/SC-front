@@ -7,21 +7,22 @@ import { MainPageProps, Userprops } from "../../types";
 import { categoryArray } from "../../Utils/categoryArray";
 import { UserController } from "../../Utils/lib/urls";
 import { Header } from "../../common";
+import { UseRemoveToken } from "../../Hooks";
 
 const Profile = () => {
     const router = useRouter();
     const [isOutline,setIsOutline] = useState(true);
     const id = router.query.id as string;
     const { data:ProfileData} = useSWR<Userprops>(UserController.User(id));
-    const { data:MyData } = useSWR<Userprops>(UserController.UserBase(),{revalidateIfStale: false});
-    const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id),{revalidateIfStale: false});
-    const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id),{revalidateIfStale: false});
-    
-    const handleLogoutClick = () => {
-      router.push('/');
-      // UseRemoveToken();
+    const { data:MyData } = useSWR<Userprops>(UserController.UserBase());
+    const { data:JoinedData } = useSWR<MainPageProps[]>(UserController.UserJoined(id));
+    const { data:WrittenData } = useSWR<MainPageProps[]>(UserController.UserWritten(id));
+
+    const handleLogoutClick = () => { 
+      UseRemoveToken();
+      window.location.href='/';
     }
-        
+
     return (
       <S.Wrapper>
         <Header />

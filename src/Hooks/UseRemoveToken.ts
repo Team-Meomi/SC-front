@@ -1,8 +1,8 @@
 import { destroyCookie } from 'nookies'
 
-const UseRemoveToken = (): void => {
-    destroyCookie(null, 'Authorization')
-    destroyCookie(null, 'RefreshToken')
+const useRemoveToken = (): void => {
+    destroyCookie(null, 'Authorization');
+    destroyCookie(null, 'RefreshToken');   
 }
 
-export default UseRemoveToken
+export default useRemoveToken

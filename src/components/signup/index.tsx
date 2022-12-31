@@ -41,7 +41,7 @@ export default function Signin() {
   return (
     <>
     <S.LoginWapper>
-        <S.LoginTitle onClick={() => redirect('/auth/signup')}>Sign up</S.LoginTitle>
+        <S.LoginTitle>Sign up</S.LoginTitle>
         <S.DecsTitle>S&C에 가입하여 즐겁게<br/> 공부해봐요!</S.DecsTitle>
       <S.InputsWapper>
         <S.InputStyle style={{border: isIdError.isError ? "1px solid red" : "none" }}>
