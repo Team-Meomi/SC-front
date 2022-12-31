@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 const Promotion = () => {
     const router = useRouter();
-
     return (
       <S.Wrapper>
           <S.TitleText>

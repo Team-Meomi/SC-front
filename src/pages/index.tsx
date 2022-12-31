@@ -1,17 +1,13 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router';
-import { parseCookies } from 'nookies';
 import { useEffect } from 'react';
 import { Shead } from '../common';
 import { Promotion } from '../components';
+import { UseRoleDirect } from '../Hooks';
 
 const PromotionPage: NextPage = () => {
-  const router = useRouter();
+  const onRoleDirect = UseRoleDirect()
   useEffect(() => {
-    const {RefreshToken} = parseCookies()
-      if(RefreshToken){
-        router.push('/home');
-      }
+    onRoleDirect();
   },[])
   return (
       <>
@@ -21,4 +17,4 @@ const PromotionPage: NextPage = () => {
   )
 }
 
-export default PromotionPage  
+export default PromotionPage;

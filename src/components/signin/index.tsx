@@ -5,12 +5,12 @@ import { SigninForm } from "../../types";
 import { signin } from "../../Api/member";
 import { Input } from "../../common";
 import { useEffect, useState } from "react";
-import { UseRole } from "../../Hooks";
+import { UseRole, UseRoleDirect } from "../../Hooks";
 
 export default function Signin() {
   const router = useRouter();
-  const redirect = (url: string) => router.push(url);
-  const { register, handleSubmit, reset, watch } = useForm<SigninForm>();
+  const onRoleDirect = UseRoleDirect()
+  const { register, handleSubmit, watch } = useForm<SigninForm>();
   const [isIdError , SetIsIdError] = useState({isError:false , msg:"학교이메일을 입력해주세요."});
   const [isPasswordError , SetPasswordError] = useState({isError:false , msg:"8~20자 이내로 입력해주세요."});
 
@@ -28,13 +28,7 @@ export default function Signin() {
 		}else if(res?.errorMsg === '비밀번호가 일치하지 않습니다.'){
       return SetPasswordError({isError:true, msg:res.errorMsg})
     }
-    reset();
-    const role = await UseRole();
-    if(role === "user"){
-      router.replace("/home");
-    }else if(role === "admin"){
-      router.replace("/admin");
-    }
+    onRoleDirect();
   }
 
   return (
@@ -67,7 +61,7 @@ export default function Signin() {
       <S.LoginButton onClick={handleSubmit(onValid)}>login</S.LoginButton>
       <S.RedirectSignUp>
         <span>계정이 없으신가요?</span>
-        <p onClick={() => redirect('/auth/signup')}>회원가입</p>
+        <p onClick={() => router.push('/auth/signup')}>회원가입</p>
       </S.RedirectSignUp>
     </S.LoginWapper>
     </>

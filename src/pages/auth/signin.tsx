@@ -4,14 +4,12 @@ import { parseCookies } from "nookies";
 import { useEffect } from "react";
 import { Shead } from "../../common";
 import { Signin } from "../../components";
+import { UseRoleDirect } from "../../Hooks";
 
 const SignupPage:NextPage = () => {
-  const router = useRouter();
+  const onRoleDirect = UseRoleDirect()
   useEffect(() => {
-    const {RefreshToken} = parseCookies()
-      if(RefreshToken){
-        router.push('/home');
-      }
+    onRoleDirect()
   },[])
   return (
     <>

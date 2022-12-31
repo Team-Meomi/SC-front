@@ -16,7 +16,6 @@ const Header = () => {
   const { data } = useSWR<Userprops>(UserController.UserBase());
   const [searchValue, SetSearchValue] = useRecoilState<{value: string,isClick:boolean}>(AtomSearchValue);
   const [theme , toggle] = UseToggleTheme();
-  
   useEffect(() => {
     setCurrentPage(router.pathname)
   },[router])

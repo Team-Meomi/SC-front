@@ -8,8 +8,7 @@ import { signup } from "../../Api/member";
 
 export default function Signin() {
   const router = useRouter();
-  const redirect = (url: string) => router.push(url);
-  const { register, handleSubmit, reset,watch} = useForm<SignupForm>();
+  const { register, handleSubmit, reset, watch} = useForm<SignupForm>();
   const [isIdError , SetIsIdError] = useState({isError:false , msg:"학교이메일을 입력해주세요."});
   const [isPasswordError , SetIsPasswordError] = useState(false);
   const [isNameError , SetIsNameError] = useState(false);
@@ -35,7 +34,7 @@ export default function Signin() {
 			return SetstrNumError({isError:true , msg:"중복된 학번 입니다."})
 		}
     reset()
-    redirect("/auth/signin");
+    router.push("/auth/signin");
   }
 
   return (
@@ -90,7 +89,7 @@ export default function Signin() {
       <S.LoginButton onClick={handleSubmit(onValid)}>sign in</S.LoginButton>
       <S.RedirectSignUp>
         <span>이미 계정이 있으신가요?</span>
-        <p onClick={() => redirect('/auth/signin')}>로그인</p>
+        <p onClick={() => router.push('/auth/signin')}>로그인</p>
       </S.RedirectSignUp>
     </S.LoginWapper>
     </>
