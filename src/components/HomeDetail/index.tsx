@@ -44,7 +44,10 @@ const HomeDetail = () => {
       if(!data?.id) return;
       switch (SubmitBtnText) {
         case "신청하기" :
-          await StudyApply(data.id)
+          const res = await StudyApply(data.id)
+          if(res.errorMsg){
+            return toast(res.errorMsg,{type:"warning"})
+          }
           toast('신청되었습니다', {type:"success" })
           mutate();
           break;

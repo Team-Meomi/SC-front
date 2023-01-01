@@ -31,7 +31,8 @@ export const StudyApply = async (
 		const {data} = await CustomAxios.post(StudyController.StudyId(id))
 		return {data}
 	} catch(e:any){
-		console.log(e);
+		console.log(e.response.data.message);
+		return { errorMsg:e.response.data.message }
 	}
 }
 
