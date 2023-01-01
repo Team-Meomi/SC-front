@@ -28,9 +28,7 @@ const Classification: React.FC<{onSubmit:() => void}> = ({
 				<S.Search
 					placeholder="이름"
 					value={classificationValue.stuName}
-					onChange={(e) => {
-						SetClassificationValue({...classificationValue, stuClass:e.target.value})
-					}}
+					onChange={(e) => SetClassificationValue({...classificationValue, stuName:e.target.value})}
 					onKeyPress={(e) => {
 						if (e.key === 'Enter') onSubmit;
 					}}

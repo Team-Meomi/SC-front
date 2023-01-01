@@ -25,12 +25,13 @@ const Admin = () => {
 	const [classificationValue,] = useRecoilState(AtomClassification);
 
     const handleSubmit = async () => {
+        if(!classificationValue.stuClass && !classificationValue.stuGrade && !classificationValue.stuName) return setIsSearchBtnClick(false);
         if(classificationValue.stuClass && !classificationValue.stuGrade) return toast('학년을 선택하고 반을 선택해주세요.', {type:"warning" })
         const {data:searchDataA}:any = await SearchAudiovisual(classificationValue)
         const {data:searchDataH}:any = await SearchHomebase(classificationValue)
         
         setSearchAudiovisualData(searchDataA);
-        setSearchHomebaseData(searchDataH);
+        setSearchHomebaseData(searchDataH);        
         setIsSearchBtnClick(true);
     }
 
@@ -56,7 +57,7 @@ const Admin = () => {
                 <S.DarkModeBtn onClick={toggle}>
                     <ThemeIcon/>
                 </S.DarkModeBtn>
-                <KindBar state={isAudiovisual} stuState={setIsAudiovisual} left={"시청각실"} right={"흄베이스"} />
+                <KindBar state={isAudiovisual} stuState={setIsAudiovisual} left={"시청각실"} right={"홈베이스"} />
                 <S.ContantWrapper>
                 {
                     isAudiovisual ? (
@@ -78,7 +79,26 @@ const Admin = () => {
                     ) : (
                         isSearchBtnClick ? (
                             searchHomebaseData?.list && searchHomebaseData?.list.length > 0 ? (searchHomebaseData.list.map((item,index) => (
-                                // <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                item && item.length !== 0 ? (
+                                    <S.HomeBaseWapper key={index}>
+                                        <S.HomeBasePeople>
+                                        {
+                                        item.map((i,index) => (
+                                            <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
+                                        ))
+                                        }
+                                        </S.HomeBasePeople>
+                                    <S.UnderLine/>
+                                    </S.HomeBaseWapper>
+                                ) : (
+                                    <MemoAloneicon/>
+                                )
+                            ))
+                        ):(
+                            <MemoAloneicon/>
+                        )
+                        ) : (
+                            homebaseData?.list && homebaseData?.list.length > 0 ? ( homebaseData.list.map((item,index) => (
                                 <S.HomeBaseWapper key={index}>
                                     <S.HomeBasePeople>
                                     {
@@ -89,22 +109,6 @@ const Admin = () => {
                                     </S.HomeBasePeople>
                                 <S.UnderLine/>
                                 </S.HomeBaseWapper>
-                            ))
-                        ):(
-                            <MemoAloneicon/>
-                        )
-                        ) : (
-                            homebaseData?.list && homebaseData?.list.length > 0 ? ( homebaseData.list.map((item,index) => (
-                            <S.HomeBaseWapper key={index}>
-                                <S.HomeBasePeople>
-                                {
-                                item.map((i,index) => (
-                                    <Participant key={index} id={i.id} stuNum={i.stuNum} name={i.name} />
-                                ))
-                                }
-                                </S.HomeBasePeople>
-                            <S.UnderLine/>
-                            </S.HomeBaseWapper>
                         ))
                         ):(
                             <MemoAloneicon/>
