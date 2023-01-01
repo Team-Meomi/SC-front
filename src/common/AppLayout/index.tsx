@@ -29,7 +29,7 @@ const WrapStyled = styled.div`
     width: 100%;
     height: 100vh;
     padding: 0 0 30px 0;
-    background: ${themedPalette.background};
+    background: ${themedPalette.whiteBlack};
 `   
 
 const animate = {

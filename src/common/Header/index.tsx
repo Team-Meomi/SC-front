@@ -10,6 +10,7 @@ import UseToggleTheme from "../../Hooks/UseToggleTheme";
 import Link from "next/link";
 import { UserController } from "../../Utils/lib/urls";
 import ThemeIcon from "../ThemeIcon";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const Header = () => {
   },[router])
 
   const handleClick = () => {
+    if(!searchValue.value) return toast('검색어를 입력해주세요.', {type:"warning"})
     SetSearchValue({...searchValue , isClick:true})   
   }
 

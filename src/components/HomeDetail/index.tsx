@@ -2,7 +2,7 @@ import * as S from "./styled";
 import { useRouter } from "next/router";
 import useSWR from 'swr';
 import { CommentProps, MainDetailProps, StudyModifyType } from "../../types";
-import { Comment, Participant } from "../../common";
+import { Comment, Participant, TopicBtn } from "../../common";
 import { CommentCreate, StudyApply, StudyCancel, StudyDelete, StudyModify } from "../../Api/find";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
@@ -29,8 +29,16 @@ const HomeDetail = () => {
 
     useEffect(() => {
       const Mycategory = categoryArray.filter((i) => i.value === watch().category)[0] || "";
-      setRadioBtnColor(Mycategory.color)
+      setRadioBtnColor(Mycategory.color)      
     },[watch().category])
+
+    useEffect(() => {
+      if(data?.studyType === "스터디"){
+        setValue("maxCount", 4)
+      }else {
+        setValue("maxCount", undefined)
+      }
+    },[data?.studyType])
 
     const onValid:SubmitHandler<StudyModifyType> = async (d) => {
       if(!data?.id) return;
@@ -121,11 +129,11 @@ const HomeDetail = () => {
                 <div>
                   <span>전공 : </span>
                   <S.TopicBtns BtnColor={radioBtnColor}>
-                    <input defaultChecked={data?.category === "BE"} type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
-                    <input defaultChecked={data?.category === "FE"} type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")} /><label htmlFor="FE">FE</label>
-                    <input defaultChecked={data?.category === "iOS"} type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
-                    <input defaultChecked={data?.category === "AOS"} type="radio" id="AOS" name="category" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
-                    <input defaultChecked={data?.category === "기타"} type="radio" id="기타" name="category" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
+                    <TopicBtn category={data?.category} MyCategory={"BE"}  onClick={() => setValue("category", "BE")}/>
+                    <TopicBtn category={data?.category} MyCategory={"FE"}  onClick={() => setValue("category", "FE")}/>
+                    <TopicBtn category={data?.category} MyCategory={"iOS"} onClick={() => setValue("category", "iOS")}/>
+                    <TopicBtn category={data?.category} MyCategory={"AOS"} onClick={() => setValue("category", "AOS")}/>
+                    <TopicBtn category={data?.category} MyCategory={"기타"} onClick={() => setValue("category", "기타")}/>
                   </S.TopicBtns>
                 </div>
               ):(
@@ -150,12 +158,12 @@ const HomeDetail = () => {
                 data?.studyType === "컨퍼런스" ? (
                   <div>
                     <span>최대인원 : </span>
-                    <input type="date" {...register("maxCount")}/>
+                    <input type="number" placeholder="인원 수 입력" {...register("maxCount")}/>
                   </div>
                 ) : (
                   <div>
                     <span>최대인원 : </span>
-                    <input type="number" readOnly value={5}/>
+                    <input type="number" readOnly {...register("maxCount")}/>
                   </div>
                 )
               ) : (

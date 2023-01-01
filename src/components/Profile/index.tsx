@@ -47,7 +47,7 @@ const Profile = () => {
             <S.ProfileName onClick={() => {router.push(`/user/${ProfileData?.id}`)}}>{ProfileData?.stuNum} {ProfileData?.name}</S.ProfileName>
         </S.LeftWrapper>
         <S.RightWrapper>
-        <KindBar state={isOutline} stuState={setIsOutline} />  
+        <KindBar state={isOutline} stuState={setIsOutline} left={"개설함"} right={"신청함"} />  
         <S.ContantWrapper>
         {isOutline ? (
             WrittenData && WrittenData.length !== 0 ? (WrittenData.map((item,index) => (

@@ -10,6 +10,7 @@ const lightTheme = `
   --boxShadow:rgba(0, 0, 0, 0.1);
   --homeDetail:#EFEFEF;
   --profileLink :#0075FF;
+  --whiteBlack :#ffffff;
 `;
 
 const darkTheme = `
@@ -20,6 +21,7 @@ const darkTheme = `
   --boxShadow:#383737;
   --homeDetail:#1F1F1F;
   --profileLink :#8CACFF;
+  --whiteBlack : #2e2e2e;
 `;
 
 const cssVar = (name: string) => `var(--${name})`;
@@ -32,6 +34,7 @@ export const themedPalette = {
   boxShadow: cssVar('boxShadow'),
   homeDetail: cssVar('homeDetail'),
   profileLink: cssVar('profileLink'),
+  whiteBlack: cssVar('whiteBlack'),
 };
 
 const style = css`

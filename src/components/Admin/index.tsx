@@ -56,7 +56,7 @@ const Admin = () => {
                 <S.DarkModeBtn onClick={toggle}>
                     <ThemeIcon/>
                 </S.DarkModeBtn>
-                <KindBar state={isAudiovisual} stuState={setIsAudiovisual} />
+                <KindBar state={isAudiovisual} stuState={setIsAudiovisual} left={"시청각실"} right={"흄베이스"} />
                 <S.ContantWrapper>
                 {
                     isAudiovisual ? (

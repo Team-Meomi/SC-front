@@ -172,7 +172,6 @@ export const TopicBtns = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
 
     input{
         display: none;
@@ -254,8 +253,8 @@ export const CommentInputBox = styled.div`
 `;
 
 export const CommentBtn = styled.div`
-    width: 100px;
-    height: 30px;
+    width: 117px;
+    height: 36px;
     color: white;
     background-color: #77CB9E;
     display: flex;
@@ -264,7 +263,7 @@ export const CommentBtn = styled.div`
     border-radius: 4px;
     cursor: pointer;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    
+    font-size: 1.2rem;
 `;
 
 export const CommentListBox = styled.div`

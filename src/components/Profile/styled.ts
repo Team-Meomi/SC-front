@@ -7,12 +7,16 @@ export const Wrapper = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: ${themedPalette.header};
+    transition: all 0.3s ease-in;
 `;
 
 export const ProfileWrapper = styled.div`
   width: 100%;
   height: 94vh;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const LeftWrapper = styled.div`

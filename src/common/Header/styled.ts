@@ -9,8 +9,7 @@ export const HeaderWapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 2%;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    background: ${themedPalette.header};
+    background: ${themedPalette.whiteBlack};
     transition: all 0.3s ease-in;
 `;
 

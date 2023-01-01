@@ -133,10 +133,9 @@ export const TopicBtns = styled.div`
         justify-content: center;
         border-radius: 10px;
         background: #F2F2F2;
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 8px ${themedPalette.boxShadow};
         color: rgba(121, 121, 121, 0.8);
         cursor: pointer;
-
     }
     input[type=radio]:checked+label{
         background: ${(props:TopicProps) => props.BtnColor};

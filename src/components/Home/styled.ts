@@ -13,12 +13,10 @@ export const Wrapper = styled.div`
 export const HomeWrapper = styled.div`
   width: 100%;
   height: 94vh;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content:flex-start;
-  height: 100vh;
   overflow-y: scroll;
 `;
 

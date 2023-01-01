@@ -1,5 +1,5 @@
 import * as S from "./styled";
-import { Header } from "../../common";
+import { Header, TopicBtn } from "../../common";
 import { MemoCreate } from "../../../public/svg";
 import { useEffect, useState } from "react";
 import { create } from "../../Api/find";
@@ -13,7 +13,7 @@ import { UseToday } from "../../Hooks";
 const Create = () => {
     const router = useRouter();
     const [studyType , setstudyType] = useState("컨퍼런스")
-    const { register, handleSubmit, setValue, watch, reset } = useForm<StudyModifyType>();
+    const { register, handleSubmit, setValue, watch } = useForm<StudyModifyType>();
     const {todayDate} = UseToday();
     const [radioBtnColor , setRadioBtnColor] = useState("");
 
@@ -62,11 +62,11 @@ const Create = () => {
               <S.TitleInput placeholder="제목을 입력하세요" {...register("title")}/>
               <S.ContentText placeholder="내용을 입력해주세요" {...register("content")}/>
               <S.TopicBtns BtnColor={radioBtnColor}>
-                <input defaultChecked type="radio" id="BE" name="category" onClick={() => setValue("category", "BE")}/><label htmlFor="BE">BE</label>
-                <input type="radio" id="FE" name="category" onClick={() => setValue("category", "FE")}/><label htmlFor="FE">FE</label>
-                <input type="radio" id="iOS" name="category" onClick={() => setValue("category", "iOS")}/><label htmlFor="iOS">iOS</label>
-                <input type="radio" id="AOS" name="category" onClick={() => setValue("category", "AOS")}/><label htmlFor="AOS">AOS</label>
-                <input type="radio" id="기타" name="category" onClick={() => setValue("category", "기타")}/><label htmlFor="기타">기타</label>
+                <TopicBtn category={"BE"} MyCategory={"BE"} onClick={() => setValue("category", "BE")}/>
+                <TopicBtn category={""} MyCategory={"FE"}  onClick={() => setValue("category", "FE")}/>
+                <TopicBtn category={""} MyCategory={"iOS"} onClick={() => setValue("category", "iOS")}/>
+                <TopicBtn category={""} MyCategory={"AOS"} onClick={() => setValue("category", "AOS")}/>
+                <TopicBtn category={""} MyCategory={"기타"} onClick={() => setValue("category", "기타")}/>
               </S.TopicBtns>
               <S.BottomWapper>
                 {
