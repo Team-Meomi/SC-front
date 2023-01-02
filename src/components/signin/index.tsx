@@ -27,7 +27,7 @@ export default function Signin() {
       return SetIsIdError({isError:true , msg:res.errorMsg})
 		}else if(res?.errorMsg === '비밀번호가 일치하지 않습니다.'){
       return SetPasswordError({isError:true, msg:res.errorMsg})
-    }
+    } 
     onRoleDirect();
   }
 

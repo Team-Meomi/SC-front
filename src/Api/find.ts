@@ -20,7 +20,7 @@ export const create = async (
 		});
 		return { data };
 	} catch (e: any) {
-		return { errorMsg:e.response.data.message }
+		return { errorMsg:e?.response?.data.message }
 	}
 };
 
@@ -32,7 +32,7 @@ export const StudyApply = async (
 		return {data}
 	} catch(e:any){
 		console.log(e.response.data.message);
-		return { errorMsg:e.response.data.message }
+		return { errorMsg:e?.response?.data.message }
 	}
 }
 

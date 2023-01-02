@@ -6,9 +6,7 @@ import { UseRoleDirect } from '../Hooks';
 
 const PromotionPage: NextPage = () => {
   const onRoleDirect = UseRoleDirect()
-  useEffect(() => {
     onRoleDirect();
-  },[])
   return (
       <>
         <Shead seoTitle={'프로모션페이지'} />

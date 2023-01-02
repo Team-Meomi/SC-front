@@ -91,7 +91,8 @@ const Admin = () => {
                                     <S.UnderLine/>
                                     </S.HomeBaseWapper>
                                 ) : (
-                                    <MemoAloneicon/>
+                                    // <MemoAloneicon/>
+                                    <div></div>
                                 )
                             ))
                         ):(
