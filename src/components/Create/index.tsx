@@ -24,11 +24,9 @@ const Create = () => {
     else if(!d.date) return toast('날짜를 선택하세요.', {type: 'warning' })
     else if(studyType === "컨퍼런스" && ( d.maxCount > 35 || d.maxCount < 15 )) return toast('컨퍼런스 인원수는 15 부터 35명입니다', {type: 'warning' })
     const res =  await create(d.title, d.content, d.category, d.date, d.maxCount, studyType);    
-    if (res.errorMsg === '시청각실을 빌릴 수 없는 날짜 입니다.') {
-      return toast(res.errorMsg , {type: 'warning' })
-    }
-    router.push('/home')
+    if (res.errorMsg === '시청각실을 빌릴 수 없는 날짜 입니다.' || '홈베이스를 빌릴 수 없는 날짜 입니다.') return toast(res.errorMsg , {type: 'warning' })
     toast('게시글이 작성되었습니다', {type: 'success' })
+    router.push('/home')
     }
 
     useEffect(()=> {
